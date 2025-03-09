@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Projects</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="projects-hero">
+            <div class="container">
+                <h1 class="section-title animate-text">My Projects</h1>
+                <p class="section-description animate-text delay-1">Explore a collection of my academic and personal projects that demonstrate my skills and passion for computer science.</p>
+                
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                    <button class="filter-btn" data-filter="other">Other</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-gallery">
+            <div class="container">
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project1" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>E-commerce Platform</h3>
+                                <p>A fully responsive e-commerce website with product catalog, shopping cart, and user authentication.</p>
+                                <div class="project-tags">
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                    <span>MongoDB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-item" data-category="ml">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project2" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Image Classification Model</h3>
+                                <p>A machine learning model to classify images using convolutional neural networks.</p>
+                                <div class="project-tags">
+                                    <span>Python</span>
+                                    <span>TensorFlow</span>
+                                    <span>CNN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-item" data-category="mobile">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project3" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Fitness Tracking App</h3>
+                                <p>A mobile application for tracking workouts, nutrition, and health metrics.</p>
+                                <div class="project-tags">
+                                    <span>React Native</span>
+                                    <span>Firebase</span>
+                                    <span>Redux</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project4" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Task Management System</h3>
+                                <p>A web application for organizing tasks, managing projects, and tracking progress.</p>
+                                <div class="project-tags">
+                                    <span>Vue.js</span>
+                                    <span>Express</span>
+                                    <span>PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5 -->
+                    <div class="project-item" data-category="other">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project5" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Data Visualization Dashboard</h3>
+                                <p>An interactive dashboard for visualizing and analyzing complex datasets.</p>
+                                <div class="project-tags">
+                                    <span>D3.js</span>
+                                    <span>JavaScript</span>
+                                    <span>SVG</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6 -->
+                    <div class="project-item" data-category="ml">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <a href="#project6" class="view-project">View Details</a>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>Sentiment Analysis Tool</h3>
+                                <p>A natural language processing system that analyzes sentiment in text data.</p>
+                                <div class="project-tags">
+                                    <span>Python</span>
+                                    <span>NLTK</span>
+                                    <span>Scikit-learn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details Sections -->
+        <section id="project1" class="project-details">
+            <div class="container">
+                <div class="project-details-container">
+                    <div class="project-details-header">
+                        <h2>E-commerce Platform</h2>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-details-content">
+                        <div class="project-details-gallery">
+                            <div class="project-main-image">
+                                <div class="project-placeholder"></div>
+                            </div>
+                            <div class="project-gallery-thumbs">
+                                <div class="gallery-thumb">
+                                    <div class="project-placeholder"></div>
+                                </div>
+                                <div class="gallery-thumb">
+                                    <div class="project-placeholder"></div>
+                                </div>
+                                <div class="gallery-thumb">
+                                    <div class="project-placeholder"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-details-info">
+                            <div class="project-info-item">
+                                <h3>Project Overview</h3>
+                                <p>This e-commerce platform provides a complete online shopping experience with product catalog, user authentication, shopping cart, and checkout functionality. The platform is designed to be scalable, secure, and user-friendly.</p>
+                            </div>
+                            
+                            <div class="project-info-item">
+                                <h3>Technologies Used</h3>
+                                <ul class="tech-list">
+                                    <li><span>React</span> - For building the front-end user interface</li>
+                                    <li><span>Node.js & Express</span> - For the back-end server</li>
+                                    <li><span>MongoDB</span> - For database storage</li>
+                                    <li><span>JWT</span> - For authentication</li>
+                                    <li><span>Redux</span> - For state management</li>
+                                    <li><span>Stripe API</span> - For payment processing</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-info-item">
+                                <h3>Key Features</h3>
+                                <ul>
+                                    <li>User authentication and profile management</li>
+                                    <li>Product search and filtering</li>
+                                    <li>Shopping cart and checkout process</li>
+                                    <li>Payment gateway integration</li>
+                                    <li>Order history and tracking</li>
+                                    <li>Admin dashboard for product management</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="project-info-item">
+                                <h3>Challenges & Solutions</h3>
+                                <p>One of the main challenges was implementing a secure and efficient shopping cart system that persists across sessions. I solved this by using a combination of Redux for state management and localStorage to maintain cart items when users return to the site.</p>
+                                <p>Another challenge was optimizing database queries for faster product retrieval. I implemented indexing and pagination to improve performance for large product catalogs.</p>
+                            </div>
+                            
+                            <div class="project-info-item">
+                                <h3>What I Learned</h3>
+                                <p>This project deepened my understanding of full-stack development, especially in handling complex state management, implementing secure authentication, and optimizing database queries. I also gained experience in integrating third-party APIs for payment processing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="back-to-projects">Back to Projects</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- More project details sections would go here for project2, project3, etc. -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
+                    <p>Computer Science Student</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/sumit6511" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/sumit_6511" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Project filtering functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+            
+            // Add click event for each filter button
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Get the filter value
+                    const filterValue = btn.getAttribute('data-filter');
+                    
+                    // Filter projects
+                    projectItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === category) {
+                            item.style.display = 'block';
+                            
+                            // Add animation for appearing items
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            
+                            // Hide after transition
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Back to projects button functionality
+            const backBtns = document.querySelectorAll('.back-to-projects');
+            backBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.project-details').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    document.querySelector('.projects-gallery').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // View project details functionality
+            const viewProjectBtns = document.querySelectorAll('.view-project');
+            viewProjectBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = btn.getAttribute('href');
+                    
+                    // Hide all project details sections
+                    document.querySelectorAll('.project-details').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show the targeted section
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

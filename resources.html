@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="resources-hero">
+            <div class="container">
+                <h1 class="section-title animate-text">Learning Resources</h1>
+                <p class="section-description animate-text delay-1">A curated collection of resources that I've found helpful throughout my computer science journey. These resources have been instrumental in developing my skills and knowledge.</p>
+                
+                <div class="resources-tabs">
+                    <button class="tab-btn active" data-tab="courses">Online Courses</button>
+                    <button class="tab-btn" data-tab="books">Books</button>
+                    <button class="tab-btn" data-tab="tools">Tools & Software</button>
+                    <button class="tab-btn" data-tab="websites">Useful Websites</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources-content">
+            <div class="container">
+                <!-- Online Courses Tab -->
+                <div class="tab-content active" id="courses">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up">
+                            <div class="resource-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>CS50: Introduction to Computer Science</h3>
+                                <p class="resource-provider">Harvard University (edX)</p>
+                                <p>An introduction to computer science and programming that covers algorithms, data structures, resource management, software engineering, and web development.</p>
+                                <div class="resource-tags">
+                                    <span>Programming Fundamentals</span>
+                                    <span>C</span>
+                                    <span>Python</span>
+                                </div>
+                                <a href="https://cs50.harvard.edu/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="resource-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>The Web Developer Bootcamp</h3>
+                                <p class="resource-provider">Udemy</p>
+                                <p>A comprehensive course covering HTML, CSS, JavaScript, Node.js, Express, MongoDB, and more to build full-stack web applications.</p>
+                                <div class="resource-tags">
+                                    <span>Web Development</span>
+                                    <span>JavaScript</span>
+                                    <span>Full-Stack</span>
+                                </div>
+                                <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="resource-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Machine Learning</h3>
+                                <p class="resource-provider">Stanford University (Coursera)</p>
+                                <p>Andrew Ng's popular course on machine learning fundamentals, covering supervised learning, unsupervised learning, and best practices in ML.</p>
+                                <div class="resource-tags">
+                                    <span>Machine Learning</span>
+                                    <span>AI</span>
+                                    <span>Data Science</span>
+                                </div>
+                                <a href="https://www.coursera.org/learn/machine-learning" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>SQL and Database Design</h3>
+                                <p class="resource-provider">FreeCodeCamp</p>
+                                <p>Learn SQL fundamentals, database design principles, and how to work with relational database management systems.</p>
+                                <div class="resource-tags">
+                                    <span>SQL</span>
+                                    <span>Database Design</span>
+                                    <span>PostgreSQL</span>
+                                </div>
+                                <a href="https://www.freecodecamp.org/learn/relational-database/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Books Tab -->
+                <div class="tab-content" id="books">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Clean Code: A Handbook of Agile Software Craftsmanship</h3>
+                                <p class="resource-provider">By Robert C. Martin</p>
+                                <p>A guide to writing clean, maintainable, and efficient code. Covers principles, patterns, and practices for professional programming.</p>
+                                <div class="resource-tags">
+                                    <span>Software Engineering</span>
+                                    <span>Best Practices</span>
+                                    <span>Code Quality</span>
+                                </div>
+                                <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Cracking the Coding Interview</h3>
+                                <p class="resource-provider">By Gayle Laakmann McDowell</p>
+                                <p>A comprehensive guide to technical interviews with detailed explanations of coding problems, algorithms, and data structures.</p>
+                                <div class="resource-tags">
+                                    <span>Algorithms</span>
+                                    <span>Data Structures</span>
+                                    <span>Interview Prep</span>
+                                </div>
+                                <a href="https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Design Patterns: Elements of Reusable Object-Oriented Software</h3>
+                                <p class="resource-provider">By Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</p>
+                                <p>The classic book on design patterns that introduces 23 patterns for solving common programming problems.</p>
+                                <div class="resource-tags">
+                                    <span>Design Patterns</span>
+                                    <span>Object-Oriented</span>
+                                    <span>Software Architecture</span>
+                                </div>
+                                <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Eloquent JavaScript</h3>
+                                <p class="resource-provider">By Marijn Haverbeke</p>
+                                <p>A comprehensive guide to JavaScript that takes readers from the basics to advanced concepts with practical examples.</p>
+                                <div class="resource-tags">
+                                    <span>JavaScript</span>
+                                    <span>Web Development</span>
+                                    <span>Programming</span>
+                                </div>
+                                <a href="https://eloquentjavascript.net/" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools Tab -->
+                <div class="tab-content" id="tools">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up">
+                            <div class="resource-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Visual Studio Code</h3>
+                                <p class="resource-provider">Microsoft</p>
+                                <p>A powerful, lightweight code editor with built-in debugging, Git integration, and support for various programming languages and extensions.</p>
+                                <div class="resource-tags">
+                                    <span>Code Editor</span>
+                                    <span>Development Tools</span>
+                                    <span>Productivity</span>
+                                </div>
+                                <a href="https://code.visualstudio.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="resource-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>GitHub</h3>
+                                <p class="resource-provider">Microsoft</p>
+                                <p>A platform for version control, collaboration, and hosting code repositories using Git. Essential for team projects and open-source contributions.</p>
+                                <div class="resource-tags">
+                                    <span>Version Control</span>
+                                    <span>Collaboration</span>
+                                    <span>Git</span>
+                                </div>
+                                <a href="https://github.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="resource-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Postman</h3>
+                                <p class="resource-provider">Postman Inc.</p>
+                                <p>A popular API client that makes it easy to create, share, test, and document APIs, supporting various protocols and formats.</p>
+                                <div class="resource-tags">
+                                    <span>API Testing</span>
+                                    <span>Backend Development</span>
+                                    <span>Integration</span>
+                                </div>
+                                <a href="https://www.postman.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Chrome DevTools</h3>
+                                <p class="resource-provider">Google</p>
+                                <p>A set of web developer tools built into the Chrome browser for debugging, testing, and optimizing web applications.</p>
+                                <div class="resource-tags">
+                                    <span>Web Development</span>
+                                    <span>Debugging</span>
+                                    <span>Performance</span>
+                                </div>
+                                <a href="https://developers.google.com/web/tools/chrome-devtools" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Websites Tab -->
+                <div class="tab-content" id="websites">
+                    <div class="resources-grid">
+                        <div class="resource-card" data-aos="fade-up">
+                            <div class="resource-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>Stack Overflow</h3>
+                                <p class="resource-provider">Stack Exchange Network</p>
+                                <p>A community-driven Q&A website for programmers to find solutions to coding problems and share knowledge.</p>
+                                <div class="resource-tags">
+                                    <span>Q&A</span>
+                                    <span>Problem Solving</span>
+                                    <span>Community</span>
+                                </div>
+                                <a href="https://stackoverflow.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="resource-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>MDN Web Docs</h3>
+                                <p class="resource-provider">Mozilla</p>
+                                <p>A comprehensive resource for web developers, including detailed documentation on HTML, CSS, JavaScript, and web APIs.</p>
+                                <div class="resource-tags">
+                                    <span>Web Development</span>
+                                    <span>Documentation</span>
+                                    <span>Reference</span>
+                                </div>
+                                <a href="https://developer.mozilla.org/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="resource-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>LeetCode</h3>
+                                <p class="resource-provider">LeetCode</p>
+                                <p>A platform with coding challenges and contests to prepare for technical interviews and improve problem-solving skills.</p>
+                                <div class="resource-tags">
+                                    <span>Algorithms</span>
+                                    <span>Data Structures</span>
+                                    <span>Interview Prep</span>
+                                </div>
+                                <a href="https://leetcode.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+                            <div class="resource-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="resource-info">
+                                <h3>GitHub Learning Lab</h3>
+                                <p class="resource-provider">GitHub</p>
+                                <p>An interactive platform that teaches Git, GitHub, and development workflows through hands-on projects and tutorials.</p>
+                                <div class="resource-tags">
+                                    <span>Git</span>
+                                    <span>Version Control</span>
+                                    <span>Tutorials</span>
+                                </div>
+                                <a href="https://lab.github.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommend-resource">
+            <div class="container">
+                <div class="recommend-box">
+                    <h2>Have a resource to recommend?</h2>
+                    <p>If you know of any helpful resources that aren't listed here, I'd love to hear about them. Please share your recommendations!</p>
+                    <button id="recommend-btn" class="btn primary-btn">Recommend a Resource</button>
+                    
+                    <!-- Recommendation Form (Hidden by Default) -->
+                    <div id="recommendation-form" class="recommendation-form" style="display: none;">
+                        <form>
+                            <div class="form-group">
+                                <label for="resource-name">Resource Name</label>
+                                <input type="text" id="resource-name" name="resource-name" placeholder="e.g., JavaScript: The Good Parts" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resource-type">Resource Type</label>
+                                <select id="resource-type" name="resource-type" required>
+                                    <option value="" disabled selected>Select a resource type</option>
+                                    <option value="course">Online Course</option>
+                                    <option value="book">Book</option>
+                                    <option value="tool">Tool/Software</option>
+                                    <option value="website">Website</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resource-url">Resource URL</label>
+                                <input type="url" id="resource-url" name="resource-url" placeholder="https://example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resource-provider">Provider/Author</label>
+                                <input type="text" id="resource-provider" name="resource-provider" placeholder="e.g., Douglas Crockford" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resource-description">Description</label>
+                                <textarea id="resource-description" name="resource-description" placeholder="Briefly describe why this resource is helpful..." rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resource-tags">Tags (comma separated)</label>
+                                <input type="text" id="resource-tags" name="resource-tags" placeholder="e.g., JavaScript, Programming, Web Development">
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary-btn">
+                                    <i class="fas fa-paper-plane"></i> Submit Recommendation
+                                </button>
+                                <button type="button" id="cancel-recommendation" class="btn secondary-btn">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
+                    <p>Computer Science Student</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/sumit6511" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/sumit_6511" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show the corresponding tab content
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Trigger AOS animation refresh
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('scroll'));
+                    }, 100);
+                });
+            });
+            
+            // Recommendation form toggle
+            const recommendBtn = document.getElementById('recommend-btn');
+            const recommendationForm = document.getElementById('recommendation-form');
+            const cancelBtn = document.getElementById('cancel-recommendation');
+            
+            recommendBtn.addEventListener('click', () => {
+                // Slide down animation effect
+                recommendationForm.style.display = 'block';
+                recommendationForm.style.maxHeight = '0';
+                setTimeout(() => {
+                    recommendationForm.style.maxHeight = recommendationForm.scrollHeight + 'px';
+                }, 10);
+                recommendBtn.style.display = 'none';
+            });
+            
+            cancelBtn.addEventListener('click', () => {
+                // Slide up animation effect
+                recommendationForm.style.maxHeight = '0';
+                setTimeout(() => {
+                    recommendationForm.style.display = 'none';
+                    recommendBtn.style.display = 'inline-block';
+                }, 300);
+            });
+            
+            // Handle form submission (in a real app, this would send data to the server)
+            const form = recommendationForm.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Show success message
+                const formData = new FormData(form);
+                const formValues = {};
+                
+                for (let [key, value] of formData.entries()) {
+                    formValues[key] = value;
+                }
+                
+                alert('Thank you for your recommendation! I will review it soon.');
+                
+                // Reset and hide form
+                form.reset();
+                recommendationForm.style.maxHeight = '0';
+                setTimeout(() => {
+                    recommendationForm.style.display = 'none';
+                    recommendBtn.style.display = 'inline-block';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 
