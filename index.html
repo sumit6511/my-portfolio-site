@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Home</title>
+    <meta name="description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sumit-sah.com.np/">
+    <meta property="og:title" content="Sumit Sah | Home">
+    <meta property="og:description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sumit-sah.com.np/">
+    <meta property="og:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sumit Sah | Home">
+    <meta name="twitter:description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
+    <meta name="twitter:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="theme-color" content="#5e60ce">
+    <title>Sumit Sah | Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,21 +29,21 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.html" class="signature">SUMIT<span>.</span></a>
+                <a href="index.html" class="signature">PORTFOLIO<span>.</span></a>
             </div>
             <nav>
-                <ul class="nav-links">
+                <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </button>
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
             </nav>
         </div>
     </header>
@@ -39,20 +52,11 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="animate-text">Hello, I'm <span class="highlight">Sumit Sah</span></h1>
-                    <h2 class="animate-text delay-1">A Tech Enthusiast.</h2>
-                    <div class="typing-container animate-text delay-2">
-                        <span id="typed-output" class="typed-text"></span>
-                    </div>
-                    <div class="to-be-typed">
-                        <span data-type="Passionate about developing innovative solutions."></span>
-                        <span data-type="Exploring new technologies and creative ideas."></span>
-                        <span data-type="Building meaningful applications that make a difference."></span>
-                        <span data-type="Always learning and growing as a developer."></span>
-                    </div>
-                    <div class="cta-buttons animate-text delay-3">
-                        <a href="projects.html" class="btn primary-btn">View Projects</a>
-                        <a href="contact.html" class="btn secondary-btn">Contact Me</a>
+                    <h1 class="animate-text">Hi, I’m <span class="highlight">Sumit Sah</span></h1>
+                    <h2 class="animate-text delay-1">I build minimal, modern web experiences.</h2>
+                    <div class="hero-actions animate-text delay-2">
+                        <a href="projects.html" class="btn primary-btn">View projects</a>
+                        <a href="contact.html" class="btn secondary-btn">Say hello</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -63,7 +67,7 @@
             </div>
         </section>
 
-        <section class="skills">
+        <section class="skills" id="skills">
             <div class="container">
                 <h2 class="section-title">My Skills</h2>
                 <div class="skills-grid">
@@ -102,21 +106,32 @@
         <section class="featured-projects">
             <div class="container">
                 <h2 class="section-title">Featured Projects</h2>
+                <p class="section-description">A hand-picked selection of recent work that highlights clean UI, polished interactions, and real-world problem solving.</p>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <img src="images/todo_app_cover.jpg">
+                                <img src="images/todo_app_cover.jpg" alt="Screenshot of the To-Do App project">
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Explore this build</span>
+                                </div>
                             </div>
                         </div>
                         <div class="project-info">
+                            <div class="project-card-header">
+                                <span class="project-badge">Featured</span>
+                            </div>
                             <h3>To-Do App</h3>
                             <p>A simple React-based task manager to add, complete, and delete daily tasks with a clean, responsive UI.</p>
                             <div class="project-tags">
                                 <span>React</span>
+                                <span>UI Design</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/sumit6511/todo-app" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a> <br>
+                                <a href="https://github.com/sumit6511/todo-app" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
                                 <a href="https://todo-app-rust-two-36.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                             </div>
                         </div>
@@ -124,19 +139,28 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <img src="images/ims.jpg">
+                                <img src="images/ims.jpg" alt="Screenshot of the Inventory Management System project">
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <i class="fas fa-eye"></i>
+                                    <span>See project details</span>
+                                </div>
                             </div>
                         </div>
                         <div class="project-info">
+                            <div class="project-card-header">
+                                <span class="project-badge">Practical</span>
+                            </div>
                             <h3>Inventory Management System</h3>
                             <p>A Python application that helps manage products, track stock levels, update quantities, and generate inventory reports efficiently.</p>
                             <div class="project-tags">
                                 <span>Python</span>
                                 <span>Tkinter</span>
+                                <span>Data Management</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/sumit6511/GenAI-Training-Workshop/tree/main/Projects/Inventory_Management_System" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
-<!--                                 <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                             </div>
                         </div>
                     </div>

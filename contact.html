@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Contact</title>
+    <meta name="description" content="Contact Sumit Sah for freelance work, mentorship, or collaboration in web development, data science, and software projects.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sumit-sah.com.np/contact.html">
+    <meta property="og:title" content="Sumit Sah | Contact">
+    <meta property="og:description" content="Contact Sumit Sah for freelance work, mentorship, or collaboration in web development, data science, and software projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sumit-sah.com.np/contact.html">
+    <meta property="og:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sumit Sah | Contact">
+    <meta name="twitter:description" content="Contact Sumit Sah for freelance work, mentorship, or collaboration in web development, data science, and software projects.">
+    <meta name="twitter:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="theme-color" content="#5e60ce">
+    <title>Sumit Sah | Contact</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,21 +29,21 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.html" class="signature">SUMIT<span>.</span></a>
+                <a href="index.html" class="signature">PORTFOLIO<span>.</span></a>
             </div>
             <nav>
-                <ul class="nav-links">
+                <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </button>
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
             </nav>
         </div>
     </header>
@@ -131,49 +144,49 @@
                 
                 <div class="faq-container">
                     <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-1">
                             <h3>Are you available for freelance work?</h3>
                             <div class="faq-icon">
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>
-                        <div class="faq-answer">
+                        <div id="faq-answer-1" class="faq-answer" aria-hidden="true">
                             <p>Yes, I am available for freelance projects, particularly in web development, programming, and data analysis. Feel free to contact me with your project details, and we can discuss how I can help.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-2">
                             <h3>Do you offer tutoring or mentoring services?</h3>
                             <div class="faq-icon">
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>
-                        <div class="faq-answer">
+                        <div id="faq-answer-2" class="faq-answer" aria-hidden="true">
                             <p>Yes, I provide tutoring and mentoring in various computer science subjects, including programming languages, data structures, algorithms, and web development. Please reach out to discuss your learning goals and how I can assist.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-3">
                             <h3>What is your typical response time?</h3>
                             <div class="faq-icon">
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>
-                        <div class="faq-answer">
+                        <div id="faq-answer-3" class="faq-answer" aria-hidden="true">
                             <p>I usually respond to emails and messages within 24-48 hours. For urgent matters, please indicate so in your message, and I'll try to get back to you as soon as possible.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="faq-question">
+                        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-4">
                             <h3>Can we collaborate on a project?</h3>
                             <div class="faq-icon">
                                 <i class="fas fa-plus"></i>
                             </div>
                         </div>
-                        <div class="faq-answer">
+                        <div id="faq-answer-4" class="faq-answer" aria-hidden="true">
                             <p>I'm always open to collaboration opportunities, especially on projects related to web development, machine learning, or innovative tech solutions. Please share your project idea, and we can discuss potential collaboration.</p>
                         </div>
                     </div>
@@ -201,7 +214,7 @@
                 <div class="social-links">
                     <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/sumit_6511" aria-label="Twitter"><i class="fab fa-twitter" target="_blank" rel="noopener noreferrer"></i></a>
+                    <a href="https://x.com/sumit_6511" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
                     <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
@@ -212,57 +225,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        // FAQ Toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // Toggle active class on the clicked item
-                    item.classList.toggle('active');
-                    
-                    // Update the icon
-                    const icon = item.querySelector('.faq-icon i');
-                    if (item.classList.contains('active')) {
-                        icon.classList.replace('fa-plus', 'fa-minus');
-                    } else {
-                        icon.classList.replace('fa-minus', 'fa-plus');
-                    }
-                });
-            });
-            
-            // Form submission
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    // In a real application, you would handle the form submission here
-                    // For demo purposes, we'll just show a success message
-                    const formData = new FormData(contactForm);
-                    const formValues = {};
-                    
-                    for (let [key, value] of formData.entries()) {
-                        formValues[key] = value;
-                    }
-                    
-                    console.log('Form data:', formValues);
-                    
-                    // Show success message
-                    contactForm.innerHTML = `
-                        <div class="success-message">
-                            <i class="fas fa-check-circle"></i>
-                            <h3>Message Sent Successfully!</h3>
-                            <p>Thank you for reaching out, ${formValues.name}. I'll get back to you as soon as possible.</p>
-                        </div>
-                    `;
-                });
-            }
-        });
-    </script>
 </body>
 
 </html> 

@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Resources</title>
+    <meta name="description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sumit-sah.com.np/resources.html">
+    <meta property="og:title" content="Sumit Sah | Resources">
+    <meta property="og:description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sumit-sah.com.np/resources.html">
+    <meta property="og:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sumit Sah | Resources">
+    <meta name="twitter:description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
+    <meta name="twitter:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="theme-color" content="#5e60ce">
+    <title>Sumit Sah | Resources</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,21 +29,21 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.html" class="signature">SUMIT<span>.</span></a>
+                <a href="index.html" class="signature">PORTFOLIO<span>.</span></a>
             </div>
             <nav>
-                <ul class="nav-links">
+                <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </button>
+                <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="resources.html" class="active">Resources</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
             </nav>
         </div>
     </header>
@@ -351,10 +364,9 @@
                 <div class="recommend-box">
                     <h2>Have a resource to recommend?</h2>
                     <p>If you know of any helpful resources that aren't listed here, I'd love to hear about them. Please share your recommendations!</p>
-                    <button id="recommend-btn" class="btn primary-btn">Recommend a Resource</button>
-                    
-                    <!-- Recommendation Form (Hidden by Default) -->
-                    <div id="recommendation-form" class="recommendation-form" style="display: none;">
+                    <button id="recommend-btn" type="button" class="btn primary-btn" aria-expanded="false" aria-controls="recommendation-form">Recommend a Resource</button>
+                    <div id="recommendation-success" class="success-message" aria-live="polite" style="display: none;"></div>
+                    <div id="recommendation-form" class="recommendation-form" hidden>
                         <form>
                             <div class="form-group">
                                 <label for="resource-name">Resource Name</label>
@@ -363,14 +375,27 @@
                             
                             <div class="form-group">
                                 <label for="resource-type">Resource Type</label>
-                                <select id="resource-type" name="resource-type" required>
-                                    <option value="" disabled selected>Select a resource type</option>
-                                    <option value="course">Online Course</option>
-                                    <option value="book">Book</option>
-                                    <option value="tool">Tool/Software</option>
-                                    <option value="website">Website</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <div class="custom-select-wrapper">
+                                    <div class="custom-select" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false">
+                                        <span class="custom-select__trigger">Select a resource type</span>
+                                    </div>
+                                    <div class="custom-options" role="listbox" aria-label="Resource types">
+                                        <span class="custom-option selected" data-value="" role="option">Select a resource type</span>
+                                        <span class="custom-option" data-value="course" role="option">Online Course</span>
+                                        <span class="custom-option" data-value="book" role="option">Book</span>
+                                        <span class="custom-option" data-value="tool" role="option">Tool/Software</span>
+                                        <span class="custom-option" data-value="website" role="option">Website</span>
+                                        <span class="custom-option" data-value="other" role="option">Other</span>
+                                    </div>
+                                    <select id="resource-type" name="resource-type" required hidden>
+                                        <option value="" disabled selected>Select a resource type</option>
+                                        <option value="course">Online Course</option>
+                                        <option value="book">Book</option>
+                                        <option value="tool">Tool/Software</option>
+                                        <option value="website">Website</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
                             </div>
                             
                             <div class="form-group">
@@ -395,10 +420,10 @@
                             
                             <div class="form-actions">
                                 <button type="submit" class="btn primary-btn">
-                                    <i class="fas fa-paper-plane"></i> Submit Recommendation
+                                    <i class="fas fa-paper-plane"></i>Submit Recommendation
                                 </button>
                                 <button type="button" id="cancel-recommendation" class="btn secondary-btn">
-                                    <i class="fas fa-times"></i> Cancel
+                                    <i class="fas fa-times"></i>Cancel
                                 </button>
                             </div>
                         </form>
@@ -438,81 +463,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        // Tab functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active class from all buttons and contents
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    btn.classList.add('active');
-                    
-                    // Show the corresponding tab content
-                    const tabId = btn.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                    
-                    // Trigger AOS animation refresh
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('scroll'));
-                    }, 100);
-                });
-            });
-            
-            // Recommendation form toggle
-            const recommendBtn = document.getElementById('recommend-btn');
-            const recommendationForm = document.getElementById('recommendation-form');
-            const cancelBtn = document.getElementById('cancel-recommendation');
-            
-            recommendBtn.addEventListener('click', () => {
-                // Slide down animation effect
-                recommendationForm.style.display = 'block';
-                recommendationForm.style.maxHeight = '0';
-                setTimeout(() => {
-                    recommendationForm.style.maxHeight = recommendationForm.scrollHeight + 'px';
-                }, 10);
-                recommendBtn.style.display = 'none';
-            });
-            
-            cancelBtn.addEventListener('click', () => {
-                // Slide up animation effect
-                recommendationForm.style.maxHeight = '0';
-                setTimeout(() => {
-                    recommendationForm.style.display = 'none';
-                    recommendBtn.style.display = 'inline-block';
-                }, 300);
-            });
-            
-            // Handle form submission (in a real app, this would send data to the server)
-            const form = recommendationForm.querySelector('form');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Show success message
-                const formData = new FormData(form);
-                const formValues = {};
-                
-                for (let [key, value] of formData.entries()) {
-                    formValues[key] = value;
-                }
-                
-                alert('Thank you for your recommendation! I will review it soon.');
-                
-                // Reset and hide form
-                form.reset();
-                recommendationForm.style.maxHeight = '0';
-                setTimeout(() => {
-                    recommendationForm.style.display = 'none';
-                    recommendBtn.style.display = 'inline-block';
-                }, 300);
-            });
-        });
-    </script>
 </body>
 </html> 
 
