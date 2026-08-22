@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070b1c"/>
+      <stop offset="45%" stop-color="#0b1128"/>
+      <stop offset="100%" stop-color="#0c1330"/>
+    </linearGradient>
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5e60ce"/>
+      <stop offset="50%" stop-color="#64dfdf"/>
+      <stop offset="100%" stop-color="#7b90ff"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7b90ff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#7b90ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5e60ce" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#5e60ce" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.045"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <circle cx="680" cy="80" r="220" fill="url(#glow1)"/>
+  <circle cx="100" cy="530" r="240" fill="url(#glow2)"/>
+
+  <circle cx="400" cy="215" r="72" fill="rgba(255,255,255,0.045)" stroke="url(#text-gradient)" stroke-width="2"/>
+  <g fill="none" stroke-linecap="round">
+    <rect x="333" y="181" width="88" height="32" rx="16" transform="rotate(-40 377 197)" stroke="url(#text-gradient)" stroke-width="10"/>
+    <rect x="379" y="217" width="88" height="32" rx="16" transform="rotate(-40 423 233)" stroke="#f7f8fb" stroke-width="10" opacity="0.9"/>
+  </g>
+
+  <text x="400" y="345" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="46" font-weight="700" fill="url(#text-gradient)">SnapLink</text>
+  <text x="400" y="380" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="14" letter-spacing="4" fill="#9aa3c4">URL SHORTENER &#183; ANALYTICS</text>
+
+  <text x="400" y="522" text-anchor="middle" font-family="'Roboto Mono', 'Courier New', monospace" font-size="15" fill="#8792b4">React &#183; Node.js &#183; MongoDB</text>
+  <text x="32" y="568" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" fill="rgba(255,255,255,0.28)">sumit6511/snaplink</text>
+</svg>

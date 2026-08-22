@@ -1,4 +1,10 @@
 // Global utility and feature initialization
+
+// Formspree endpoint used by the contact form and the resource recommendation form.
+// Sign up at https://formspree.io, create a form, and replace this with your form's
+// endpoint (e.g. 'https://formspree.io/f/abcdwxyz').
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwleyvog';
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
 
@@ -58,6 +64,23 @@ function initHeaderMenu() {
     updateHeader();
 }
 
+function initScrollProgress() {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    const updateProgress = () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        bar.style.width = `${Math.min(progress, 100)}%`;
+    };
+
+    window.addEventListener('scroll', throttle(updateProgress), { passive: true });
+    window.addEventListener('resize', debounce(updateProgress));
+    updateProgress();
+}
+
 function initScrollAnimations() {
     const elements = document.querySelectorAll('[data-aos]');
     if (!elements.length) return;
@@ -108,43 +131,6 @@ function initProjectCardHover() {
             card.style.boxShadow = '';
         });
     });
-}
-
-function initTypingAnimation() {
-    const typedOutput = document.getElementById('typed-output');
-    const textElements = document.querySelectorAll('.to-be-typed span');
-    if (!typedOutput || !textElements.length) return;
-
-    const texts = Array.from(textElements).map(elem => elem.getAttribute('data-type') || '');
-    let currentTextIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-
-    const type = () => {
-        const currentText = texts[currentTextIndex];
-        if (isDeleting) {
-            typedOutput.textContent = currentText.substring(0, currentCharIndex - 1);
-            currentCharIndex -= 1;
-        } else {
-            typedOutput.textContent = currentText.substring(0, currentCharIndex + 1);
-            currentCharIndex += 1;
-        }
-
-        let typingSpeed = isDeleting ? 50 : 100;
-        if (!isDeleting && currentCharIndex === currentText.length) {
-            typingSpeed = 2000;
-            isDeleting = true;
-        }
-        if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentTextIndex = (currentTextIndex + 1) % texts.length;
-            typingSpeed = 1000;
-        }
-
-        setTimeout(type, typingSpeed);
-    };
-
-    setTimeout(type, 1000);
 }
 
 function initHeroParallax() {
@@ -237,7 +223,22 @@ function initContactForm() {
     const contactForm = document.querySelector('.contact-form');
     if (!contactForm) return;
 
-    contactForm.addEventListener('submit', (e) => {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const submitLabel = submitBtn ? submitBtn.textContent : '';
+    let errorMessage = null;
+
+    const showError = () => {
+        if (!errorMessage) {
+            errorMessage = document.createElement('p');
+            errorMessage.className = 'form-error-message';
+            errorMessage.setAttribute('role', 'alert');
+            // Appended last so it doesn't shift the nth-child positions the grid layout relies on.
+            contactForm.appendChild(errorMessage);
+        }
+        errorMessage.textContent = "Something went wrong sending your message. Please try again, or email me directly instead.";
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formInputs = contactForm.querySelectorAll('input, textarea');
         let valid = true;
@@ -253,15 +254,38 @@ function initContactForm() {
 
         if (!valid) return;
 
-        const successMessage = document.createElement('div');
-        successMessage.className = 'success-message';
-        successMessage.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <h3>Message Sent Successfully!</h3>
-            <p>Thank you for reaching out. I&#39;ll get back to you as soon as possible.</p>
-        `;
-        contactForm.innerHTML = '';
-        contactForm.appendChild(successMessage);
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+        }
+        if (errorMessage) errorMessage.remove();
+        errorMessage = null;
+
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: new FormData(contactForm),
+            });
+
+            if (!response.ok) throw new Error('Form submission failed');
+
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for reaching out. I&#39;ll get back to you as soon as possible.</p>
+            `;
+            contactForm.innerHTML = '';
+            contactForm.appendChild(successMessage);
+        } catch (err) {
+            showError();
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = submitLabel;
+            }
+        }
     });
 }
 
@@ -382,20 +406,54 @@ function initResourcesPage() {
         });
 
         if (recommendationFormElement) {
-            recommendationFormElement.addEventListener('submit', (e) => {
+            const recommendSubmitBtn = recommendationFormElement.querySelector('button[type="submit"]');
+            const recommendSubmitLabel = recommendSubmitBtn ? recommendSubmitBtn.innerHTML : '';
+            let recommendError = null;
+
+            recommendationFormElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                if (recommendationSuccess) {
-                    recommendationSuccess.style.display = 'block';
-                    recommendationSuccess.innerHTML = `
-                        <h3>Thanks for the recommendation!</h3>
-                        <p>Your suggestion has been received. I&#39;ll review it and add it to the list if it fits well.</p>
-                    `;
+                if (recommendSubmitBtn) {
+                    recommendSubmitBtn.disabled = true;
+                    recommendSubmitBtn.textContent = 'Sending...';
+                }
+                if (recommendError) {
+                    recommendError.remove();
+                    recommendError = null;
                 }
 
-                recommendationFormElement.reset();
-                hideRecommendationForm();
-                recommendBtn.style.display = 'inline-block';
+                try {
+                    const response = await fetch(FORMSPREE_ENDPOINT, {
+                        method: 'POST',
+                        headers: { Accept: 'application/json' },
+                        body: new FormData(recommendationFormElement),
+                    });
+
+                    if (!response.ok) throw new Error('Form submission failed');
+
+                    if (recommendationSuccess) {
+                        recommendationSuccess.style.display = 'block';
+                        recommendationSuccess.innerHTML = `
+                            <h3>Thanks for the recommendation!</h3>
+                            <p>Your suggestion has been received. I&#39;ll review it and add it to the list if it fits well.</p>
+                        `;
+                    }
+
+                    recommendationFormElement.reset();
+                    hideRecommendationForm();
+                    recommendBtn.style.display = 'inline-block';
+                } catch (err) {
+                    recommendError = document.createElement('p');
+                    recommendError.className = 'form-error-message';
+                    recommendError.setAttribute('role', 'alert');
+                    recommendError.textContent = "Something went wrong sending your recommendation. Please try again in a moment.";
+                    recommendationFormElement.appendChild(recommendError);
+                } finally {
+                    if (recommendSubmitBtn) {
+                        recommendSubmitBtn.disabled = false;
+                        recommendSubmitBtn.innerHTML = recommendSubmitLabel;
+                    }
+                }
             });
         }
     }
@@ -467,8 +525,6 @@ function initCustomSelects() {
 function initProjectsPage() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
-    const backBtns = document.querySelectorAll('.back-to-projects');
-    const viewProjectBtns = document.querySelectorAll('.view-project');
 
     if (filterBtns.length && projectItems.length) {
         filterBtns.forEach(btn => {
@@ -486,40 +542,14 @@ function initProjectsPage() {
             });
         });
     }
-
-    backBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelectorAll('.project-details').forEach(section => {
-                section.style.display = 'none';
-            });
-            const gallery = document.querySelector('.projects-gallery');
-            if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    viewProjectBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelectorAll('.project-details').forEach(section => {
-                section.style.display = 'none';
-            });
-            const targetId = btn.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                targetSection.style.display = 'block';
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
 }
 
 function initPageScripts() {
     initHeaderMenu();
+    initScrollProgress();
     initScrollAnimations();
     initProjectCardHover();
     initHeroParallax();
-    initTypingAnimation();
     initContactForm();
     initContactFaq();
     initResourcesPage();

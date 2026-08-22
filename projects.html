@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Browse projects by Sumit Sah, showcasing web development, mobile apps, machine learning, and other technical work.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://sumit-sah.com.np/projects.html">
+    <link rel="canonical" href="https://www.sumit-sah.com.np/projects.html">
     <meta property="og:title" content="Sumit Sah | Projects">
     <meta property="og:description" content="Browse projects by Sumit Sah, showcasing web development, mobile apps, machine learning, and other technical work.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sumit-sah.com.np/projects.html">
-    <meta property="og:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta property="og:url" content="https://www.sumit-sah.com.np/projects.html">
+    <meta property="og:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sumit Sah | Projects">
     <meta name="twitter:description" content="Browse projects by Sumit Sah, showcasing web development, mobile apps, machine learning, and other technical work.">
-    <meta name="twitter:image" content="https://sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="theme-color" content="#5e60ce">
     <title>Sumit Sah | Projects</title>
     <link rel="stylesheet" href="css/style.css">
@@ -57,7 +60,6 @@
                 <div class="project-filters">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="web">Web Development</button>
-                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
                     <button class="filter-btn" data-filter="ml">Machine Learning</button>
                     <button class="filter-btn" data-filter="other">Other</button>
                 </div>
@@ -67,214 +69,236 @@
         <section class="projects-gallery">
             <div class="container">
                 <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-item" data-category="web">
+                    <!-- VoxTube -->
+                    <div class="project-item" data-category="ml">
                         <div class="project-card">
                             <div class="project-image">
-                                <div class="project-placeholder"></div>
+                                <div class="project-placeholder">
+                                    <img src="images/covers/voxtube.svg" alt="VoxTube project cover">
+                                </div>
                                 <div class="project-overlay">
-                                    <a href="#project1" class="view-project">View Details</a>
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Explore this build</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="project-info">
-                                <h3>E-commerce Platform</h3>
-                                <p>A fully responsive e-commerce website with product catalog, shopping cart, and user authentication.</p>
+                                <div class="project-card-header">
+                                    <span class="project-badge">Machine Learning</span>
+                                </div>
+                                <h3>VoxTube</h3>
+                                <p>A full-stack NLP platform that analyzes YouTube comments for sentiment, toxicity, and topics, with a RAG-powered chat to query the discussion and export PDF/Excel reports. Built as my final year project.</p>
+                                <div class="project-tags">
+                                    <span>React</span>
+                                    <span>FastAPI</span>
+                                    <span>Machine Learning</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/voxtube" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SnapLink -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder">
+                                    <img src="images/covers/snaplink.svg" alt="SnapLink project cover">
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>See project details</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-card-header">
+                                    <span class="project-badge">Full-Stack</span>
+                                </div>
+                                <h3>SnapLink</h3>
+                                <p>A full-stack URL shortener with custom aliases, QR codes, link expiration, and a real analytics dashboard covering clicks, devices, and referrers.</p>
                                 <div class="project-tags">
                                     <span>React</span>
                                     <span>Node.js</span>
                                     <span>MongoDB</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2 -->
-                    <div class="project-item" data-category="ml">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-placeholder"></div>
-                                <div class="project-overlay">
-                                    <a href="#project2" class="view-project">View Details</a>
-                                </div>
-                            </div>
-                            <div class="project-info">
-                                <h3>Image Classification Model</h3>
-                                <p>A machine learning model to classify images using convolutional neural networks.</p>
-                                <div class="project-tags">
-                                    <span>Python</span>
-                                    <span>TensorFlow</span>
-                                    <span>CNN</span>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/snaplink" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://snaplink-client-khaki.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Project 3 -->
-                    <div class="project-item" data-category="mobile">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-placeholder"></div>
-                                <div class="project-overlay">
-                                    <a href="#project3" class="view-project">View Details</a>
-                                </div>
-                            </div>
-                            <div class="project-info">
-                                <h3>Fitness Tracking App</h3>
-                                <p>A mobile application for tracking workouts, nutrition, and health metrics.</p>
-                                <div class="project-tags">
-                                    <span>React Native</span>
-                                    <span>Firebase</span>
-                                    <span>Redux</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4 -->
+
+                    <!-- Backend Ledger -->
                     <div class="project-item" data-category="web">
                         <div class="project-card">
                             <div class="project-image">
-                                <div class="project-placeholder"></div>
+                                <div class="project-placeholder">
+                                    <img src="images/covers/backend-ledger.svg" alt="Backend Ledger project cover">
+                                </div>
                                 <div class="project-overlay">
-                                    <a href="#project4" class="view-project">View Details</a>
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Explore this build</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="project-info">
-                                <h3>Task Management System</h3>
-                                <p>A web application for organizing tasks, managing projects, and tracking progress.</p>
+                                <div class="project-card-header">
+                                    <span class="project-badge">Backend</span>
+                                </div>
+                                <h3>Backend Ledger</h3>
+                                <p>A double-entry ledger backend for financial transactions, with JWT auth, idempotency keys, and MongoDB transactions to guarantee atomic transfers.</p>
                                 <div class="project-tags">
-                                    <span>Vue.js</span>
+                                    <span>Node.js</span>
                                     <span>Express</span>
-                                    <span>PostgreSQL</span>
+                                    <span>MongoDB</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/backend-ledger" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://backend-ledger-5vxa.onrender.com" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Project 5 -->
+
+                    <!-- Nepal Gov Portal -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder">
+                                    <img src="images/covers/nepal-gov-portal.svg" alt="Nepal Gov Portal project cover">
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>See project details</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-card-header">
+                                    <span class="project-badge">Group Project</span>
+                                </div>
+                                <h3>Nepal Gov Portal</h3>
+                                <p>A group college project prototyping a unified government services portal for Nepal &mdash; service applications, bill payments, and health insurance claims in one place.</p>
+                                <div class="project-tags">
+                                    <span>React</span>
+                                    <span>TypeScript</span>
+                                    <span>Express</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/nepal-gov-portal" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://nepalgovportal.netlify.app/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Location Tracker -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder">
+                                    <img src="images/covers/live-location-tracker.svg" alt="Live Location Tracker project cover">
+                                </div>
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Explore this build</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <div class="project-card-header">
+                                    <span class="project-badge">Real-Time</span>
+                                </div>
+                                <h3>Live Location Tracker</h3>
+                                <p>A real-time location sharing app that streams browser geolocation over WebSockets and plots live positions on an interactive map.</p>
+                                <div class="project-tags">
+                                    <span>Node.js</span>
+                                    <span>Socket.IO</span>
+                                    <span>Leaflet</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/live-location-tracker" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://live-location-tracker-5wqm.onrender.com" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inventory Management System -->
                     <div class="project-item" data-category="other">
                         <div class="project-card">
                             <div class="project-image">
-                                <div class="project-placeholder"></div>
+                                <div class="project-placeholder">
+                                    <img src="images/ims.jpg" alt="Screenshot of the Inventory Management System project">
+                                </div>
                                 <div class="project-overlay">
-                                    <a href="#project5" class="view-project">View Details</a>
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>See project details</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="project-info">
-                                <h3>Data Visualization Dashboard</h3>
-                                <p>An interactive dashboard for visualizing and analyzing complex datasets.</p>
-                                <div class="project-tags">
-                                    <span>D3.js</span>
-                                    <span>JavaScript</span>
-                                    <span>SVG</span>
+                                <div class="project-card-header">
+                                    <span class="project-badge">Practical</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 6 -->
-                    <div class="project-item" data-category="ml">
-                        <div class="project-card">
-                            <div class="project-image">
-                                <div class="project-placeholder"></div>
-                                <div class="project-overlay">
-                                    <a href="#project6" class="view-project">View Details</a>
-                                </div>
-                            </div>
-                            <div class="project-info">
-                                <h3>Sentiment Analysis Tool</h3>
-                                <p>A natural language processing system that analyzes sentiment in text data.</p>
+                                <h3>Inventory Management System</h3>
+                                <p>A Python application that helps manage products, track stock levels, update quantities, and generate inventory reports efficiently.</p>
                                 <div class="project-tags">
                                     <span>Python</span>
-                                    <span>NLTK</span>
-                                    <span>Scikit-learn</span>
+                                    <span>Tkinter</span>
+                                    <span>Data Management</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/GenAI-Training-Workshop/tree/main/Projects/Inventory_Management_System" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Project Details Sections -->
-        <section id="project1" class="project-details">
-            <div class="container">
-                <div class="project-details-container">
-                    <div class="project-details-header">
-                        <h2>E-commerce Platform</h2>
-                        <div class="project-links">
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> View Code</a>
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-details-content">
-                        <div class="project-details-gallery">
-                            <div class="project-main-image">
-                                <div class="project-placeholder"></div>
-                            </div>
-                            <div class="project-gallery-thumbs">
-                                <div class="gallery-thumb">
-                                    <div class="project-placeholder"></div>
+                    <!-- To-Do App -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-card">
+                            <div class="project-image">
+                                <div class="project-placeholder">
+                                    <img src="images/todo_app_cover.jpg" alt="Screenshot of the To-Do App project">
                                 </div>
-                                <div class="gallery-thumb">
-                                    <div class="project-placeholder"></div>
-                                </div>
-                                <div class="gallery-thumb">
-                                    <div class="project-placeholder"></div>
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <i class="fas fa-eye"></i>
+                                        <span>Explore this build</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="project-details-info">
-                            <div class="project-info-item">
-                                <h3>Project Overview</h3>
-                                <p>This e-commerce platform provides a complete online shopping experience with product catalog, user authentication, shopping cart, and checkout functionality. The platform is designed to be scalable, secure, and user-friendly.</p>
-                            </div>
-                            
-                            <div class="project-info-item">
-                                <h3>Technologies Used</h3>
-                                <ul class="tech-list">
-                                    <li><span>React</span> - For building the front-end user interface</li>
-                                    <li><span>Node.js & Express</span> - For the back-end server</li>
-                                    <li><span>MongoDB</span> - For database storage</li>
-                                    <li><span>JWT</span> - For authentication</li>
-                                    <li><span>Redux</span> - For state management</li>
-                                    <li><span>Stripe API</span> - For payment processing</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="project-info-item">
-                                <h3>Key Features</h3>
-                                <ul>
-                                    <li>User authentication and profile management</li>
-                                    <li>Product search and filtering</li>
-                                    <li>Shopping cart and checkout process</li>
-                                    <li>Payment gateway integration</li>
-                                    <li>Order history and tracking</li>
-                                    <li>Admin dashboard for product management</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="project-info-item">
-                                <h3>Challenges & Solutions</h3>
-                                <p>One of the main challenges was implementing a secure and efficient shopping cart system that persists across sessions. I solved this by using a combination of Redux for state management and localStorage to maintain cart items when users return to the site.</p>
-                                <p>Another challenge was optimizing database queries for faster product retrieval. I implemented indexing and pagination to improve performance for large product catalogs.</p>
-                            </div>
-                            
-                            <div class="project-info-item">
-                                <h3>What I Learned</h3>
-                                <p>This project deepened my understanding of full-stack development, especially in handling complex state management, implementing secure authentication, and optimizing database queries. I also gained experience in integrating third-party APIs for payment processing.</p>
+                            <div class="project-info">
+                                <div class="project-card-header">
+                                    <span class="project-badge">Web App</span>
+                                </div>
+                                <h3>To-Do App</h3>
+                                <p>A simple React-based task manager to add, complete, and delete daily tasks with a clean, responsive UI.</p>
+                                <div class="project-tags">
+                                    <span>React</span>
+                                    <span>UI Design</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/sumit6511/todo-app" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
+                                    <a href="https://todo-app-rust-two-36.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="#" class="back-to-projects">Back to Projects</a>
                 </div>
             </div>
         </section>
-        
-        <!-- More project details sections would go here for project2, project3, etc. -->
     </main>
 
     <footer>
@@ -301,7 +325,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 - Sumit Kumar Sah</p>
+                <p>&copy; 2025–2026 Sumit Sah. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

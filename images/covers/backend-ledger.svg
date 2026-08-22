@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070b1c"/>
+      <stop offset="45%" stop-color="#0b1128"/>
+      <stop offset="100%" stop-color="#0c1330"/>
+    </linearGradient>
+    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5e60ce"/>
+      <stop offset="50%" stop-color="#64dfdf"/>
+      <stop offset="100%" stop-color="#7b90ff"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#64dfdf" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#64dfdf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5e60ce" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#5e60ce" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.045"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#dots)"/>
+  <circle cx="130" cy="500" r="230" fill="url(#glow1)"/>
+  <circle cx="670" cy="100" r="220" fill="url(#glow2)"/>
+
+  <circle cx="400" cy="215" r="72" fill="rgba(255,255,255,0.045)" stroke="url(#text-gradient)" stroke-width="2"/>
+  <g>
+    <rect x="365" y="169" width="70" height="90" rx="7" fill="rgba(255,255,255,0.07)" stroke="url(#text-gradient)" stroke-width="2"/>
+    <rect x="377" y="189" width="46" height="5" rx="2.5" fill="#9aa3c4"/>
+    <rect x="377" y="203" width="36" height="5" rx="2.5" fill="#9aa3c4" opacity="0.75"/>
+    <rect x="377" y="217" width="46" height="5" rx="2.5" fill="#9aa3c4"/>
+    <rect x="377" y="231" width="28" height="5" rx="2.5" fill="#9aa3c4" opacity="0.75"/>
+    <circle cx="432" cy="253" r="17" fill="url(#text-gradient)"/>
+    <path d="M424,253 L430,259 L441,246" fill="none" stroke="#070b1c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="400" y="345" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" fill="url(#text-gradient)">Backend Ledger</text>
+  <text x="400" y="380" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="14" letter-spacing="4" fill="#9aa3c4">DOUBLE-ENTRY TRANSACTION API</text>
+
+  <text x="400" y="522" text-anchor="middle" font-family="'Roboto Mono', 'Courier New', monospace" font-size="15" fill="#8792b4">Node.js &#183; Express &#183; MongoDB</text>
+  <text x="32" y="568" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" fill="rgba(255,255,255,0.28)">sumit6511/backend-ledger</text>
+</svg>
