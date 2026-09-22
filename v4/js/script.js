@@ -256,11 +256,21 @@ function initCopyButtons() {
 }
 
 /* --------------------------------------------------------------------------
-   Stack ↔ Work: chips backed by a project get a count and expand to a list
+   Stack: three rows of tech marks that drift horizontally.
+
+   Each row holds one authored <ul class="ticker__set">. This clones that set
+   enough times to fill the row plus one spare, then animates the track by
+   exactly one set width so the loop is seamless. Clones are aria-hidden and
+   hold plain <span>s, so screen readers and Tab only ever meet the originals;
+   clicks work on any copy through delegation.
+
+   Rows that match a project also get a count and open a "used in" panel.
+   With motion reduced or JS off, nothing is cloned and the rows just wrap.
    -------------------------------------------------------------------------- */
-function initStackLinks() {
-    const wall = document.querySelector('.stack');
-    if (!wall) return;
+function initStack() {
+    const rows = [...document.querySelectorAll('[data-ticker]')];
+    if (!rows.length) return;
+    const uses = document.getElementById('stack-uses');
 
     const norm = (text) => text.toLowerCase().replace(/\s+/g, ' ').trim();
     const projects = [...document.querySelectorAll('.pj[data-project]')].map((card) => ({
@@ -269,50 +279,130 @@ function initStackLinks() {
         tech: new Set([...card.querySelectorAll('.pj__stack li')].map((li) => norm(li.textContent))),
     }));
 
+    const matchesFor = (tech, match) => {
+        const keys = (match || tech).split('|').map(norm);
+        return projects.filter((p) => keys.some((k) => p.tech.has(k)));
+    };
+
     let open = null;
-    const close = () => {
+    const closeUses = () => {
         if (!open) return;
-        open.row.remove();
-        open.chip.classList.remove('is-open');
-        open.button.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll('.tchip.is-open').forEach((c) => c.classList.remove('is-open'));
+        rows.forEach((r) => r.querySelectorAll('[aria-expanded]').forEach((b) => b.setAttribute('aria-expanded', 'false')));
+        uses.hidden = true;
+        uses.replaceChildren();
         open = null;
     };
 
-    wall.querySelectorAll('.chip').forEach((chip) => {
-        const label = chip.textContent.trim();
-        const keys = (chip.dataset.match || label).split('|').map(norm);
-        const matches = projects.filter((p) => keys.some((k) => p.tech.has(k)));
+    const openUses = (tech) => {
+        const matches = matchesFor(tech, document.querySelector(`.tchip[data-tech="${CSS.escape(tech)}"]`)?.dataset.match);
         if (!matches.length) return;
+        const was = open;
+        closeUses();
+        if (was === tech) return;
+        uses.innerHTML = `<span class="label">${tech} · used in</span>` + matches.map((m) =>
+            `<a class="link" href="#${m.id}" data-jump>${m.title}${svgIcon('i-arrow', 'icon icon--arrow')}</a>`).join('');
+        uses.hidden = false;
+        document.querySelectorAll(`.tchip[data-tech="${CSS.escape(tech)}"]`).forEach((c) => {
+            c.classList.add('is-open');
+            c.querySelector('[aria-expanded]')?.setAttribute('aria-expanded', 'true');
+        });
+        open = tech;
+    };
 
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'chip__btn';
-        button.setAttribute('aria-expanded', 'false');
-        button.append(label);
-        const count = document.createElement('span');
-        count.className = 'chip__count';
-        count.textContent = String(matches.length);
-        count.setAttribute('aria-label', `used in ${matches.length} project${matches.length === 1 ? '' : 's'}`);
-        button.append(count);
-        chip.classList.add('chip--linked');
-        chip.replaceChildren(button);
+    // Turn every chip backed by a project into a real button with a count
+    rows.forEach((row) => {
+        row.querySelectorAll('.tchip').forEach((chip) => {
+            const matches = matchesFor(chip.dataset.tech, chip.dataset.match);
+            if (!matches.length) return;
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'tchip__btn';
+            button.setAttribute('aria-expanded', 'false');
+            button.setAttribute('aria-controls', 'stack-uses');
+            button.append(...chip.childNodes);
+            const count = document.createElement('span');
+            count.className = 'tchip__count';
+            count.textContent = String(matches.length);
+            count.setAttribute('aria-label', `used in ${matches.length} project${matches.length === 1 ? '' : 's'}`);
+            button.append(count);
+            chip.classList.add('tchip--linked');
+            chip.replaceChildren(button);
+        });
 
-        button.addEventListener('click', () => {
-            const reopen = open?.button !== button;
-            close();
-            if (!reopen) return;
-            const row = document.createElement('div');
-            row.className = 'stack__uses';
-            row.innerHTML = `<span class="label">${label} · used in</span>` + matches.map((m) =>
-                `<a class="link" href="#${m.id}" data-jump>${m.title}${svgIcon('i-arrow', 'icon icon--arrow')}</a>`).join('');
-            chip.closest('.stack__group').appendChild(row);
-            chip.classList.add('is-open');
-            button.setAttribute('aria-expanded', 'true');
-            open = { chip, button, row };
+        row.addEventListener('click', (e) => {
+            const chip = e.target.closest('.tchip--linked');
+            if (chip) openUses(chip.dataset.tech);
         });
     });
 
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeUses(); });
+
+    if (reduceMotion.matches) return;
+
+    // Clone each set until the row is covered, then drift by one set width
+    const SPEED = 34; // px per second — slow enough to read while it moves
+    const layout = () => {
+        rows.forEach((row) => {
+            const track = row.querySelector('.ticker__track');
+            const viewport = row.querySelector('.ticker__viewport');
+            track.querySelectorAll('.ticker__set[aria-hidden]').forEach((c) => c.remove());
+            row.classList.remove('is-animated');
+            // lay the row out on one line *before* measuring, or the set still
+            // reports its wrapped width and we clone far too many copies
+            row.classList.add('is-ready');
+
+            const set = track.querySelector('.ticker__set');
+            const width = set.getBoundingClientRect().width;
+            if (!width) { row.classList.remove('is-ready'); return; }
+            const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+            const shift = width + gap;
+            const copies = Math.min(6, Math.max(1, Math.ceil(viewport.clientWidth / shift) + 1));
+
+            const makeClone = () => {
+                const clone = set.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                // clones are decorative: no focusable controls inside them
+                clone.querySelectorAll('.tchip__btn').forEach((btn) => {
+                    const span = document.createElement('span');
+                    span.className = btn.className;
+                    span.append(...btn.childNodes);
+                    btn.replaceWith(span);
+                });
+                return clone;
+            };
+
+            // A row drifting right starts translated one set to the left, so put a
+            // clone in front — that keeps the real (focusable) set on screen at rest.
+            const reversed = row.dataset.dir === '-1';
+            if (reversed) track.prepend(makeClone());
+            for (let i = reversed ? 1 : 0; i < copies; i += 1) track.append(makeClone());
+
+            track.style.setProperty('--t-shift', `${shift}px`);
+            track.style.setProperty('--t-dur', `${(shift / SPEED).toFixed(1)}s`);
+            row.classList.add('is-animated');
+        });
+    };
+
+    // Focusing a chip that has drifted out of view makes the browser scroll the
+    // clipped viewport; snap it back once focus leaves so the loop stays aligned.
+    rows.forEach((row) => {
+        const viewport = row.querySelector('.ticker__viewport');
+        viewport.addEventListener('focusout', () => {
+            if (!viewport.contains(document.activeElement)) viewport.scrollLeft = 0;
+        });
+    });
+
+    layout();
+    let timer;
+    window.addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(layout, 200); });
+    if (document.fonts?.ready) document.fonts.ready.then(layout);
+}
+
+/* --------------------------------------------------------------------------
+   Jump from a "used in" link to the project card
+   -------------------------------------------------------------------------- */
+function initJumpLinks() {
     document.addEventListener('click', (e) => {
         const link = e.target.closest('[data-jump]');
         if (!link) return;
@@ -491,7 +581,8 @@ const boot = () => {
     initCaseStudy();
     initContactForm();
     initCopyButtons();
-    initStackLinks();
+    initStack();
+    initJumpLinks();
     initLocalTime();
     initGithubMeta();
     initTabs();

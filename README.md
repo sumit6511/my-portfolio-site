@@ -16,6 +16,8 @@ A single editorial page plus a resources page, built with plain HTML, CSS and Ja
 | `v2/` | The previous version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`). Also tagged `v2.0` in git. |
 | `v4/` | An alternative **Neo-Brutalist** design of the same content, browsable at [/v4/](https://www.sumit-sah.com.np/v4/) (`noindex`). Same projects, links and forms; its own `v4/css/style.css` and `v4/js/script.js`. |
 
+In `v4/`, the stack is three drifting rows of tech marks. Brand icons come from [Simple Icons](https://simpleicons.org) (CC0; trademarks belong to their owners) and the concepts without a logo — RAG, embeddings, data structures and so on — use glyphs drawn for this site. Both live in an inline sprite as `<symbol id="t-…">`; `ICONS` in the page generator maps each label to one. Rows pause on hover and on keyboard focus, and wrap into a static grid when motion is reduced or JS is off.
+
 ### Design
 
 The site ships two complete designs over one set of content:

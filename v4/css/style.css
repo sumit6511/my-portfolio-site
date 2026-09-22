@@ -937,88 +937,139 @@ input, textarea, select { font: inherit; color: inherit; }
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 /* --------------------------------------------------------------------------
-   Stack — a wall of labels
+   Stack — three drifting rows of tech marks
    -------------------------------------------------------------------------- */
-.stack__group {
-    display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
-    gap: 1rem 1.75rem;
-    align-items: start;
-    padding-block: clamp(1.1rem, 2.2vw, 1.6rem);
-    border-top: var(--bd-w) solid var(--ink);
-}
+.stack__rows { display: grid; gap: clamp(0.9rem, 2vw, 1.35rem); }
 
-.stack__group:last-of-type { border-bottom: var(--bd-w) solid var(--ink); }
-.stack__name { font-family: var(--f-display); font-size: clamp(1.1rem, 2vw, 1.55rem); line-height: 1; text-transform: uppercase; letter-spacing: -0.01em; }
-.stack__meta { display: grid; gap: 0.4rem; align-content: start; }
-
-.wall { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-
-.chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    min-height: 42px;
-    padding: 0.4rem 0.8rem;
+.ticker {
+    --row-accent: var(--yellow);
+    /* grid items default to min-width:auto, which would let the max-content
+       track stretch the row (and the page) instead of being clipped */
+    min-width: 0;
     border: var(--bd);
     background: var(--card);
-    font-family: var(--f-mono);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+    box-shadow: var(--sh);
 }
 
-.chip:hover { background: var(--yellow); transform: translate(-3px, -3px); box-shadow: var(--sh-sm); }
+.ticker--blue { --row-accent: var(--blue); }
+.ticker--coral { --row-accent: var(--coral); }
 
-.chip--linked { padding: 0; cursor: pointer; }
-.chip__btn {
+.ticker__head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.9rem;
+    border-bottom: var(--bd-w) solid var(--ink);
+    background: var(--paper-2);
+}
+
+.ticker__mark {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    border: 2px solid var(--ink);
+    background: var(--row-accent);
+}
+
+.ticker__label {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.ticker__viewport { overflow: hidden; min-width: 0; padding: 0.8rem; }
+.ticker__track { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.ticker__set { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* Without JS (or with motion off) the rows simply wrap — same content, no loop.
+   JS lays a row out in one line (.is-ready), measures a set, clones it enough
+   times to cover the row, then drifts by exactly one set width (.is-animated)
+   so the loop is seamless. */
+.ticker.is-ready .ticker__track { flex-wrap: nowrap; width: max-content; }
+.ticker.is-ready .ticker__set { flex-wrap: nowrap; }
+
+.ticker.is-animated .ticker__track {
+    animation: ticker var(--t-dur, 40s) linear infinite;
+}
+.ticker.is-animated[data-dir="-1"] .ticker__track { animation-direction: reverse; }
+.ticker.is-animated:hover .ticker__track,
+.ticker.is-animated:focus-within .ticker__track { animation-play-state: paused; }
+
+@keyframes ticker { to { transform: translateX(calc(var(--t-shift, 0px) * -1)); } }
+
+.tchip {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
-    min-height: 42px;
-    padding: 0.4rem 0.6rem 0.4rem 0.8rem;
+    min-height: 46px;
+    padding: 0.45rem 0.85rem;
+    border: var(--bd);
+    background: var(--paper);
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+        transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.tchip__icon { width: 22px; height: 22px; flex: none; fill: currentColor; }
+
+.tchip:hover { background: var(--row-accent); transform: translate(-3px, -3px); box-shadow: var(--sh-sm); }
+.ticker--blue .tchip:hover, .ticker--coral .tchip:hover { color: #fff; }
+
+.tchip--linked { padding: 0; cursor: pointer; }
+
+.tchip__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 46px;
+    padding: 0.45rem 0.6rem 0.45rem 0.85rem;
     color: inherit;
-    font-family: inherit;
-    font-size: inherit;
+    font: inherit;
     letter-spacing: inherit;
     text-transform: uppercase;
 }
 
-.chip__count {
+.tchip__count {
     display: inline-grid;
     place-items: center;
-    min-width: 1.5rem;
-    padding: 0.12rem 0.25rem;
+    min-width: 1.45rem;
+    padding: 0.14rem 0.25rem;
     background: var(--ink);
     color: var(--paper);
-    font-size: 0.66rem;
+    font-size: 0.65rem;
     line-height: 1.2;
     transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
-.chip.is-open { background: var(--blue); color: #fff; }
-.chip.is-open .chip__count { background: var(--paper); color: var(--ink); }
-.chip--linked:hover .chip__count { background: var(--ink); color: var(--yellow); }
-.chip.is-open:hover { background: var(--blue); }
+.tchip:hover .tchip__count { background: var(--ink); color: var(--row-accent); }
+.tchip.is-open { background: var(--ink); color: var(--paper); }
+.tchip.is-open .tchip__count { background: var(--row-accent); color: var(--ink); }
+.ticker--blue .tchip.is-open .tchip__count,
+.ticker--coral .tchip.is-open .tchip__count { color: #fff; }
 
 .stack__uses {
-    grid-column: 2;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem 1rem;
-    padding: 0.7rem 0.9rem;
+    gap: 0.4rem 1rem;
+    margin-top: clamp(0.9rem, 2vw, 1.35rem);
+    padding: 0.7rem 1rem;
     border: var(--bd);
-    background: var(--blue);
-    color: #fff;
+    background: var(--ink);
+    color: var(--paper);
     box-shadow: var(--sh-sm);
 }
 
-.stack__uses .label { color: rgba(255, 255, 255, 0.82); }
-.stack__uses .link { box-shadow: inset 0 -2px 0 #fff; }
-.stack__uses .link:hover { box-shadow: inset 0 -6px 0 var(--yellow), inset 0 -8px 0 #fff; }
+.stack__uses .label { color: #a9a29a; }
+.stack__uses .link { box-shadow: inset 0 -2px 0 var(--paper); }
+.stack__uses .link:hover { box-shadow: inset 0 -6px 0 var(--yellow), inset 0 -8px 0 var(--paper); }
 
 .pj.is-highlighted { box-shadow: 0 0 0 5px var(--blue), var(--sh-lg); }
 .pj:focus { outline: none; }
@@ -1417,7 +1468,6 @@ input, textarea, select { font: inherit; color: inherit; }
    -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
     .pj--featured .pj__media { flex-basis: 48%; }
-    .stack__group { grid-template-columns: 150px minmax(0, 1fr); }
     .pj--compact { grid-template-columns: auto 90px minmax(0, 1.4fr) auto; gap: 1rem; }
 }
 
@@ -1473,9 +1523,10 @@ input, textarea, select { font: inherit; color: inherit; }
     .pj--compact .pj__desc { display: none; }
     .pj--compact .pj__links { grid-area: links; justify-content: flex-start; border-top: 2px solid var(--ink); padding-top: 0.5rem; }
 
-    .stack__group { grid-template-columns: 1fr; gap: 0.75rem; }
-    .stack__meta { grid-auto-flow: column; justify-content: start; gap: 0.75rem; align-items: center; }
-    .stack__uses { grid-column: 1; }
+    .ticker__viewport { padding: 0.6rem; }
+    .tchip { min-height: 42px; font-size: 0.72rem; padding: 0.4rem 0.7rem; gap: 0.45rem; }
+    .tchip__btn { min-height: 42px; padding: 0.4rem 0.5rem 0.4rem 0.7rem; }
+    .tchip__icon { width: 19px; height: 19px; }
 
     .log__item { grid-template-columns: 1fr; gap: 0.6rem; }
 
@@ -1510,7 +1561,8 @@ input, textarea, select { font: inherit; color: inherit; }
     }
     .js [data-reveal] { opacity: 1; transform: none; }
     .marquee__track { animation: none; transform: none; }
-    .pj:hover, .btn:hover, .chip:hover, .repo:hover, .res:hover, .tab:hover, .fact--link:hover, .wordmark:hover { transform: none; }
+    .ticker .ticker__track { animation: none; transform: none; }
+    .pj:hover, .btn:hover, .tchip:hover, .repo:hover, .res:hover, .tab:hover, .fact--link:hover, .wordmark:hover { transform: none; }
     .hero__portrait:hover { transform: rotate(2.2deg); }
     .pj:hover .pj__media img { transform: none; }
 }
