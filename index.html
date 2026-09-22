@@ -29,9 +29,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">
     <script>document.documentElement.classList.add('js');</script>
 
@@ -124,20 +123,20 @@
             <div class="container">
                 <div class="hero__top">
                     <p class="eyebrow" data-reveal>Software developer · AI / ML</p>
-                    <h1 class="display hero__title" id="hero-title" data-reveal style="--d:1">
-                        <span>I build software</span>
-                        <span>and intelligent</span>
-                        <span>systems<span class="accent">.</span></span>
+                    <h1 class="display hero__title" id="hero-title">
+                        <span class="line"><span>I build software</span></span>
+                        <span class="line"><span>and intelligent</span></span>
+                        <span class="line"><span>systems<span class="accent">.</span></span></span>
                     </h1>
                 </div>
                 <div class="hero__row">
-                    <p class="lede hero__intro" data-reveal style="--d:2">I'm Sumit Sah — a Computer Science student in Kathmandu building modern web applications and machine-learning projects, from NLP and retrieval-augmented systems to a daily puzzle platform, an API monitor and real-time backends.</p>
-                    <div class="hero__actions" data-reveal style="--d:3">
+                    <p class="lede hero__intro" data-reveal style="--d:6">I'm Sumit Sah — a Computer Science student in Kathmandu building modern web applications and machine-learning projects, from NLP and retrieval-augmented systems to a daily puzzle platform, an API monitor and real-time backends.</p>
+                    <div class="hero__actions" data-reveal style="--d:7">
                         <a class="btn btn--primary" href="#work">View my work<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                         <a class="btn btn--ghost" href="#contact">Let's connect</a>
                     </div>
                 </div>
-                <dl class="hero__meta" data-reveal style="--d:4">
+                <dl class="hero__meta" data-reveal style="--d:8">
                     <div class="meta-item">
                         <dt class="label">Based in</dt>
                         <dd class="meta-item__value">Kathmandu, Nepal</dd>
@@ -155,9 +154,24 @@
                         <dd class="meta-item__value meta-item__links">
                             <a class="link" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
                             <a class="link" href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer">LinkedIn<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            <!-- Résumé: drop the PDF at cv/sumit-sah-cv.pdf and uncomment this link (the footer has a matching one).
+                            <a class="link" href="cv/sumit-sah-cv.pdf" target="_blank" rel="noopener">Résumé<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            -->
                         </dd>
                     </div>
                 </dl>
+            </div>
+        </section>
+
+        <!-- ============================================================ NOW -->
+        <section class="now" aria-label="What I'm doing now">
+            <div class="container now__inner">
+                <span class="eyebrow">Now</span>
+                <ul class="now__list">
+                    <li>Building <a class="link" href="#work">DailyLoop</a>, a daily puzzle platform</li>
+                    <li>Latest shipped: DocChat and APIWatch</li>
+                    <li>Open to freelance &amp; collaboration — <a class="link" href="#contact">say hello<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+                </ul>
             </div>
         </section>
 
@@ -175,7 +189,7 @@
 
                 <div class="project-grid">
                     <!-- Featured: VoxTube -->
-                    <article class="card project project--featured" data-project="voxtube" data-reveal>
+                    <article class="card project project--featured" id="project-voxtube" data-project="voxtube" data-reveal>
                         <button class="project__media" type="button" data-case-study aria-label="Open the VoxTube case study">
                             <img src="images/covers/voxtube.svg" width="800" height="500" alt="Diagram of the VoxTube pipeline: YouTube comments flow through NLP models into sentiment, toxicity and topic analysis, plus a RAG chat.">
                         </button>
@@ -187,7 +201,7 @@
                             <h3 class="project__title">VoxTube</h3>
                             <p class="project__kicker">AI-powered YouTube comment analysis platform.</p>
                             <p class="project__desc">A full-stack NLP platform that runs a video's comments through a multi-stage pipeline — sentiment, toxicity, topics — with a RAG chat to query the discussion and PDF/Excel report export.</p>
-                            <ul class="project__stack"><li>React</li><li>FastAPI</li><li>Transformers</li><li>BERTopic</li><li>FAISS</li><li>RAG</li></ul>
+                            <ul class="project__stack"><li>React</li><li>FastAPI</li><li>Transformers</li><li>BERTopic</li><li>FAISS</li><li>RAG</li><li>Ollama</li></ul>
                             <div class="project__links">
                                 <button class="btn btn--accent btn--sm" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
                                 <a class="link link--muted" href="https://github.com/sumit6511/voxtube" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
@@ -203,6 +217,14 @@
                                 <h3>Overview</h3>
                                 <p>VoxTube turns the comment section of a YouTube video into something you can actually read. It fetches the comments, runs them through a multi-stage machine-learning pipeline, and gives you a structured picture of the discussion instead of an endless scroll — with language detection and preprocessing for Nepali and code-mixed comments. Built as my final year project; an earlier Streamlit version lives in its own repository.</p>
                             </section>
+                            <!-- Screens: add real screenshots to any project's template like this (images/screens/<slug>-1.png …).
+                                 One figure spans the full width; two or more sit in a grid.
+                            <section class="case-study__gallery">
+                                <h3>Screens</h3>
+                                <figure><img src="images/screens/voxtube-1.png" width="1600" height="1000" loading="lazy" alt="VoxTube dashboard showing sentiment distribution for a video"><figcaption>Sentiment overview</figcaption></figure>
+                                <figure><img src="images/screens/voxtube-2.png" width="1600" height="1000" loading="lazy" alt="RAG chat answering a question with cited comments"><figcaption>RAG chat with citations</figcaption></figure>
+                            </section>
+                            -->
                             <section>
                                 <h3>What it does</h3>
                                 <ul>
@@ -216,7 +238,7 @@
                     </article>
 
                     <!-- DailyLoop -->
-                    <article class="card project project--wide" data-project="dailyloop" data-reveal>
+                    <article class="card project project--wide" id="project-dailyloop" data-project="dailyloop" data-reveal>
                         <button class="project__media" type="button" data-case-study aria-label="Open the DailyLoop case study">
                             <img src="images/covers/dailyloop.svg" width="800" height="500" loading="lazy" alt="Diagram of DailyLoop: today's date seeds a game engine that generates five daily puzzles; scores feed a streak, a friends leaderboard and a Perfect Day bonus.">
                         </button>
@@ -257,7 +279,7 @@
                     </article>
 
                     <!-- DocChat -->
-                    <article class="card project project--narrow" data-project="doc-chat" data-reveal style="--d:1">
+                    <article class="card project project--narrow" id="project-doc-chat" data-project="doc-chat" data-reveal style="--d:1">
                         <button class="project__media" type="button" data-case-study aria-label="Open the DocChat case study">
                             <img src="images/covers/doc-chat.svg" width="800" height="500" loading="lazy" alt="Diagram of DocChat: a PDF is chunked and embedded into MongoDB Atlas; a question is embedded, vector search retrieves chunks, and a local LLM answers with page citations.">
                         </button>
@@ -268,7 +290,7 @@
                             </div>
                             <h3 class="project__title">DocChat</h3>
                             <p class="project__desc">Chat with your PDFs and get answers grounded in your sources — a retrieval-augmented pipeline on FastAPI, MongoDB Atlas Vector Search and a local LLM, with page citations on every answer.</p>
-                            <ul class="project__stack"><li>FastAPI</li><li>React</li><li>MongoDB Atlas</li><li>RAG</li><li>Ollama</li></ul>
+                            <ul class="project__stack"><li>FastAPI</li><li>React</li><li>Atlas Vector Search</li><li>RAG</li><li>Ollama</li></ul>
                             <div class="project__links">
                                 <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
                                 <a class="link link--muted" href="https://github.com/sumit6511/doc-chat" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
@@ -297,7 +319,7 @@
                     </article>
 
                     <!-- APIWatch -->
-                    <article class="card project project--narrow" data-project="apiwatch" data-reveal>
+                    <article class="card project project--narrow" id="project-apiwatch" data-project="apiwatch" data-reveal>
                         <button class="project__media" type="button" data-case-study aria-label="Open the APIWatch case study">
                             <img src="images/covers/apiwatch.svg" width="800" height="500" loading="lazy" alt="Diagram of APIWatch: a monitor card with a status timeline and response-time chart, an incident state machine from up to incident open to resolved, a Discord notification and uptime bars.">
                         </button>
@@ -338,7 +360,7 @@
                     </article>
 
                     <!-- SnapLink -->
-                    <article class="card project project--wide" data-project="snaplink" data-reveal style="--d:1">
+                    <article class="card project project--wide" id="project-snaplink" data-project="snaplink" data-reveal style="--d:1">
                         <button class="project__media" type="button" data-case-study aria-label="Open the SnapLink case study">
                             <img src="images/covers/snaplink.svg" width="800" height="500" loading="lazy" alt="Diagram of SnapLink: a long URL collapses into a short custom alias with a QR code and an analytics panel for clicks, devices and referrers.">
                         </button>
@@ -378,7 +400,7 @@
                     </article>
 
                     <!-- Backend Ledger -->
-                    <article class="card project project--wide" data-project="backend-ledger" data-reveal>
+                    <article class="card project project--wide" id="project-backend-ledger" data-project="backend-ledger" data-reveal>
                         <button class="project__media" type="button" data-case-study aria-label="Open the Backend Ledger case study">
                             <img src="images/covers/backend-ledger.svg" width="800" height="500" loading="lazy" alt="Diagram of a double-entry ledger table where debits equal credits, linked to JWT auth, idempotency keys and MongoDB transactions.">
                         </button>
@@ -418,7 +440,7 @@
                     </article>
 
                     <!-- Live Location Tracker -->
-                    <article class="card project project--narrow" data-project="live-location-tracker" data-reveal style="--d:1">
+                    <article class="card project project--narrow" id="project-live-location-tracker" data-project="live-location-tracker" data-reveal style="--d:1">
                         <button class="project__media" type="button" data-case-study aria-label="Open the Live Location Tracker case study">
                             <img src="images/covers/live-location-tracker.svg" width="800" height="500" loading="lazy" alt="Diagram of a live map with a route, a pulsing location pin and a status pill reading 'live · socket.io connected'.">
                         </button>
@@ -458,7 +480,7 @@
 
                     <!-- Compact rows -->
                     <div class="project-list" data-reveal>
-                        <article class="project project--compact" data-project="nepal-gov-portal">
+                        <article class="project project--compact" id="project-nepal-gov-portal" data-project="nepal-gov-portal">
                             <button class="project__media" type="button" data-case-study aria-label="Open the Nepal Gov Portal case study">
                                 <img src="images/covers/nepal-gov-portal.svg" width="800" height="500" loading="lazy" alt="Diagram of three services — service applications, bill payments and health insurance claims — converging into a single portal interface.">
                             </button>
@@ -494,7 +516,7 @@
                             </template>
                         </article>
 
-                        <article class="project project--compact" data-project="inventory-management-system">
+                        <article class="project project--compact" id="project-inventory-management-system" data-project="inventory-management-system">
                             <button class="project__media" type="button" data-case-study aria-label="Open the Inventory Management System case study">
                                 <img src="images/ims.jpg" width="1075" height="716" loading="lazy" alt="Inventory Management System cover illustration with a checklist and a window.">
                             </button>
@@ -529,7 +551,7 @@
                             </template>
                         </article>
 
-                        <article class="project project--compact" data-project="todo-app">
+                        <article class="project project--compact" id="project-todo-app" data-project="todo-app">
                             <button class="project__media" type="button" data-case-study aria-label="Open the To-Do App case study">
                                 <img src="images/todo_app_cover.jpg" width="1200" height="852" loading="lazy" alt="Todo app cover with a green check mark and the word Todo.">
                             </button>
@@ -654,7 +676,7 @@
                     <div class="section__title-wrap">
                         <p class="eyebrow" data-reveal>Stack</p>
                         <h2 class="h2" id="stack-title" data-reveal style="--d:1">What I work with.</h2>
-                        <p class="section__desc" data-reveal style="--d:2">Grouped by where it sits in a system. No percentages — just the tools I've shipped with.</p>
+                        <p class="section__desc" data-reveal style="--d:2">Grouped by where it sits in a system. No percentages — the number on a tool is how many projects above use it; click one to see which.</p>
                     </div>
                 </header>
 
@@ -662,13 +684,13 @@
                     <div class="stack__group" data-reveal>
                         <div class="stack__label"><strong>Languages</strong><span class="label">Core</span></div>
                         <ul class="pills">
-                            <li class="pill">Python</li><li class="pill">JavaScript</li><li class="pill">TypeScript</li><li class="pill">Java</li><li class="pill">C++</li>
+                            <li class="pill" data-match="python|fastapi">Python</li><li class="pill" data-match="node.js|express|socket.io|leaflet">JavaScript</li><li class="pill">TypeScript</li><li class="pill">Java</li><li class="pill">C++</li>
                         </ul>
                     </div>
                     <div class="stack__group" data-reveal>
                         <div class="stack__label"><strong>Frontend</strong><span class="label">Interfaces</span></div>
                         <ul class="pills">
-                            <li class="pill">React</li><li class="pill">Vite</li><li class="pill">Tailwind CSS</li><li class="pill">TanStack Query</li><li class="pill">HTML5</li><li class="pill">CSS3</li><li class="pill">Leaflet</li><li class="pill">UI / UX design</li>
+                            <li class="pill">React</li><li class="pill">Vite</li><li class="pill">Tailwind CSS</li><li class="pill">TanStack Query</li><li class="pill">HTML5</li><li class="pill">CSS3</li><li class="pill">Leaflet</li><li class="pill" data-match="ui design">UI / UX design</li>
                         </ul>
                     </div>
                     <div class="stack__group" data-reveal>
@@ -680,13 +702,13 @@
                     <div class="stack__group" data-reveal>
                         <div class="stack__label"><strong>AI / ML</strong><span class="label">Models &amp; data</span></div>
                         <ul class="pills">
-                            <li class="pill">Machine learning</li><li class="pill">NLP</li><li class="pill">RAG</li><li class="pill">Hugging Face Transformers</li><li class="pill">BERTopic</li><li class="pill">Embeddings &amp; vector search</li><li class="pill">Local LLMs (Ollama)</li><li class="pill">Data analysis</li><li class="pill">Data visualization</li>
+                            <li class="pill" data-match="transformers|bertopic|faiss">Machine learning</li><li class="pill" data-match="transformers|bertopic|rag">NLP</li><li class="pill">RAG</li><li class="pill" data-match="transformers">Hugging Face Transformers</li><li class="pill">BERTopic</li><li class="pill" data-match="faiss|atlas vector search">Embeddings &amp; vector search</li><li class="pill" data-match="ollama">Local LLMs (Ollama)</li><li class="pill">Data analysis</li><li class="pill">Data visualization</li>
                         </ul>
                     </div>
                     <div class="stack__group" data-reveal>
                         <div class="stack__label"><strong>Data &amp; tools</strong><span class="label">Storage &amp; workflow</span></div>
                         <ul class="pills">
-                            <li class="pill">PostgreSQL</li><li class="pill">MongoDB Atlas</li><li class="pill">SQL</li><li class="pill">Firebase</li><li class="pill">Docker</li><li class="pill">Vitest &amp; pytest</li><li class="pill">Git &amp; GitHub</li><li class="pill">Tkinter</li><li class="pill">Data structures &amp; algorithms</li>
+                            <li class="pill">PostgreSQL</li><li class="pill" data-match="mongodb|mongodb atlas|atlas vector search">MongoDB</li><li class="pill">SQL</li><li class="pill">Firebase</li><li class="pill">Docker</li><li class="pill">Vitest &amp; pytest</li><li class="pill">Git &amp; GitHub</li><li class="pill">Tkinter</li><li class="pill">Data structures &amp; algorithms</li>
                         </ul>
                     </div>
                 </div>
@@ -706,8 +728,17 @@
                 </header>
 
                 <!--
-                    Add a new entry by copying an <li>. Use a year, a season, or a label in .timeline__when —
-                    e.g. <span class="timeline__when">2026</span>. Add class "timeline__item--now" for the current one.
+                    Add an entry by copying an <li>. .timeline__when takes a year, a range, a season or a label;
+                    add class "timeline__item--now" to the current one. Example of a dated role:
+
+                    <li class="timeline__item" data-reveal>
+                        <span class="timeline__when">2025 – 2026</span>
+                        <div class="timeline__body">
+                            <h3 class="h3">Software Engineering Intern — Company</h3>
+                            <p class="timeline__where">Kathmandu · React · Node.js</p>
+                            <p>One or two sentences on what you built and shipped.</p>
+                        </div>
+                    </li>
                 -->
                 <ol class="timeline">
                     <li class="timeline__item timeline__item--now" data-reveal>
@@ -833,7 +864,7 @@
         <div class="container">
             <div class="footer__brand">
                 <a class="wordmark" href="#top"><span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Sumit Sah</span></a>
-                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal</small>
+                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal <span data-local-time hidden></span></small>
             </div>
             <nav class="footer__links" aria-label="Footer">
                 <a href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
@@ -841,6 +872,7 @@
                 <a href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-x"/></svg>X</a>
                 <a href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
                 <a href="resources.html">Resources</a>
+                <!-- <a href="cv/sumit-sah-cv.pdf" target="_blank" rel="noopener">Résumé<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a> -->
                 <a href="v2/">Previous version</a>
                 <a href="#top">Back to top<svg class="icon icon--up" aria-hidden="true"><use href="#i-up"/></svg></a>
             </nav>

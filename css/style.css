@@ -46,6 +46,42 @@
 }
 
 /* --------------------------------------------------------------------------
+   Fonts — self-hosted variable subsets (SIL Open Font License), see fonts/README.md
+   -------------------------------------------------------------------------- */
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+    src: url('../fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+    src: url('../fonts/jetbrains-mono-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500 800;
+    font-display: swap;
+    src: url('../fonts/manrope-latin-ext.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500 800;
+    font-display: swap;
+    src: url('../fonts/manrope-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
    Reset
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -588,6 +624,48 @@ body::before {
 
 .meta-item__links { display: flex; flex-wrap: wrap; gap: 0.15rem 1rem; }
 
+/* Headline: each line slides up out of a mask (JS-on only; static without JS) */
+.hero__title .line { display: block; overflow: hidden; padding: 0.08em 0; margin: -0.08em 0; }
+.hero__title .line > span { display: block; }
+
+.js .hero__title .line > span {
+    transform: translateY(120%);
+    animation: line-in 1s var(--ease-out) forwards;
+}
+
+.js .hero__title .line:nth-child(2) > span { animation-delay: 0.12s; }
+.js .hero__title .line:nth-child(3) > span { animation-delay: 0.24s; }
+
+@keyframes line-in { to { transform: none; } }
+
+/* --------------------------------------------------------------------------
+   Now strip
+   -------------------------------------------------------------------------- */
+.now {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elev);
+}
+
+.now__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 2rem;
+    padding-block: 0.9rem;
+}
+
+.now__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.75rem;
+    font-size: 0.92rem;
+    color: var(--text-2);
+}
+
+.now__list li { padding-block: 0.6rem; }
+.now__list .link { min-height: 0; padding-block: 0.6rem; margin-block: -0.6rem; }
+
 /* --------------------------------------------------------------------------
    Cards (shared)
    -------------------------------------------------------------------------- */
@@ -640,6 +718,36 @@ body::before {
 .project:hover .project__media img { transform: scale(1.035); }
 
 .project__media:focus-visible { outline-offset: -3px; border-radius: var(--radius); }
+
+/* Affordance: a pill appears over the cover on hover / keyboard focus (pointer devices only) */
+.project__media::before {
+    content: "Open case study \2197";
+    position: absolute;
+    left: 50%; top: 50%;
+    z-index: 1;
+    transform: translate(-50%, -40%);
+    padding: 0.55rem 0.95rem;
+    border-radius: var(--radius-pill);
+    background: rgba(10, 10, 12, 0.78);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) {
+    .project:hover .project__media::before,
+    .project__media:focus-visible::before { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.project--compact .project__media::before { display: none; }
 
 .project__media::after {
     /* subtle inner edge so bright covers still sit inside the card */
@@ -969,6 +1077,61 @@ body::before {
     background: var(--accent-soft);
     transform: translateY(-2px);
 }
+
+/* Pills backed by a project become buttons with a count; the "used in" row lists the projects */
+.pill--linked { padding: 0; cursor: pointer; }
+
+.pill__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 40px;
+    padding: 0.45rem 0.7rem 0.45rem 0.95rem;
+    border-radius: var(--radius-pill);
+    color: inherit;
+}
+
+.pill__count {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    line-height: 1;
+    padding: 0.28rem 0.45rem;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-3);
+    transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.pill--linked:hover .pill__count,
+.pill.is-open .pill__count { background: var(--accent); color: var(--accent-ink); }
+
+.pill.is-open {
+    color: var(--text);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.stack__uses {
+    grid-column: 1 / -1;
+    margin-left: calc(200px + 2rem);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 1.25rem;
+    padding-top: 0.25rem;
+    animation: fade-in 0.35s var(--ease-out);
+}
+
+.stack__uses .label { margin-right: 0.25rem; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(4px); } }
+
+.project.is-highlighted {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 0 8px var(--accent-soft);
+}
+
+.project:focus { outline: none; }
 
 /* --------------------------------------------------------------------------
    Journey
@@ -1309,6 +1472,13 @@ body::before {
     background: var(--accent);
 }
 
+/* Optional screenshot gallery inside a case study */
+.case-study__gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; }
+.case-study__gallery h3 { grid-column: 1 / -1; margin-bottom: 0; }
+.case-study__gallery figure { display: grid; gap: 0.45rem; }
+.case-study__gallery img { width: 100%; height: auto; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); }
+.case-study__gallery figcaption { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+
 .case-study__aside {
     display: grid;
     gap: 1.5rem;
@@ -1397,6 +1567,22 @@ body::before {
 .recommend__actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 
 /* --------------------------------------------------------------------------
+   404
+   -------------------------------------------------------------------------- */
+.notfound {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.notfound .container { display: grid; gap: 1.5rem; justify-items: start; }
+.notfound .wordmark { margin-bottom: clamp(2rem, 8vh, 5rem); }
+.notfound__title { font-size: clamp(3rem, 12vw, 9rem); }
+.notfound__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+.notfound .label { margin-top: 2rem; }
+
+/* --------------------------------------------------------------------------
    Reveal on scroll (JS-enhanced; everything is visible without JS)
    -------------------------------------------------------------------------- */
 .js [data-reveal] {
@@ -1414,6 +1600,7 @@ body::before {
 @media (max-width: 1080px) {
     .project--featured .project__media { flex-basis: 50%; }
     .stack__group, .timeline__item { grid-template-columns: 160px minmax(0, 1fr); }
+    .stack__uses { margin-left: calc(160px + 2rem); }
 }
 
 @media (max-width: 900px) {
@@ -1453,6 +1640,9 @@ body::before {
         opacity: 0.85;
     }
     .hero__actions .btn { flex: 1 1 auto; }
+    .now__inner { align-items: flex-start; }
+    .now__list { flex-direction: column; gap: 0; }
+    .now__list li { padding-block: 0.45rem; }
 
     .project--wide, .project--narrow { grid-column: span 12; }
     .project--compact {
@@ -1468,6 +1658,7 @@ body::before {
 
     .stack__group, .timeline__item { grid-template-columns: 1fr; gap: 0.75rem; padding-block: 1.25rem; }
     .stack__label { padding-top: 0; }
+    .stack__uses { margin-left: 0; }
 
     .channel { grid-template-columns: 1fr; gap: 0.35rem; padding-block: 0.9rem; }
     .channel .copy-btn { justify-self: start; }
@@ -1500,6 +1691,7 @@ body::before {
         animation-iteration-count: 1 !important;
     }
     .js [data-reveal] { opacity: 1; transform: none; }
+    .js .hero__title .line > span { transform: none; animation: none; }
     .project:hover, .pill:hover, .btn:hover { transform: none; }
     .project:hover .project__media img, .tile--portrait:hover img { transform: none; }
 }

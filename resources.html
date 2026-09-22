@@ -28,9 +28,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="css/style.css">
     <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -306,7 +305,7 @@
         <div class="container">
             <div class="footer__brand">
                 <a class="wordmark" href="index.html"><span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Sumit Sah</span></a>
-                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal</small>
+                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal <span data-local-time hidden></span></small>
             </div>
             <nav class="footer__links" aria-label="Footer">
                 <a href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>

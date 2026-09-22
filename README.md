@@ -38,6 +38,13 @@ A single editorial page plus a resources page, built with plain HTML, CSS and Ja
 - **Resources:** cards in `resources.html`.
 - **Social preview:** `images/og.png` (1200×630). Favicons: `favicon.svg` (source), `favicon-32.png`, `apple-touch-icon.png`.
 
+## Content slots ready to fill
+
+- **Résumé:** save it as `cv/sumit-sah-cv.pdf`, then uncomment the two `Résumé` links (hero meta row and footer) in `index.html`.
+- **Screenshots:** put images in `images/screens/` and add a `<section class="case-study__gallery">` inside a project's `<template class="project__detail">` — there is a commented example in the VoxTube card. One figure spans the dialog; several form a grid.
+- **Journey dates / roles:** copy an `<li>` in `#journey`; the commented example shows a dated internship entry.
+- **Stack counts:** the number on a Stack pill is computed from the cards' `.project__stack` lists. A pill whose label differs from how cards name the tech carries `data-match="alias|alias"`.
+
 ## Running locally
 
 ```bash
@@ -54,7 +61,9 @@ my-portfolio-site/
 ├── index.html
 ├── resources.html
 ├── about.html · projects.html · contact.html   # redirects
+├── 404.html               # branded not-found page (GitHub Pages picks it up)
 ├── css/style.css
+├── fonts/                 # self-hosted Manrope + JetBrains Mono (variable woff2)
 ├── js/script.js
 ├── images/
 │   ├── covers/            # project cover illustrations (SVG)

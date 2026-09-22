@@ -353,6 +353,94 @@ function initCopyButtons() {
 }
 
 /* --------------------------------------------------------------------------
+   Stack ↔ Work: a pill that matches a project's stack becomes a button with a
+   count; clicking it lists the projects, and each link jumps to that card.
+   -------------------------------------------------------------------------- */
+function initStackLinks() {
+    const groups = document.querySelector('.stack__groups');
+    if (!groups) return;
+
+    const norm = (text) => text.toLowerCase().replace(/\s+/g, ' ').trim();
+    const projects = [...document.querySelectorAll('.project[data-project]')].map((card) => ({
+        id: card.id,
+        title: card.querySelector('.project__title')?.textContent.trim() || card.dataset.project,
+        tech: new Set([...card.querySelectorAll('.project__stack li')].map((li) => norm(li.textContent))),
+    }));
+
+    let open = null;
+    const close = () => {
+        if (!open) return;
+        open.row.remove();
+        open.pill.classList.remove('is-open');
+        open.button.setAttribute('aria-expanded', 'false');
+        open = null;
+    };
+
+    groups.querySelectorAll('.pill').forEach((pill) => {
+        const label = pill.textContent.trim();
+        const keys = (pill.dataset.match || label).split('|').map(norm);
+        const matches = projects.filter((p) => keys.some((k) => p.tech.has(k)));
+        if (!matches.length) return;
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'pill__btn';
+        button.setAttribute('aria-expanded', 'false');
+        button.append(label);
+        const count = document.createElement('span');
+        count.className = 'pill__count';
+        count.textContent = String(matches.length);
+        count.setAttribute('aria-label', `used in ${matches.length} project${matches.length === 1 ? '' : 's'}`);
+        button.append(count);
+        pill.classList.add('pill--linked');
+        pill.replaceChildren(button);
+
+        button.addEventListener('click', () => {
+            const reopen = open?.button !== button;
+            close();
+            if (!reopen) return;
+            const row = document.createElement('div');
+            row.className = 'stack__uses';
+            row.innerHTML = `<span class="label">${label} · used in</span>` + matches.map((m) =>
+                `<a class="link" href="#${m.id}" data-jump>${m.title}${svgIcon('i-arrow', 'icon icon--arrow')}</a>`).join('');
+            pill.closest('.stack__group').appendChild(row);
+            pill.classList.add('is-open');
+            button.setAttribute('aria-expanded', 'true');
+            open = { pill, button, row };
+        });
+    });
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-jump]');
+        if (!link) return;
+        const target = document.getElementById(link.getAttribute('href').slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'center' });
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+        target.classList.add('is-highlighted');
+        setTimeout(() => target.classList.remove('is-highlighted'), 1800);
+    });
+}
+
+/* --------------------------------------------------------------------------
+   Footer: current time in Kathmandu
+   -------------------------------------------------------------------------- */
+function initLocalTime() {
+    const el = document.querySelector('[data-local-time]');
+    if (!el || typeof Intl === 'undefined') return;
+    let format;
+    try {
+        format = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: false });
+    } catch { return; }
+    const tick = () => { el.textContent = `· ${format.format(new Date())} local time`; el.hidden = false; };
+    tick();
+    setInterval(tick, 30000);
+}
+
+/* --------------------------------------------------------------------------
    GitHub: annotate the static repo list with language + last push.
    Public API, no token, one request, cached for an hour. Silent on failure.
    -------------------------------------------------------------------------- */
@@ -505,6 +593,8 @@ const boot = () => {
     initCaseStudy();
     initContactForm();
     initCopyButtons();
+    initStackLinks();
+    initLocalTime();
     initGithubMeta();
     initTabs();
     initRecommendForm();
