@@ -14,8 +14,20 @@ A single editorial page plus a resources page, built with plain HTML, CSS and Ja
 | `resources.html` | Curated courses, books, tools and websites, plus a "recommend a resource" form |
 | `about.html`, `projects.html`, `contact.html` | Redirect stubs for the old multi-page URLs (`/#about`, `/#work`, `/#contact`) |
 | `v2/` | The previous version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`). Also tagged `v2.0` in git. |
+| `v4/` | An alternative **Neo-Brutalist** design of the same content, browsable at [/v4/](https://www.sumit-sah.com.np/v4/) (`noindex`). Same projects, links and forms; its own `v4/css/style.css` and `v4/js/script.js`. |
 
 ### Design
+
+The site ships two complete designs over one set of content:
+
+| | `/` (v3, live) | `/v4/` (alternative) |
+| --- | --- | --- |
+| Direction | Dark editorial + bento | Neo-brutalist editorial poster |
+| Surface | Near-black, thin borders, soft grain | Warm paper, 3px ink borders, hard offset shadows |
+| Accent | One indigo | Yellow / coral / blue / mint, used structurally |
+| Type | Manrope + JetBrains Mono | Archivo Black + Space Grotesk + JetBrains Mono |
+
+Both share `/images`, `/fonts`, the Formspree endpoint and the same project data.
 
 - Dark, near-black surfaces with one indigo accent (`--accent`), thin borders and a light grain.
 - Typography: [Manrope](https://fonts.google.com/specimen/Manrope) for display and body, [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for labels and metadata.
@@ -63,7 +75,7 @@ my-portfolio-site/
 ├── about.html · projects.html · contact.html   # redirects
 ├── 404.html               # branded not-found page (GitHub Pages picks it up)
 ├── css/style.css
-├── fonts/                 # self-hosted Manrope + JetBrains Mono (variable woff2)
+├── fonts/                 # self-hosted woff2: Manrope, Space Grotesk, Archivo Black, JetBrains Mono
 ├── js/script.js
 ├── images/
 │   ├── covers/            # project cover illustrations (SVG)
@@ -73,6 +85,7 @@ my-portfolio-site/
 │   └── todo_app_cover.jpg
 ├── favicon.svg · favicon-32.png · apple-touch-icon.png
 ├── v2/                    # archived previous version (git tag v2.0)
+├── v4/                    # alternative neo-brutalist design (same content)
 ├── robots.txt · sitemap.xml · CNAME
 └── README.md
 ```
