@@ -31,7 +31,7 @@ The site ships two complete designs over one set of content:
 
 Both share `/images`, `/fonts`, the Formspree endpoint and the same project data.
 
-**Switching between them.** Every page with a header carries a `.vswitch` control — in the header on desktop, and as a full-width row in the mobile menu, since the header copy is hidden below the nav breakpoint. Both copies are plain links (`/` ↔ `/v4/`, `/resources.html` ↔ `/v4/resources.html`), so they work with JavaScript off. With JS on, `initVersionSwitch()` appends the section you are currently reading, so switching halfway down the page lands on the same section in the other design. It reads the section from the DOM at the moment the link is used rather than from the scroll-spy, which can lag a frame behind a jump. The ids it may use are taken from the nav's own hrefs, so it can only ever point at a section that exists in both designs.
+**Switching between them.** Every page with a header carries a `.vswitch` control — in the header on desktop, and as a full-width row in the mobile menu, since the header copy is hidden below the nav breakpoint. Both copies are plain relative links (`index.html` ↔ `v4/index.html`, `resources.html` ↔ `v4/resources.html`), so they work with JavaScript off and when the repo is opened from disk; when the site is actually served, `sync()` rewrites them to the clean `/` and `/v4/` URLs. With JS on, `initVersionSwitch()` appends the section you are currently reading, so switching halfway down the page lands on the same section in the other design. It reads the section from the DOM at the moment the link is used rather than from the scroll-spy, which can lag a frame behind a jump. The ids it may use are taken from the nav's own hrefs, so it can only ever point at a section that exists in both designs.
 
 To add a third design, give it a directory, add an option to the `.vswitch` group on every page (the `data-to` attribute is the target; `aria-current="page"` marks the one you are on) and style `.vswitch` in that design's stylesheet.
 
@@ -72,6 +72,8 @@ python -m http.server 8000
 ```
 
 Any static server works. The site is deployed with GitHub Pages using the custom domain in `CNAME`.
+
+Every link and asset path in the pages is **relative**, so you can also just open `index.html` from the file manager and click through the whole site, `/v4/` included. One caveat: browsers refuse to load `@font-face` files over `file://` (CORS), so opened that way the pages fall back to system fonts. Use the server above to see the real typography. `404.html` is the deliberate exception — it keeps absolute paths, because GitHub Pages serves it from whatever URL was missed.
 
 ## Structure
 

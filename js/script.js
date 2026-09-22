@@ -105,7 +105,14 @@ function initVersionSwitch() {
 
     const sync = () => {
         const hash = sections.length ? sectionInView() : window.location.hash;
-        opts.forEach((a) => { a.href = a.dataset.to + hash; });
+        opts.forEach((a) => {
+            const url = new URL(a.dataset.to, window.location.href);
+            // The authored hrefs are relative so the site still works opened
+            // straight from disk; when it is really being served, prefer the
+            // clean directory URL over .../index.html.
+            if (window.location.protocol !== 'file:') url.pathname = url.pathname.replace(/index\.html$/, '');
+            a.href = url.pathname + hash;
+        });
     };
 
     sync();
