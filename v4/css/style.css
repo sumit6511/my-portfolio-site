@@ -47,6 +47,8 @@
     /* Accents — four, used structurally, never decoratively */
     --yellow: #ffd029;
     --coral: #ff5a36;
+    /* coral is a background accent; as text on paper or card it needs this one */
+    --coral-deep: #b33f26;
     --blue: #2f4fff;
     --mint: #00c98d;
 
@@ -216,10 +218,12 @@ input, textarea, select { font: inherit; color: inherit; }
     white-space: nowrap;
 }
 
-.tag--yellow { background: var(--yellow); }
-.tag--coral { background: var(--coral); color: #fff; }
+/* Every variant states its own colour: these chips also appear inside
+   .contact, which flips the inherited colour to paper. */
+.tag--yellow { background: var(--yellow); color: var(--ink); }
+.tag--coral { background: var(--coral); color: var(--ink); }
 .tag--blue { background: var(--blue); color: #fff; }
-.tag--mint { background: var(--mint); }
+.tag--mint { background: var(--mint); color: var(--ink); }
 .tag--ink { background: var(--ink); color: var(--paper); }
 
 /* --------------------------------------------------------------------------
@@ -298,7 +302,7 @@ input, textarea, select { font: inherit; color: inherit; }
 
 .btn--yellow { background: var(--yellow); }
 .btn--ink { background: var(--ink); color: var(--paper); }
-.btn--coral { background: var(--coral); color: #fff; }
+.btn--coral { background: var(--coral); color: var(--ink); }
 .btn--sm { min-height: 44px; padding: 0.55rem 1rem; font-size: 0.72rem; }
 
 .btn:disabled { opacity: 0.6; cursor: progress; transform: none; box-shadow: var(--sh); }
@@ -724,7 +728,7 @@ input, textarea, select { font: inherit; color: inherit; }
     text-align: center;
 }
 
-.pj--featured .pj__num { background: var(--coral); color: #fff; }
+.pj--featured .pj__num { background: var(--coral); color: var(--ink); }
 
 .pj__media {
     position: relative;
@@ -900,7 +904,7 @@ input, textarea, select { font: inherit; color: inherit; }
     margin-top: 0.5rem;
     padding: 0.5rem 0.9rem;
     border: var(--bd);
-    color: var(--coral);
+    color: var(--coral-deep);
     font-family: var(--f-display);
     font-size: clamp(1rem, 1.8vw, 1.4rem);
     letter-spacing: 0.02em;
@@ -978,6 +982,9 @@ input, textarea, select { font: inherit; color: inherit; }
 .fact--pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; padding: 0; border: 0; background: none; box-shadow: none; }
 .fact--yellow { background: var(--yellow); }
 .fact--mint { background: var(--mint); }
+/* the muted tone is tuned for paper; on a coloured tile it needs full ink */
+.fact--yellow .label, .fact--mint .label,
+.fact--yellow .fact__value small, .fact--mint .fact__value small { color: var(--ink); }
 
 .fact--link { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .fact--link:hover { transform: translate(-3px, -3px); box-shadow: var(--sh); }
