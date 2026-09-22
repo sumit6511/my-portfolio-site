@@ -1140,7 +1140,9 @@ input, textarea, select { font: inherit; color: inherit; }
     grid-template-columns: minmax(175px, 250px) minmax(0, 1fr);
     gap: 0.85rem 2rem;
     align-items: start;
-    padding-block: clamp(1.4rem, 3vw, 2.25rem);
+    /* inline padding so the hover fill has room around the text instead of
+       running flush against it; the rules still span the full container */
+    padding: clamp(1.4rem, 3vw, 2.25rem) clamp(1rem, 1.8vw, 1.5rem);
     border-bottom: var(--bd-w) solid var(--ink);
     transition: background var(--dur) var(--ease);
 }
