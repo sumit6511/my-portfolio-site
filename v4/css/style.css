@@ -1359,6 +1359,22 @@ input, textarea, select { font: inherit; color: inherit; }
 
 .footer__links a:hover { background: var(--card); border-color: var(--ink); }
 
+/* Socials are icon-only: square plates on the same 2px rule as the nav. The
+   name lives in aria-label and the native tooltip, so nothing is lost. */
+.footer__social { display: flex; align-items: center; gap: 0.35rem; }
+
+.footer__links a.social {
+    width: 44px;
+    gap: 0;
+    padding: 0;
+    justify-content: center;
+    border-color: var(--ink);
+    background: var(--card);
+}
+
+.footer__links a.social .icon { width: 19px; height: 19px; }
+.footer__links a.social:hover { background: var(--yellow); }
+
 /* --------------------------------------------------------------------------
    Case study dialog
    -------------------------------------------------------------------------- */
@@ -1590,6 +1606,7 @@ input, textarea, select { font: inherit; color: inherit; }
 
     .site-footer .container { flex-direction: column; align-items: flex-start; }
     .footer__links { margin-left: -0.55rem; }
+    .footer__social { margin-left: 0.55rem; }
 }
 
 @media (max-width: 400px) {

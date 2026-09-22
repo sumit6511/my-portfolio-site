@@ -1443,6 +1443,23 @@ body::before {
 .footer__links a:hover { color: var(--text); }
 .footer__links a:hover .icon--up { transform: translateY(-2px); }
 
+/* Socials are icon-only: a tight cluster of round targets. The name lives in
+   aria-label and the native tooltip, so nothing is lost without the text. */
+.footer__social { display: flex; align-items: center; gap: 0.3rem; }
+
+.footer__links a.social {
+    width: 44px;
+    gap: 0;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    transition: color var(--dur) var(--ease-out), background var(--dur) var(--ease-out),
+        border-color var(--dur) var(--ease-out);
+}
+
+.footer__links a.social .icon { width: 18px; height: 18px; }
+.footer__links a.social:hover { background: var(--surface-2); border-color: var(--border-strong); }
+
 /* --------------------------------------------------------------------------
    Case study dialog
    -------------------------------------------------------------------------- */
