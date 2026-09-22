@@ -3,208 +3,873 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
+    <title>Sumit Sah — Software Developer · AI / ML</title>
+    <meta name="description" content="Sumit Sah is a Computer Science student in Kathmandu, Nepal, building modern web applications and machine-learning projects — from a RAG-powered YouTube analysis platform to real-time and transactional backends.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.sumit-sah.com.np/">
-    <meta property="og:title" content="Sumit Sah | Home">
-    <meta property="og:description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
+    <meta name="author" content="Sumit Sah">
+    <meta name="theme-color" content="#0a0a0c">
+
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sumit Sah">
+    <meta property="og:title" content="Sumit Sah — Software Developer · AI / ML">
+    <meta property="og:description" content="Computer Science student in Kathmandu building software and intelligent systems: full-stack apps, NLP and RAG, real-time and transactional backends.">
     <meta property="og:url" content="https://www.sumit-sah.com.np/">
-    <meta property="og:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
+    <meta property="og:image" content="https://www.sumit-sah.com.np/images/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Sumit Sah — I build software and intelligent systems.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sumit Sah | Home">
-    <meta name="twitter:description" content="Sumit Sah is a Computer Science student building modern web and machine learning projects. Explore his portfolio, featured work, and contact information.">
-    <meta name="twitter:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:site" content="@sumit_6511">
+    <meta name="twitter:title" content="Sumit Sah — Software Developer · AI / ML">
+    <meta name="twitter:description" content="Computer Science student in Kathmandu building software and intelligent systems: full-stack apps, NLP and RAG, real-time and transactional backends.">
+    <meta name="twitter:image" content="https://www.sumit-sah.com.np/images/og.png">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <meta name="theme-color" content="#5e60ce">
-    <title>Sumit Sah | Home</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sumit Sah",
+      "url": "https://www.sumit-sah.com.np/",
+      "email": "mailto:sumitsah6511@gmail.com",
+      "jobTitle": "Software Developer",
+      "description": "Computer Science student building modern web applications and machine-learning projects.",
+      "image": "https://www.sumit-sah.com.np/images/profile.jpg",
+      "address": { "@type": "PostalAddress", "addressLocality": "Kathmandu", "addressCountry": "NP" },
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "St. Xavier's College, Tribhuvan University" },
+      "sameAs": [
+        "https://github.com/sumit6511",
+        "https://www.linkedin.com/in/sumit-sah-9930bb300",
+        "https://x.com/sumit_6511",
+        "https://www.instagram.com/_xumi_x"
+      ]
+    }
+    </script>
 </head>
 <body>
-    <div class="noise-overlay"></div>
-    
-    <header>
+    <!-- Icon sprite: referenced with <use href="#i-…"> so there is no icon-font request -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+        <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
         <div class="container">
-            <div class="logo">
-                <a href="index.html" class="signature">PORTFOLIO<span>.</span></a>
-            </div>
-            <nav>
-                <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </button>
-                <ul class="nav-links" id="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <a class="wordmark" href="#top" aria-label="Sumit Sah — home">
+                <span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span>Sumit Sah</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <ul class="nav__list">
+                    <li><a class="nav__link" href="#work">Work</a></li>
+                    <li><a class="nav__link" href="#about">About</a></li>
+                    <li><a class="nav__link" href="#stack">Stack</a></li>
+                    <li><a class="nav__link" href="#journey">Journey</a></li>
+                    <li><a class="nav__link" href="#contact">Contact</a></li>
                 </ul>
+                <a class="btn btn--primary btn--sm nav__cta" href="#contact">Let's talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                    <span></span><span></span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
+    <div class="menu" id="menu" inert>
+        <ul class="menu__list">
+            <li><a class="menu__link" href="#work"><small>01</small>Work</a></li>
+            <li><a class="menu__link" href="#about"><small>02</small>About</a></li>
+            <li><a class="menu__link" href="#stack"><small>03</small>Stack</a></li>
+            <li><a class="menu__link" href="#journey"><small>04</small>Journey</a></li>
+            <li><a class="menu__link" href="#contact"><small>05</small>Contact</a></li>
+            <li><a class="menu__link" href="resources.html"><small>+</small>Resources</a></li>
+        </ul>
+        <div class="menu__meta">
+            <a class="link" href="mailto:sumitsah6511@gmail.com">sumitsah6511@gmail.com<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+            <div class="menu__socials">
+                <a class="link link--muted" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="link link--muted" href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="link link--muted" href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer">X</a>
+                <a class="link link--muted" href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+            <span class="label">Kathmandu, Nepal</span>
+        </div>
+    </div>
+
+    <main id="main">
+        <!-- ============================================================ HERO -->
+        <section class="hero" id="top" aria-labelledby="hero-title">
+            <canvas class="hero__field" aria-hidden="true"></canvas>
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="animate-text">Hi, I’m <span class="highlight">Sumit Sah</span></h1>
-                    <h2 class="animate-text delay-1">I build minimal, modern web experiences.</h2>
-                    <div class="hero-actions animate-text delay-2">
-                        <a href="projects.html" class="btn primary-btn">View projects</a>
-                        <a href="contact.html" class="btn secondary-btn">Say hello</a>
+                <div class="hero__top">
+                    <p class="eyebrow" data-reveal>Software developer · AI / ML</p>
+                    <h1 class="display hero__title" id="hero-title" data-reveal style="--d:1">
+                        <span>I build software</span>
+                        <span>and intelligent</span>
+                        <span>systems<span class="accent">.</span></span>
+                    </h1>
+                </div>
+                <div class="hero__row">
+                    <p class="lede hero__intro" data-reveal style="--d:2">I'm Sumit Sah — a Computer Science student in Kathmandu building modern web applications and machine-learning projects, from NLP and retrieval-augmented systems to a daily puzzle platform, an API monitor and real-time backends.</p>
+                    <div class="hero__actions" data-reveal style="--d:3">
+                        <a class="btn btn--primary" href="#work">View my work<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                        <a class="btn btn--ghost" href="#contact">Let's connect</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="profile-container">
-                        <img src="images/profile.jpg" alt="Profile Picture" class="hero-profile-img">
+                <dl class="hero__meta" data-reveal style="--d:4">
+                    <div class="meta-item">
+                        <dt class="label">Based in</dt>
+                        <dd class="meta-item__value">Kathmandu, Nepal</dd>
+                    </div>
+                    <div class="meta-item">
+                        <dt class="label">Studying</dt>
+                        <dd class="meta-item__value">B.Sc. CSIT · St. Xavier's College</dd>
+                    </div>
+                    <div class="meta-item">
+                        <dt class="label">Focus</dt>
+                        <dd class="meta-item__value">Full stack · AI / ML</dd>
+                    </div>
+                    <div class="meta-item">
+                        <dt class="label">Elsewhere</dt>
+                        <dd class="meta-item__value meta-item__links">
+                            <a class="link" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            <a class="link" href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer">LinkedIn<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ============================================================ WORK -->
+        <section class="section work" id="work" aria-labelledby="work-title">
+            <div class="container">
+                <header class="section__head">
+                    <span class="section__num" aria-hidden="true">01</span>
+                    <div class="section__title-wrap">
+                        <p class="eyebrow" data-reveal>Selected work</p>
+                        <h2 class="h2" id="work-title" data-reveal style="--d:1">Things I've actually built.</h2>
+                        <p class="section__desc" data-reveal style="--d:2">Full-stack products, a RAG document assistant, an API monitor, backends with real guarantees and an NLP platform — all open on GitHub, several live.</p>
+                    </div>
+                </header>
+
+                <div class="project-grid">
+                    <!-- Featured: VoxTube -->
+                    <article class="card project project--featured" data-project="voxtube" data-reveal>
+                        <button class="project__media" type="button" data-case-study aria-label="Open the VoxTube case study">
+                            <img src="images/covers/voxtube.svg" width="800" height="500" alt="Diagram of the VoxTube pipeline: YouTube comments flow through NLP models into sentiment, toxicity and topic analysis, plus a RAG chat.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 01</span>
+                                <span class="project__tag">Featured · Final year project</span>
+                            </div>
+                            <h3 class="project__title">VoxTube</h3>
+                            <p class="project__kicker">AI-powered YouTube comment analysis platform.</p>
+                            <p class="project__desc">A full-stack NLP platform that runs a video's comments through a multi-stage pipeline — sentiment, toxicity, topics — with a RAG chat to query the discussion and PDF/Excel report export.</p>
+                            <ul class="project__stack"><li>React</li><li>FastAPI</li><li>Transformers</li><li>BERTopic</li><li>FAISS</li><li>RAG</li></ul>
+                            <div class="project__links">
+                                <button class="btn btn--accent btn--sm" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/voxtube" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://github.com/sumit6511/voxtube_streamlit" target="_blank" rel="noopener noreferrer">Streamlit prototype<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Final year project</dd></div>
+                                <div><dt>Category</dt><dd>Full-stack NLP platform</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>VoxTube turns the comment section of a YouTube video into something you can actually read. It fetches the comments, runs them through a multi-stage machine-learning pipeline, and gives you a structured picture of the discussion instead of an endless scroll — with language detection and preprocessing for Nepali and code-mixed comments. Built as my final year project; an earlier Streamlit version lives in its own repository.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Sentiment analysis with XLM-RoBERTa and VADER, toxicity detection with ToxicBERT, topic modeling with BERTopic</li>
+                                    <li>RAG chat over the comment section: FAISS vector search plus a local LLM through Ollama, with source-comment citations</li>
+                                    <li>Excel and PDF report export with charts</li>
+                                    <li>FastAPI backend with SQLAlchemy; React 19 + TypeScript + Vite + Tailwind frontend with Zustand and Recharts</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- DailyLoop -->
+                    <article class="card project project--wide" data-project="dailyloop" data-reveal>
+                        <button class="project__media" type="button" data-case-study aria-label="Open the DailyLoop case study">
+                            <img src="images/covers/dailyloop.svg" width="800" height="500" loading="lazy" alt="Diagram of DailyLoop: today's date seeds a game engine that generates five daily puzzles; scores feed a streak, a friends leaderboard and a Perfect Day bonus.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 02</span>
+                                <span class="project__tag">Full stack</span>
+                            </div>
+                            <h3 class="project__title">DailyLoop</h3>
+                            <p class="project__desc">A daily puzzle platform: everyone gets the same puzzle each day, keeps a streak and climbs a friends leaderboard. New games plug into a shared engine, scoring system and daily scheduler without touching core code.</p>
+                            <ul class="project__stack"><li>React</li><li>TypeScript</li><li>Fastify</li><li>Prisma</li><li>PostgreSQL</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/dailyloop" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>Full-stack game platform</dd></div>
+                                <div><dt>Status</dt><dd>Five games, scoring, streaks, friends and admin panel built and tested</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>DailyLoop is a daily puzzle platform: every user gets the same puzzle for each game on a given day, plays for a few minutes, and can track streaks, compare scores and climb a friends leaderboard. It is built as a modular game platform — adding a game means one new module, one registry line and one seeded database row, with no changes to routing, scoring, streaks or the dashboard.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Five daily games (Connections and Word Guess among them) on a shared engine with seeded puzzle generation</li>
+                                    <li>Server-side validation and scoring: answers never leave the server, and every game normalises its score to 0–100</li>
+                                    <li>Streaks, a Perfect Day bonus, achievements and a friends leaderboard, all computed inside one transaction</li>
+                                    <li>Admin panel; session-based auth with Argon2 password hashing</li>
+                                    <li>Monorepo: React 19 + Vite + Tailwind CSS v4 frontend, Fastify + Zod + Prisma API on PostgreSQL, Vitest and integration tests</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- DocChat -->
+                    <article class="card project project--narrow" data-project="doc-chat" data-reveal style="--d:1">
+                        <button class="project__media" type="button" data-case-study aria-label="Open the DocChat case study">
+                            <img src="images/covers/doc-chat.svg" width="800" height="500" loading="lazy" alt="Diagram of DocChat: a PDF is chunked and embedded into MongoDB Atlas; a question is embedded, vector search retrieves chunks, and a local LLM answers with page citations.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 03</span>
+                                <span class="project__tag">AI · RAG</span>
+                            </div>
+                            <h3 class="project__title">DocChat</h3>
+                            <p class="project__desc">Chat with your PDFs and get answers grounded in your sources — a retrieval-augmented pipeline on FastAPI, MongoDB Atlas Vector Search and a local LLM, with page citations on every answer.</p>
+                            <ul class="project__stack"><li>FastAPI</li><li>React</li><li>MongoDB Atlas</li><li>RAG</li><li>Ollama</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/doc-chat" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>AI document Q&amp;A</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>Upload PDFs, wait for them to be indexed, and ask questions in plain language. DocChat extracts the text, splits it into overlapping chunks, embeds each chunk locally with sentence-transformers and stores the vectors in MongoDB Atlas. A question is embedded the same way, an Atlas $vectorSearch query finds the most relevant chunks, and only those chunks reach the LLM (Ollama) — so every answer is grounded in the documents, and the chunks that were used come back as citations.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Drag-and-drop upload of multiple PDFs with live processing status</li>
+                                    <li>Sentence-aware chunking, local embeddings with no external API calls, and real semantic retrieval with Atlas Vector Search</li>
+                                    <li>Source citations (file, page, relevance score) on every answer, and an in-browser PDF viewer that jumps to the cited page</li>
+                                    <li>A relevance threshold so it says "I don't know" instead of guessing; per-conversation document scoping and history-aware follow-ups</li>
+                                    <li>FastAPI + Pydantic backend, React + TypeScript + Tailwind frontend, Docker Compose, CI, pytest and Vitest suites</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- APIWatch -->
+                    <article class="card project project--narrow" data-project="apiwatch" data-reveal>
+                        <button class="project__media" type="button" data-case-study aria-label="Open the APIWatch case study">
+                            <img src="images/covers/apiwatch.svg" width="800" height="500" loading="lazy" alt="Diagram of APIWatch: a monitor card with a status timeline and response-time chart, an incident state machine from up to incident open to resolved, a Discord notification and uptime bars.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 04</span>
+                                <span class="project__tag">Monitoring</span>
+                            </div>
+                            <h3 class="project__title">APIWatch</h3>
+                            <p class="project__desc">API and website monitoring: scheduled checks, uptime and response-time tracking, outages rolled into incidents, and Discord alerts when something breaks — and again when it recovers.</p>
+                            <ul class="project__stack"><li>FastAPI</li><li>React</li><li>MongoDB Atlas</li><li>APScheduler</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/apiwatch" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://apiwatch-mu.vercel.app" target="_blank" rel="noopener noreferrer">Live demo<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>Monitoring platform</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>Give APIWatch a URL, a method, an interval and what a healthy response looks like. It runs a first check immediately, then keeps checking on schedule — measuring response time, classifying each result as up or down, and rolling consecutive failures and recoveries through a state machine that opens and resolves incidents, instead of firing one alert per failed request.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Monitors with method, headers, body, timeout, interval and expected status codes; pause/resume; throttled manual checks</li>
+                                    <li>Configurable failure and recovery thresholds so a single blip does not flip status; one incident per outage, auto-resolved</li>
+                                    <li>Uptime over 24h / 7d / 30d computed from real check history, response-time charts and a status timeline</li>
+                                    <li>Discord notifications on outage and recovery; SSRF-hardened URL validation on every request path, including redirects</li>
+                                    <li>Python 3.12 + FastAPI + APScheduler on MongoDB Atlas; React 19 + TypeScript + UnoCSS frontend with dark and light themes</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- SnapLink -->
+                    <article class="card project project--wide" data-project="snaplink" data-reveal style="--d:1">
+                        <button class="project__media" type="button" data-case-study aria-label="Open the SnapLink case study">
+                            <img src="images/covers/snaplink.svg" width="800" height="500" loading="lazy" alt="Diagram of SnapLink: a long URL collapses into a short custom alias with a QR code and an analytics panel for clicks, devices and referrers.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 05</span>
+                                <span class="project__tag">Full stack</span>
+                            </div>
+                            <h3 class="project__title">SnapLink</h3>
+                            <p class="project__desc">A URL shortener with custom aliases, QR codes, link expiration and a real analytics dashboard covering clicks, devices and referrers.</p>
+                            <ul class="project__stack"><li>React</li><li>Node.js</li><li>MongoDB</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/snaplink" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://snaplink-client-khaki.vercel.app" target="_blank" rel="noopener noreferrer">Live demo<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>Full-stack web app</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>SnapLink is a full-stack URL shortener. Beyond shortening, it focuses on the things people actually want from a link tool: control over the alias, a QR code for print or screens, expiry, and honest analytics about who clicked.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Custom aliases and QR code generation for every link</li>
+                                    <li>Link expiration</li>
+                                    <li>Analytics dashboard: clicks, devices and referrers</li>
+                                    <li>React client with a Node.js API on MongoDB</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- Backend Ledger -->
+                    <article class="card project project--wide" data-project="backend-ledger" data-reveal>
+                        <button class="project__media" type="button" data-case-study aria-label="Open the Backend Ledger case study">
+                            <img src="images/covers/backend-ledger.svg" width="800" height="500" loading="lazy" alt="Diagram of a double-entry ledger table where debits equal credits, linked to JWT auth, idempotency keys and MongoDB transactions.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 06</span>
+                                <span class="project__tag">Backend</span>
+                            </div>
+                            <h3 class="project__title">Backend Ledger</h3>
+                            <p class="project__desc">A double-entry ledger API for financial transactions — JWT auth, idempotency keys and MongoDB transactions to guarantee atomic transfers.</p>
+                            <ul class="project__stack"><li>Node.js</li><li>Express</li><li>MongoDB</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/backend-ledger" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://backend-ledger-5vxa.onrender.com" target="_blank" rel="noopener noreferrer">Live API<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>Backend / API</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>A backend for financial transactions built on the double-entry model, where every transfer is recorded as balanced debit and credit entries. The interesting part is the guarantees around it: requests can't be replayed by accident, and a transfer either fully happens or doesn't happen at all.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Double-entry ledger for recording transactions</li>
+                                    <li>JWT authentication</li>
+                                    <li>Idempotency keys so retried requests are safe</li>
+                                    <li>MongoDB transactions to guarantee atomic transfers</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- Live Location Tracker -->
+                    <article class="card project project--narrow" data-project="live-location-tracker" data-reveal style="--d:1">
+                        <button class="project__media" type="button" data-case-study aria-label="Open the Live Location Tracker case study">
+                            <img src="images/covers/live-location-tracker.svg" width="800" height="500" loading="lazy" alt="Diagram of a live map with a route, a pulsing location pin and a status pill reading 'live · socket.io connected'.">
+                        </button>
+                        <div class="project__body">
+                            <div class="project__topline">
+                                <span class="project__num">Project / 07</span>
+                                <span class="project__tag">Real-time</span>
+                            </div>
+                            <h3 class="project__title">Live Location Tracker</h3>
+                            <p class="project__desc">Real-time location sharing that streams browser geolocation over WebSockets and plots live positions on an interactive map.</p>
+                            <ul class="project__stack"><li>Node.js</li><li>Socket.IO</li><li>Leaflet</li></ul>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/live-location-tracker" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://live-location-tracker-5wqm.onrender.com" target="_blank" rel="noopener noreferrer">Live demo<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                        </div>
+                        <template class="project__detail">
+                            <dl class="facts">
+                                <div><dt>Type</dt><dd>Personal project</dd></div>
+                                <div><dt>Category</dt><dd>Real-time web app</dd></div>
+                            </dl>
+                            <section>
+                                <h3>Overview</h3>
+                                <p>A small real-time app: every connected browser shares its geolocation over a WebSocket connection, and everyone sees each other's position update live on a Leaflet map.</p>
+                            </section>
+                            <section>
+                                <h3>What it does</h3>
+                                <ul>
+                                    <li>Streams browser geolocation over WebSockets with Socket.IO</li>
+                                    <li>Plots live positions of connected users on an interactive Leaflet map</li>
+                                    <li>Node.js server</li>
+                                </ul>
+                            </section>
+                        </template>
+                    </article>
+
+                    <!-- Compact rows -->
+                    <div class="project-list" data-reveal>
+                        <article class="project project--compact" data-project="nepal-gov-portal">
+                            <button class="project__media" type="button" data-case-study aria-label="Open the Nepal Gov Portal case study">
+                                <img src="images/covers/nepal-gov-portal.svg" width="800" height="500" loading="lazy" alt="Diagram of three services — service applications, bill payments and health insurance claims — converging into a single portal interface.">
+                            </button>
+                            <div class="project__body">
+                                <span class="project__num">Project / 08</span>
+                                <h3 class="project__title">Nepal Gov Portal</h3>
+                                <p class="project__desc">A group college project prototyping a unified government services portal for Nepal — service applications, bill payments and health insurance claims in one place.</p>
+                                <ul class="project__stack"><li>React</li><li>TypeScript</li><li>Express</li></ul>
+                            </div>
+                                <div class="project__links">
+                                    <button class="link" type="button" data-case-study>Details<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                    <a class="link link--muted" href="https://github.com/sumit6511/nepal-gov-portal" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                    <a class="link link--muted" href="https://nepalgovportal.netlify.app/" target="_blank" rel="noopener noreferrer">Live demo<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                </div>
+                            <template class="project__detail">
+                                <dl class="facts">
+                                    <div><dt>Type</dt><dd>Group college project</dd></div>
+                                    <div><dt>Category</dt><dd>Services portal prototype</dd></div>
+                                </dl>
+                                <section>
+                                    <h3>Overview</h3>
+                                    <p>A prototype of what a single front door to government services in Nepal could look like: instead of separate offices and sites, one portal for applying for services, paying bills and filing health insurance claims. Built as a group project during college.</p>
+                                </section>
+                                <section>
+                                    <h3>What it does</h3>
+                                    <ul>
+                                        <li>Service applications</li>
+                                        <li>Bill payments</li>
+                                        <li>Health insurance claims</li>
+                                        <li>React + TypeScript frontend with an Express backend</li>
+                                    </ul>
+                                </section>
+                            </template>
+                        </article>
+
+                        <article class="project project--compact" data-project="inventory-management-system">
+                            <button class="project__media" type="button" data-case-study aria-label="Open the Inventory Management System case study">
+                                <img src="images/ims.jpg" width="1075" height="716" loading="lazy" alt="Inventory Management System cover illustration with a checklist and a window.">
+                            </button>
+                            <div class="project__body">
+                                <span class="project__num">Project / 09</span>
+                                <h3 class="project__title">Inventory Management System</h3>
+                                <p class="project__desc">A Python desktop app to manage products, track stock levels, update quantities and generate inventory reports.</p>
+                                <ul class="project__stack"><li>Python</li><li>Tkinter</li></ul>
+                            </div>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Details<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/GenAI-Training-Workshop/tree/main/Projects/Inventory_Management_System" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                            <template class="project__detail">
+                                <dl class="facts">
+                                    <div><dt>Type</dt><dd>Workshop project</dd></div>
+                                    <div><dt>Category</dt><dd>Desktop application</dd></div>
+                                </dl>
+                                <section>
+                                    <h3>Overview</h3>
+                                    <p>A Python application for managing an inventory: add products, track stock levels, update quantities and generate reports. Built during the GenAI Training Workshop, and kept in that repository.</p>
+                                </section>
+                                <section>
+                                    <h3>What it does</h3>
+                                    <ul>
+                                        <li>Product management and stock-level tracking</li>
+                                        <li>Quantity updates</li>
+                                        <li>Inventory report generation</li>
+                                        <li>Tkinter user interface</li>
+                                    </ul>
+                                </section>
+                            </template>
+                        </article>
+
+                        <article class="project project--compact" data-project="todo-app">
+                            <button class="project__media" type="button" data-case-study aria-label="Open the To-Do App case study">
+                                <img src="images/todo_app_cover.jpg" width="1200" height="852" loading="lazy" alt="Todo app cover with a green check mark and the word Todo.">
+                            </button>
+                            <div class="project__body">
+                                <span class="project__num">Project / 10</span>
+                                <h3 class="project__title">To-Do App</h3>
+                                <p class="project__desc">A React task manager to add, complete and delete daily tasks with a clean, responsive UI.</p>
+                                <ul class="project__stack"><li>React</li><li>UI design</li></ul>
+                            </div>
+                            <div class="project__links">
+                                <button class="link" type="button" data-case-study>Details<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                                <a class="link link--muted" href="https://github.com/sumit6511/todo-app" target="_blank" rel="noopener noreferrer">GitHub<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <a class="link link--muted" href="https://todo-app-rust-two-36.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
+                            <template class="project__detail">
+                                <dl class="facts">
+                                    <div><dt>Type</dt><dd>Personal project</dd></div>
+                                    <div><dt>Category</dt><dd>Frontend</dd></div>
+                                </dl>
+                                <section>
+                                    <h3>Overview</h3>
+                                    <p>A simple, focused task manager built with React: add tasks, mark them complete, delete them. Small in scope, with attention on a clean and responsive interface.</p>
+                                </section>
+                                <section>
+                                    <h3>What it does</h3>
+                                    <ul>
+                                        <li>Add, complete and delete daily tasks</li>
+                                        <li>Clean, responsive UI</li>
+                                    </ul>
+                                </section>
+                            </template>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- GitHub presence: static links; script.js annotates each repo with language + last push from the public API when available -->
+                <div class="card gh" data-reveal>
+                    <div class="gh__head">
+                        <p class="eyebrow">More on GitHub</p>
+                        <p>Everything above is open, plus the smaller and older repositories.</p>
+                        <a class="link" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">github.com/sumit6511<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                    </div>
+                    <ul class="gh__repos" data-github-user="sumit6511">
+                        <li><a class="repo" href="https://github.com/sumit6511/snaplink" target="_blank" rel="noopener noreferrer" data-repo="snaplink"><span class="repo__name">snaplink<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/dailyloop" target="_blank" rel="noopener noreferrer" data-repo="dailyloop"><span class="repo__name">dailyloop<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/voxtube" target="_blank" rel="noopener noreferrer" data-repo="voxtube"><span class="repo__name">voxtube<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/doc-chat" target="_blank" rel="noopener noreferrer" data-repo="doc-chat"><span class="repo__name">doc-chat<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/apiwatch" target="_blank" rel="noopener noreferrer" data-repo="apiwatch"><span class="repo__name">apiwatch<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/my-portfolio-site" target="_blank" rel="noopener noreferrer" data-repo="my-portfolio-site"><span class="repo__name">my-portfolio-site<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/uber-clone" target="_blank" rel="noopener noreferrer" data-repo="uber-clone"><span class="repo__name">uber-clone<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/live-location-tracker" target="_blank" rel="noopener noreferrer" data-repo="live-location-tracker"><span class="repo__name">live-location-tracker<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/backend-ledger" target="_blank" rel="noopener noreferrer" data-repo="backend-ledger"><span class="repo__name">backend-ledger<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/nepal-gov-portal" target="_blank" rel="noopener noreferrer" data-repo="nepal-gov-portal"><span class="repo__name">nepal-gov-portal<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/GenAI-Training-Workshop" target="_blank" rel="noopener noreferrer" data-repo="GenAI-Training-Workshop"><span class="repo__name">GenAI-Training-Workshop<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/todo-app" target="_blank" rel="noopener noreferrer" data-repo="todo-app"><span class="repo__name">todo-app<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                        <li><a class="repo" href="https://github.com/sumit6511/RESTful-APIs---quora" target="_blank" rel="noopener noreferrer" data-repo="RESTful-APIs---quora"><span class="repo__name">RESTful-APIs---quora<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span><span class="repo__meta"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ ABOUT -->
+        <section class="section about" id="about" aria-labelledby="about-title">
+            <div class="container">
+                <header class="section__head">
+                    <span class="section__num" aria-hidden="true">02</span>
+                    <div class="section__title-wrap">
+                        <p class="eyebrow" data-reveal>About</p>
+                        <h2 class="h2" id="about-title" data-reveal style="--d:1">Who I am.</h2>
+                    </div>
+                </header>
+
+                <div class="about__grid">
+                    <div class="about__copy">
+                        <p class="about__statement" data-reveal>A Computer Science student who is happiest building <em>complete things</em> — the model, the API and the interface.</p>
+                        <p data-reveal style="--d:1">I'm studying B.Sc. CSIT at St. Xavier's College in Kathmandu, and I'm passionate about software development, machine learning and technology that's actually useful. I like projects that push my boundaries and teach me something new.</p>
+                        <p data-reveal style="--d:2">Lately that has meant full-stack applications — React on the front, Node.js, Fastify or FastAPI behind it, MongoDB or PostgreSQL underneath — and machine-learning work like natural-language processing and retrieval-augmented generation.</p>
+                        <p data-reveal style="--d:3">When I'm not coding, I'm exploring new technologies, reading tech blogs, contributing to open-source projects, or out on a trail.</p>
+                    </div>
+
+                    <div class="bento">
+                        <figure class="card tile tile--portrait" data-reveal>
+                            <img src="images/profile.jpg" width="720" height="720" loading="lazy" alt="Black-and-white portrait of Sumit Sah wearing round sunglasses, outdoors.">
+                            <figcaption class="label">Sumit Sah</figcaption>
+                        </figure>
+                        <div class="card tile" data-reveal style="--d:1">
+                            <span class="label">Focus</span>
+                            <span class="tile__value">Full stack<br>AI / ML</span>
+                        </div>
+                        <div class="card tile" data-reveal style="--d:2">
+                            <span class="label">Based in</span>
+                            <span class="tile__value">Kathmandu,<br>Nepal</span>
+                        </div>
+                        <div class="card tile tile--wide" data-reveal style="--d:3">
+                            <span class="label">Education</span>
+                            <span class="tile__value">B.Sc. CSIT<small>St. Xavier's College · Tribhuvan University</small></span>
+                        </div>
+                        <div class="card tile tile--wide" data-reveal style="--d:4">
+                            <span class="label">Interests</span>
+                            <div class="chips">
+                                <span class="chip">Coding</span><span class="chip">AI &amp; machine learning</span><span class="chip">Reading</span><span class="chip">Hiking</span>
+                            </div>
+                        </div>
+                        <div class="card tile" data-reveal style="--d:5">
+                            <span class="label">Open to</span>
+                            <span class="tile__value">Freelance<small>Collaboration · mentoring</small></span>
+                        </div>
+                        <a class="card tile tile--link" href="resources.html" data-reveal style="--d:6">
+                            <span class="label">Also</span>
+                            <span class="tile__value">Learning resources I recommend<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></span>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="skills" id="skills">
+        <!-- ============================================================ STACK -->
+        <section class="section stack" id="stack" aria-labelledby="stack-title">
             <div class="container">
-                <h2 class="section-title">My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-card" data-aos="fade-up">
-                        <div class="skill-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>HTML5, CSS3, JavaScript, React, Node.js</p>
+                <header class="section__head">
+                    <span class="section__num" aria-hidden="true">03</span>
+                    <div class="section__title-wrap">
+                        <p class="eyebrow" data-reveal>Stack</p>
+                        <h2 class="h2" id="stack-title" data-reveal style="--d:1">What I work with.</h2>
+                        <p class="section__desc" data-reveal style="--d:2">Grouped by where it sits in a system. No percentages — just the tools I've shipped with.</p>
                     </div>
-                    <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="skill-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3>Databases</h3>
-                        <p>SQL, MongoDB, Firebase</p>
+                </header>
+
+                <div class="stack__groups">
+                    <div class="stack__group" data-reveal>
+                        <div class="stack__label"><strong>Languages</strong><span class="label">Core</span></div>
+                        <ul class="pills">
+                            <li class="pill">Python</li><li class="pill">JavaScript</li><li class="pill">TypeScript</li><li class="pill">Java</li><li class="pill">C++</li>
+                        </ul>
                     </div>
-                    <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="skill-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3>Programming</h3>
-                        <p>Python, Java, C++, JavaScript</p>
+                    <div class="stack__group" data-reveal>
+                        <div class="stack__label"><strong>Frontend</strong><span class="label">Interfaces</span></div>
+                        <ul class="pills">
+                            <li class="pill">React</li><li class="pill">Vite</li><li class="pill">Tailwind CSS</li><li class="pill">TanStack Query</li><li class="pill">HTML5</li><li class="pill">CSS3</li><li class="pill">Leaflet</li><li class="pill">UI / UX design</li>
+                        </ul>
                     </div>
-                    <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="skill-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <h3>Data Science</h3>
-                        <p>Machine Learning, Data Analysis, Visualization</p>
+                    <div class="stack__group" data-reveal>
+                        <div class="stack__label"><strong>Backend</strong><span class="label">APIs &amp; services</span></div>
+                        <ul class="pills">
+                            <li class="pill">Node.js</li><li class="pill">Express</li><li class="pill">Fastify</li><li class="pill">FastAPI</li><li class="pill">Prisma</li><li class="pill">Socket.IO</li><li class="pill">REST APIs</li><li class="pill">Auth &amp; sessions</li>
+                        </ul>
+                    </div>
+                    <div class="stack__group" data-reveal>
+                        <div class="stack__label"><strong>AI / ML</strong><span class="label">Models &amp; data</span></div>
+                        <ul class="pills">
+                            <li class="pill">Machine learning</li><li class="pill">NLP</li><li class="pill">RAG</li><li class="pill">Hugging Face Transformers</li><li class="pill">BERTopic</li><li class="pill">Embeddings &amp; vector search</li><li class="pill">Local LLMs (Ollama)</li><li class="pill">Data analysis</li><li class="pill">Data visualization</li>
+                        </ul>
+                    </div>
+                    <div class="stack__group" data-reveal>
+                        <div class="stack__label"><strong>Data &amp; tools</strong><span class="label">Storage &amp; workflow</span></div>
+                        <ul class="pills">
+                            <li class="pill">PostgreSQL</li><li class="pill">MongoDB Atlas</li><li class="pill">SQL</li><li class="pill">Firebase</li><li class="pill">Docker</li><li class="pill">Vitest &amp; pytest</li><li class="pill">Git &amp; GitHub</li><li class="pill">Tkinter</li><li class="pill">Data structures &amp; algorithms</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="featured-projects">
+        <!-- ============================================================ JOURNEY -->
+        <section class="section journey" id="journey" aria-labelledby="journey-title">
             <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-description">A hand-picked selection of recent work that highlights clean UI, polished interactions, and real-world problem solving.</p>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">
-                                <img src="images/covers/voxtube.svg" alt="VoxTube project cover">
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-overlay-content">
-                                    <i class="fas fa-eye"></i>
-                                    <span>Explore this build</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-card-header">
-                                <span class="project-badge">Featured</span>
-                            </div>
-                            <h3>VoxTube</h3>
-                            <p>A full-stack NLP platform that analyzes YouTube comments for sentiment, toxicity, and topics, with a RAG-powered chat to query the discussion and export PDF/Excel reports. Built as my final year project.</p>
-                            <div class="project-tags">
-                                <span>React</span>
-                                <span>FastAPI</span>
-                                <span>Machine Learning</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/sumit6511/voxtube" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
-                            </div>
-                        </div>
+                <header class="section__head">
+                    <span class="section__num" aria-hidden="true">04</span>
+                    <div class="section__title-wrap">
+                        <p class="eyebrow" data-reveal>Journey</p>
+                        <h2 class="h2" id="journey-title" data-reveal style="--d:1">Where I've been so far.</h2>
+                        <p class="section__desc" data-reveal style="--d:2">Milestones from college and project work. New chapters get added here as they happen.</p>
                     </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">
-                                <img src="images/covers/snaplink.svg" alt="SnapLink project cover">
-                            </div>
-                            <div class="project-overlay">
-                                <div class="project-overlay-content">
-                                    <i class="fas fa-eye"></i>
-                                    <span>See project details</span>
-                                </div>
-                            </div>
+                </header>
+
+                <!--
+                    Add a new entry by copying an <li>. Use a year, a season, or a label in .timeline__when —
+                    e.g. <span class="timeline__when">2026</span>. Add class "timeline__item--now" for the current one.
+                -->
+                <ol class="timeline">
+                    <li class="timeline__item timeline__item--now" data-reveal>
+                        <span class="timeline__when">Now</span>
+                        <div class="timeline__body">
+                            <h3 class="h3">B.Sc. CSIT</h3>
+                            <p class="timeline__where">St. Xavier's College · Tribhuvan University · Kathmandu</p>
+                            <p>Computer science and information technology — programming, data structures and algorithms, databases, web development and machine learning, alongside the project work on this page.</p>
                         </div>
-                        <div class="project-info">
-                            <div class="project-card-header">
-                                <span class="project-badge">Featured</span>
-                            </div>
-                            <h3>SnapLink</h3>
-                            <p>A full-stack URL shortener with custom aliases, QR codes, link expiration, and a real analytics dashboard covering clicks, devices, and referrers.</p>
-                            <div class="project-tags">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/sumit6511/snaplink" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View Code</a>
-                                <a href="https://snaplink-client-khaki.vercel.app" class="project-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            </div>
+                    </li>
+                    <li class="timeline__item" data-reveal>
+                        <span class="timeline__when">Final year</span>
+                        <div class="timeline__body">
+                            <h3 class="h3">Final year project — VoxTube</h3>
+                            <p class="timeline__where">Full-stack NLP platform · React · FastAPI · RAG</p>
+                            <p>Sentiment, toxicity and topic analysis of YouTube comments, with a RAG-powered chat and PDF/Excel reporting.</p>
+                            <a class="link" href="#work">See the project<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                         </div>
+                    </li>
+                    <li class="timeline__item" data-reveal>
+                        <span class="timeline__when">College</span>
+                        <div class="timeline__body">
+                            <h3 class="h3">Group project — Nepal Gov Portal</h3>
+                            <p class="timeline__where">React · TypeScript · Express</p>
+                            <p>Prototyped a unified government services portal for Nepal with a team — service applications, bill payments and health insurance claims in one place.</p>
+                        </div>
+                    </li>
+                    <li class="timeline__item" data-reveal>
+                        <span class="timeline__when">Workshop</span>
+                        <div class="timeline__body">
+                            <h3 class="h3">GenAI Training Workshop</h3>
+                            <p class="timeline__where">Python</p>
+                            <p>Hands-on training with project work, including an Inventory Management System built in Python and Tkinter.</p>
+                            <a class="link" href="https://github.com/sumit6511/GenAI-Training-Workshop" target="_blank" rel="noopener noreferrer">Workshop repository<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================================================ CONTACT -->
+        <section class="section contact" id="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <header class="section__head">
+                    <span class="section__num" aria-hidden="true">05</span>
+                    <div class="section__title-wrap">
+                        <p class="eyebrow" data-reveal>Contact</p>
+                        <h2 class="display contact__title" id="contact-title" data-reveal style="--d:1">Let's build something<span class="accent">.</span></h2>
                     </div>
-                </div>
-                <div class="cta-center">
-                    <a href="projects.html" class="btn primary-btn">View All Projects</a>
+                </header>
+
+                <div class="contact__grid">
+                    <div class="contact__intro">
+                        <p class="lede" data-reveal>Have a project idea, a question, or want to collaborate on something in web development or machine learning? Send a message — I usually reply within 24–48 hours.</p>
+
+                        <div class="channels" data-reveal style="--d:1">
+                            <div class="channel">
+                                <span class="label">Email</span>
+                                <a class="channel__value" href="mailto:sumitsah6511@gmail.com">sumitsah6511@gmail.com</a>
+                                <button class="copy-btn" type="button" data-copy="sumitsah6511@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span>Copy</span></button>
+                            </div>
+                            <div class="channel">
+                                <span class="label">LinkedIn</span>
+                                <a class="channel__value" href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer">in/sumit-sah-9930bb300<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <span></span>
+                            </div>
+                            <div class="channel">
+                                <span class="label">GitHub</span>
+                                <a class="channel__value" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">@sumit6511<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <span></span>
+                            </div>
+                            <div class="channel">
+                                <span class="label">X</span>
+                                <a class="channel__value" href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer">@sumit_6511<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <span></span>
+                            </div>
+                            <div class="channel">
+                                <span class="label">Instagram</span>
+                                <a class="channel__value" href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer">@_xumi_x<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                                <span></span>
+                            </div>
+                        </div>
+
+                        <dl class="facts" data-reveal style="--d:2">
+                            <div><dt>Freelance</dt><dd>Available — web development, programming and data analysis projects.</dd></div>
+                            <div><dt>Mentoring</dt><dd>Tutoring in programming languages, data structures, algorithms and web development.</dd></div>
+                            <div><dt>Collaboration</dt><dd>Open to it, especially around web development and machine learning.</dd></div>
+                        </dl>
+                    </div>
+
+                    <!-- Submits to Formspree (endpoint lives in js/script.js); works as a normal POST when JS is unavailable -->
+                    <form class="card contact-form" action="https://formspree.io/f/xwleyvog" method="POST" data-reveal style="--d:1" novalidate>
+                        <div class="contact-form__row">
+                            <div class="field">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                        </div>
+                        <div class="field">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell me about the project, the question, or the idea." rows="6" required></textarea>
+                        </div>
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+                        <div class="contact-form__foot">
+                            <span class="form-note">No newsletters, no spam — just a reply.</span>
+                            <button type="submit" class="btn btn--primary">Send message<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
-                    <p>Computer Science Student</p>
-                </div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/sumit_6511" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                </div>
+            <div class="footer__brand">
+                <a class="wordmark" href="#top"><span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Sumit Sah</span></a>
+                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal</small>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025–2026 Sumit Sah. All Rights Reserved.</p>
-            </div>
+            <nav class="footer__links" aria-label="Footer">
+                <a href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+                <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+                <a href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-x"/></svg>X</a>
+                <a href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+                <a href="resources.html">Resources</a>
+                <a href="v2/">Previous version</a>
+                <a href="#top">Back to top<svg class="icon icon--up" aria-hidden="true"><use href="#i-up"/></svg></a>
+            </nav>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- Case study dialog — filled from the clicked project card and its <template class="project__detail"> -->
+    <dialog class="case-study" id="case-study" aria-labelledby="case-study-title">
+        <div class="case-study__scroll">
+            <button class="case-study__close" type="button" data-close aria-label="Close case study"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+            <div class="case-study__cover"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'/%3E" alt="" width="800" height="500"></div>
+            <div class="case-study__content">
+                <div class="case-study__head">
+                    <p class="project__num" data-slot="num"></p>
+                    <h2 class="case-study__title" id="case-study-title" data-slot="title">Case study</h2>
+                    <p class="case-study__kicker" data-slot="kicker"></p>
+                </div>
+                <div class="case-study__grid">
+                    <div class="case-study__main" data-slot="main"></div>
+                    <aside class="case-study__aside">
+                        <div data-slot="facts"></div>
+                        <div><h3>Stack</h3><ul class="pills" data-slot="stack"></ul></div>
+                        <div><h3>Links</h3><div class="case-study__links" data-slot="links"></div></div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="js/script.js" defer></script>
 </body>
-</html> 
+</html>

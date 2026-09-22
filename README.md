@@ -1,138 +1,73 @@
-# my-portfolio-site
+# sumit-sah.com.np
 
-A modern, interactive portfolio website showcasing my projects, skills, and expertise as a Computer Science student. This responsive website features smooth animations, custom UI elements, and a clean, professional design to effectively present my work to potential employers and collaborators.
+Personal website of Sumit Sah — Computer Science student (B.Sc. CSIT, St. Xavier's College, Kathmandu) building web applications and machine-learning projects.
 
+**Live:** [www.sumit-sah.com.np](https://www.sumit-sah.com.np)
 
-## ✨ Live Demo
+## What's here
 
-Visit the live portfolio: [sumit-sah.com.np](https://sumit-sah.com.np)
+A single editorial page plus a resources page, built with plain HTML, CSS and JavaScript — no framework, no build step.
 
+| Page | Contents |
+| --- | --- |
+| `index.html` | Hero → Selected work (featured project, bento cards, compact list, GitHub strip) → About → Stack → Journey → Contact → Footer |
+| `resources.html` | Curated courses, books, tools and websites, plus a "recommend a resource" form |
+| `about.html`, `projects.html`, `contact.html` | Redirect stubs for the old multi-page URLs (`/#about`, `/#work`, `/#contact`) |
+| `v2/` | The previous version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`). Also tagged `v2.0` in git. |
 
-## 🌟 Features
+### Design
 
-### Modern UI/UX
-- Smooth animations and transitions
-- Custom cursor with interactive effects
-- Animated background particles
-- Responsive design that adapts to all devices
-- Dark theme with accent color highlights
+- Dark, near-black surfaces with one indigo accent (`--accent`), thin borders and a light grain.
+- Typography: [Manrope](https://fonts.google.com/specimen/Manrope) for display and body, [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for labels and metadata.
+- Motion is limited to scroll reveals, hover states and the hero dot lattice. Everything respects `prefers-reduced-motion` and the page reads fully with JavaScript disabled.
+- All design tokens live at the top of `css/style.css`.
 
-### Interactive Components
-- Dynamic 3D tilt effect on profile image
-- Animated gradient borders and highlights
-- Interactive project cards with hover effects
-- Expandable forms and content sections
-- Custom styled buttons with hover animations
+### Behaviour (`js/script.js`)
 
-### Content Sections
-- **Home**: Introduction with animated typing, featured skills, and spotlight projects
-- **About**: Detailed bio, interactive profile image, skills graph, and professional timeline
-- **Projects**: Filterable project gallery with detailed individual project pages
-- **Resources**: Categorized learning resources with interactive tabs and recommendation form
-- **Contact**: Interactive contact form with animated feedback
+- Sticky header with elevated state, active-section indicator, mobile overlay menu.
+- Hero dot lattice on a `<canvas>` (pointer-aware; static under reduced motion).
+- Case-study `<dialog>` filled from each project card and its `<template class="project__detail">`.
+- Contact and recommendation forms post to Formspree (`FORMSPREE_ENDPOINT`); both also work as plain HTML form posts.
+- GitHub strip: static links, progressively annotated with language and last push from the public GitHub API (one request, cached in `sessionStorage`, silent on failure, no token).
 
+## Editing content
 
-## 🚀 Technologies
+- **Projects:** each project is one `<article class="project …">` in `index.html`. The card holds the summary; the `<template class="project__detail">` inside it holds the case-study copy and facts. Covers live in `images/covers/`.
+- **Journey:** copy an `<li>` in the `#journey` list. `.timeline__when` takes a year, season or label; add `timeline__item--now` to the current entry.
+- **Stack:** pills in the `#stack` groups.
+- **Resources:** cards in `resources.html`.
+- **Social preview:** `images/og.png` (1200×630). Favicons: `favicon.svg` (source), `favicon-32.png`, `apple-touch-icon.png`.
 
-- **HTML5**: Semantic markup for improved SEO and accessibility
-- **CSS3**: Modern features including:
-  - CSS Grid & Flexbox for responsive layouts
-  - CSS Variables for consistent theming
-  - CSS Animations and transitions
-  - Pseudo-elements for enhanced design
-- **JavaScript (ES6+)**: 
-  - DOM manipulation for interactive elements
-  - Event-driven animations
-  - Form validation and handling
-  - Custom animation effects
-- **Font Awesome**: Icon library for visual elements
-- **Google Fonts**: Typography including Poppins, Roboto Mono, and Pacifico
+## Running locally
 
+```bash
+python -m http.server 8000
+# then open http://localhost:8000
+```
 
-## 🔧 Installation & Setup
+Any static server works. The site is deployed with GitHub Pages using the custom domain in `CNAME`.
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/sumit6511/portfolio.git
-   cd portfolio
-   ```
-
-2. **Launch with a local server**
-   
-   Option 1: Using Python's built-in server
-   ```bash
-   # For Python 3
-   python -m http.server 8000
-   # For Python 2
-   python -m SimpleHTTPServer 8000
-   ```
-   
-   Option 2: Using Node.js and http-server
-   ```bash
-   # Install http-server globally if not already installed
-   npm install -g http-server
-   
-   # Start the server
-   http-server -p 8000
-   ```
-
-3. **Open in browser**
-   
-   Navigate to `http://localhost:8000` in your web browser
-
-
-## 📂 Project Structure
+## Structure
 
 ```
 my-portfolio-site/
-├── index.html                # Home page
-├── about.html                # About page
-├── projects.html             # Projects listing page
-├── resources.html            # Resources page
-├── contact.html              # Contact page
-├── css/
-│   └── style.css             # Main stylesheet with all styles
-├── js/
-│   └── script.js             # Main JavaScript with all interactive functionality
-├── images/                   # Image assets
-│   ├── profile.jpg           # Profile picture
-└── README.md                 # This documentation file
+├── index.html
+├── resources.html
+├── about.html · projects.html · contact.html   # redirects
+├── css/style.css
+├── js/script.js
+├── images/
+│   ├── covers/            # project cover illustrations (SVG)
+│   ├── og.png             # social sharing image
+│   ├── profile.jpg
+│   ├── ims.jpg
+│   └── todo_app_cover.jpg
+├── favicon.svg · favicon-32.png · apple-touch-icon.png
+├── v2/                    # archived previous version (git tag v2.0)
+├── robots.txt · sitemap.xml · CNAME
+└── README.md
 ```
 
+## Contact
 
-## 📱 Browser & Device Support
-
-Tested and optimized for:
-- Chrome, Firefox, Safari, Edge (latest versions)
-- Mobile devices (iOS and Android)
-- Tablets
-- Desktop (various resolutions)
-
-
-## ✅ Future Enhancements
-
-- [ ] Blog section with technical articles
-- [ ] Dark/Light theme toggle
-- [ ] Project filtering by technology stack
-- [ ] Integration with GitHub API to display repositories
-- [ ] Backend integration for form submission
-- [ ] Page load animations and transitions
-
-
-## 🤝 Contributing
-
-Feel free to fork this repository and customize it for your own portfolio. If you have suggestions or improvements, pull requests are welcome.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-
-## 📞 Contact
-
-Sumit Sah - [sumitsah6511@gmail.com](mailto:sumitsah6511@gmail.com)
-
-GitHub: [github.com/sumit6511](https://github.com/sumit6511)
-LinkedIn: [linkedin.com/in/sumit-sah-9930bb300](https://linkedin.com/in/sumit-sah-9930bb300)
+Sumit Sah — [sumitsah6511@gmail.com](mailto:sumitsah6511@gmail.com) · [GitHub](https://github.com/sumit6511) · [LinkedIn](https://linkedin.com/in/sumit-sah-9930bb300)

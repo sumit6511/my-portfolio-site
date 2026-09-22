@@ -1,47 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">VoxTube — NLP pipeline: YouTube comments to sentiment, toxicity, topics and RAG chat</title>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#070b1c"/>
-      <stop offset="45%" stop-color="#0b1128"/>
-      <stop offset="100%" stop-color="#0c1330"/>
-    </linearGradient>
-    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5e60ce"/>
-      <stop offset="50%" stop-color="#64dfdf"/>
-      <stop offset="100%" stop-color="#7b90ff"/>
-    </linearGradient>
-    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#5e60ce" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#5e60ce" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#64dfdf" stop-opacity="0.28"/>
-      <stop offset="100%" stop-color="#64dfdf" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.045"/>
-    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.22"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
   </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}
+    .b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="504" cy="238" r="170" fill="url(#glow)"/>
 
-  <rect width="800" height="600" fill="url(#bg)"/>
-  <rect width="800" height="600" fill="url(#dots)"/>
-  <circle cx="120" cy="90" r="220" fill="url(#glow1)"/>
-  <circle cx="700" cy="520" r="240" fill="url(#glow2)"/>
+  <!-- input -->
+  <rect class="b" x="48" y="210" width="176" height="56" rx="10"/>
+  <text class="t k" x="64" y="230">SOURCE</text>
+  <text class="t s" x="64" y="250">youtube.com/watch?v=…</text>
+  <path class="a" d="M224 238H258"/>
 
-  <circle cx="400" cy="215" r="72" fill="rgba(255,255,255,0.045)" stroke="url(#text-gradient)" stroke-width="2"/>
+  <!-- comments -->
+  <rect class="b" x="262" y="176" width="150" height="124" rx="10"/>
+  <text class="t k" x="278" y="196">COMMENTS</text>
+  <g fill="#a3a3ad" fill-opacity=".55">
+    <rect x="278" y="210" width="104" height="5" rx="2.5"/>
+    <rect x="278" y="224" width="118" height="5" rx="2.5"/>
+    <rect x="278" y="238" width="86" height="5" rx="2.5"/>
+    <rect x="278" y="252" width="112" height="5" rx="2.5"/>
+    <rect x="278" y="266" width="70" height="5" rx="2.5"/>
+    <rect x="278" y="280" width="96" height="5" rx="2.5"/>
+  </g>
+  <path class="a" d="M412 238H452"/>
+
+  <!-- nlp core -->
+  <rect x="456" y="196" width="96" height="84" rx="12" fill="#1a1a24" stroke="#8b8cf8" stroke-opacity=".8"/>
+  <text class="t" x="504" y="234" text-anchor="middle" font-size="18" fill="#ededf0" font-weight="600">NLP</text>
+  <text class="t k" x="504" y="256" text-anchor="middle">MODELS</text>
+
+  <!-- outputs -->
+  <path class="a" d="M552 224C580 224 572 138 596 138"/>
+  <path class="a" d="M552 238H596"/>
+  <path class="a" d="M552 252C580 252 572 314 596 314"/>
+
+  <rect class="b" x="600" y="110" width="152" height="56" rx="10"/>
+  <text class="t k" x="614" y="130">SENTIMENT</text>
   <g>
-    <rect x="354" y="203" width="8" height="24" rx="4" fill="#5e60ce"/>
-    <rect x="368" y="187" width="8" height="56" rx="4" fill="#64dfdf"/>
-    <rect x="382" y="167" width="8" height="96" rx="4" fill="#7b90ff"/>
-    <rect x="396" y="187" width="8" height="56" rx="4" fill="#64dfdf"/>
-    <rect x="410" y="203" width="8" height="24" rx="4" fill="#5e60ce"/>
-    <rect x="424" y="191" width="8" height="48" rx="4" fill="#64dfdf"/>
-    <rect x="438" y="203" width="8" height="24" rx="4" fill="#7b90ff"/>
+    <rect x="614" y="140" width="40" height="14" rx="3" fill="#8b8cf8"/>
+    <rect x="658" y="140" width="24" height="14" rx="3" fill="#8b8cf8" fill-opacity=".45"/>
+    <rect x="686" y="140" width="14" height="14" rx="3" fill="#8b8cf8" fill-opacity=".2"/>
   </g>
 
-  <text x="400" y="345" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="46" font-weight="700" fill="url(#text-gradient)">VoxTube</text>
-  <text x="400" y="380" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="14" letter-spacing="4" fill="#9aa3c4">FINAL YEAR PROJECT &#183; NLP PLATFORM</text>
+  <rect class="b" x="600" y="210" width="152" height="56" rx="10"/>
+  <text class="t k" x="614" y="230">TOXICITY</text>
+  <rect x="614" y="244" width="124" height="6" rx="3" fill="#fff" fill-opacity=".08"/>
+  <rect x="614" y="244" width="22" height="6" rx="3" fill="#8b8cf8"/>
 
-  <text x="400" y="522" text-anchor="middle" font-family="'Roboto Mono', 'Courier New', monospace" font-size="15" fill="#8792b4">React &#183; FastAPI &#183; Machine Learning</text>
-  <text x="32" y="568" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" fill="rgba(255,255,255,0.28)">sumit6511/voxtube</text>
+  <rect class="b" x="600" y="286" width="152" height="56" rx="10"/>
+  <text class="t k" x="614" y="306">TOPICS</text>
+  <g stroke="#fff" stroke-opacity=".18" fill="#fff" fill-opacity=".04">
+    <rect x="614" y="316" width="30" height="16" rx="8"/>
+    <rect x="650" y="316" width="42" height="16" rx="8"/>
+    <rect x="698" y="316" width="24" height="16" rx="8"/>
+  </g>
+
+  <!-- rag chat -->
+  <path class="a" d="M504 280V340"/>
+  <rect x="404" y="344" width="348" height="64" rx="12" fill="#8b8cf8" fill-opacity=".08" stroke="#8b8cf8" stroke-opacity=".5"/>
+  <text class="t k" x="420" y="366">RAG CHAT</text>
+  <text class="t s" x="420" y="390">› what do people think about the intro?</text>
+  <rect x="686" y="380" width="7" height="12" fill="#8b8cf8"/>
+
+  <!-- export -->
+  <rect x="48" y="360" width="238" height="32" rx="16" fill="none" stroke="#fff" stroke-opacity=".14"/>
+  <text class="t m" x="66" y="380">EXPORT → report.pdf · .xlsx</text>
+
+  <text class="t m" x="48" y="462">voxtube / nlp pipeline</text>
+  <text class="t m" x="752" y="462" text-anchor="end">react · fastapi · rag</text>
 </svg>

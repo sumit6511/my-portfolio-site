@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">APIWatch — scheduled checks feed a status timeline; consecutive failures open one incident, recovery resolves it, and Discord is notified both ways</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.2"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
+  </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}.w{font-size:13px;fill:#ededf0}
+    .b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="400" cy="200" r="220" fill="url(#glow)"/>
+
+  <!-- monitor card -->
+  <rect class="b" x="48" y="88" width="704" height="140" rx="12"/>
+  <circle cx="72" cy="112" r="5" fill="#8b8cf8"/>
+  <circle cx="72" cy="112" r="9" fill="none" stroke="#8b8cf8" stroke-opacity=".4"/>
+  <text class="t w" x="90" y="117">GET  api.example.com/health</text>
+  <text class="t m" x="732" y="117" text-anchor="end">every 60s · expect 200 · timeout 5s</text>
+
+  <text class="t k" x="72" y="150">STATUS TIMELINE · 24H</text>
+  <g>
+    <rect x="72" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="88" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="104" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="120" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="136" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="152" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="168" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="184" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/>
+    <rect x="200" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="216" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="232" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="248" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/>
+    <rect x="264" y="160" width="12" height="28" rx="2" fill="none" stroke="#a3a3ad" stroke-opacity=".7"/><rect x="280" y="160" width="12" height="28" rx="2" fill="none" stroke="#a3a3ad" stroke-opacity=".7"/><rect x="296" y="160" width="12" height="28" rx="2" fill="none" stroke="#a3a3ad" stroke-opacity=".7"/>
+    <rect x="312" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="328" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="344" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="360" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="376" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="392" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="408" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="424" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="440" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="456" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="472" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="488" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="504" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/><rect x="520" y="160" width="12" height="28" rx="2" fill="#8b8cf8"/>
+  </g>
+  <text class="t k" x="560" y="150">RESPONSE TIME</text>
+  <polyline points="560,186 576,180 592,183 608,176 624,182 640,178 656,188 672,175 688,181 704,179 720,184 732,177" fill="none" stroke="#8b8cf8" stroke-width="1.5" stroke-linejoin="round"/>
+  <text class="t m" x="72" y="212">■ up   □ down (no response)</text>
+
+  <!-- state machine -->
+  <text class="t k" x="48" y="270">INCIDENT STATE MACHINE</text>
+  <rect class="b" x="48" y="282" width="96" height="40" rx="20"/><text class="t w" x="96" y="307" text-anchor="middle">UP</text>
+  <path class="a" d="M144 302H196"/><text class="t k" x="170" y="294" text-anchor="middle">3× FAIL</text>
+  <rect x="200" y="282" width="150" height="40" rx="20" fill="#8b8cf8" fill-opacity=".1" stroke="#8b8cf8" stroke-opacity=".6"/><text class="t w" x="275" y="307" text-anchor="middle">INCIDENT OPEN</text>
+  <path class="a" d="M350 302H402"/><text class="t k" x="376" y="294" text-anchor="middle">2× OK</text>
+  <rect class="b" x="406" y="282" width="120" height="40" rx="20"/><text class="t w" x="466" y="307" text-anchor="middle">RESOLVED</text>
+  <path d="M466 322C466 350 96 350 96 322" fill="none" stroke="#71717c" stroke-dasharray="3 4"/>
+
+  <!-- discord -->
+  <path class="a" d="M275 322V346"/>
+  <rect class="b" x="196" y="350" width="330" height="44" rx="10"/>
+  <text class="t s" x="212" y="377">→ discord: outage opened · then recovered</text>
+
+  <!-- uptime -->
+  <rect class="b" x="572" y="256" width="180" height="138" rx="10"/>
+  <text class="t k" x="588" y="280">UPTIME · FROM CHECK HISTORY</text>
+  <text class="t k" x="588" y="306">24H</text><rect x="628" y="299" width="108" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="628" y="299" width="106" height="6" rx="3" fill="#8b8cf8"/>
+  <text class="t k" x="588" y="336">7D</text><rect x="628" y="329" width="108" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="628" y="329" width="104" height="6" rx="3" fill="#8b8cf8" fill-opacity=".8"/>
+  <text class="t k" x="588" y="366">30D</text><rect x="628" y="359" width="108" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="628" y="359" width="102" height="6" rx="3" fill="#8b8cf8" fill-opacity=".6"/>
+
+  <text class="t m" x="48" y="462">apiwatch / api &amp; uptime monitoring</text>
+  <text class="t m" x="752" y="462" text-anchor="end">fastapi · react · mongodb atlas</text>
+</svg>

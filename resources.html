@@ -3,470 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
+    <title>Learning Resources — Sumit Sah</title>
+    <meta name="description" content="Courses, books, tools and websites that Sumit Sah has found genuinely useful while learning computer science, web development and machine learning.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.sumit-sah.com.np/resources.html">
-    <meta property="og:title" content="Sumit Sah | Resources">
-    <meta property="og:description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
+    <meta name="author" content="Sumit Sah">
+    <meta name="theme-color" content="#0a0a0c">
+
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sumit Sah">
+    <meta property="og:title" content="Learning Resources — Sumit Sah">
+    <meta property="og:description" content="Courses, books, tools and websites I've found genuinely useful while learning computer science, web development and machine learning.">
     <meta property="og:url" content="https://www.sumit-sah.com.np/resources.html">
-    <meta property="og:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
+    <meta property="og:image" content="https://www.sumit-sah.com.np/images/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sumit Sah | Resources">
-    <meta name="twitter:description" content="A curated collection of learning resources for programming, web development, and computer science by Sumit Sah.">
-    <meta name="twitter:image" content="https://www.sumit-sah.com.np/images/profile.jpg">
+    <meta name="twitter:site" content="@sumit_6511">
+    <meta name="twitter:title" content="Learning Resources — Sumit Sah">
+    <meta name="twitter:description" content="Courses, books, tools and websites I've found genuinely useful while learning computer science, web development and machine learning.">
+    <meta name="twitter:image" content="https://www.sumit-sah.com.np/images/og.png">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <meta name="theme-color" content="#5e60ce">
-    <title>Sumit Sah | Resources</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
-<body>
-    <div class="noise-overlay"></div>
-    
-    <header>
+<body id="top">
+    <!-- Icon sprite: referenced with <use href="#i-…"> so there is no icon-font request -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+        <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+        <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor"/></symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
         <div class="container">
-            <div class="logo">
-                <a href="index.html" class="signature">PORTFOLIO<span>.</span></a>
-            </div>
-            <nav>
-                <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </button>
-                <ul class="nav-links" id="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="resources.html" class="active">Resources</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+            <a class="wordmark" href="index.html" aria-label="Sumit Sah — home">
+                <span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                <span>Sumit Sah</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <ul class="nav__list">
+                    <li><a class="nav__link" href="index.html#work">Work</a></li>
+                    <li><a class="nav__link" href="index.html#about">About</a></li>
+                    <li><a class="nav__link" href="index.html#stack">Stack</a></li>
+                    <li><a class="nav__link" href="index.html#journey">Journey</a></li>
+                    <li><a class="nav__link" href="index.html#contact">Contact</a></li>
                 </ul>
+                <a class="btn btn--primary btn--sm nav__cta" href="index.html#contact">Let's talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+                    <span></span><span></span>
+                </button>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section class="resources-hero">
+    <div class="menu" id="menu" inert>
+        <ul class="menu__list">
+            <li><a class="menu__link" href="index.html#work"><small>01</small>Work</a></li>
+            <li><a class="menu__link" href="index.html#about"><small>02</small>About</a></li>
+            <li><a class="menu__link" href="index.html#stack"><small>03</small>Stack</a></li>
+            <li><a class="menu__link" href="index.html#journey"><small>04</small>Journey</a></li>
+            <li><a class="menu__link" href="index.html#contact"><small>05</small>Contact</a></li>
+            <li><a class="menu__link" href="resources.html" aria-current="true"><small>+</small>Resources</a></li>
+        </ul>
+        <div class="menu__meta">
+            <a class="link" href="mailto:sumitsah6511@gmail.com">sumitsah6511@gmail.com<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+            <div class="menu__socials">
+                <a class="link link--muted" href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="link link--muted" href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="link link--muted" href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer">X</a>
+                <a class="link link--muted" href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+            <span class="label">Kathmandu, Nepal</span>
+        </div>
+    </div>
+
+    <main id="main">
+        <section class="page-hero" aria-labelledby="resources-title">
             <div class="container">
-                <h1 class="section-title animate-text">Learning Resources</h1>
-                <p class="section-description animate-text delay-1">A curated collection of resources that I've found helpful throughout my computer science journey. These resources have been instrumental in developing my skills and knowledge.</p>
-                
-                <div class="resources-tabs">
-                    <button class="tab-btn active" data-tab="courses">Online Courses</button>
-                    <button class="tab-btn" data-tab="books">Books</button>
-                    <button class="tab-btn" data-tab="tools">Tools & Software</button>
-                    <button class="tab-btn" data-tab="websites">Useful Websites</button>
+                <p class="eyebrow" data-reveal>Resources</p>
+                <h1 class="display" id="resources-title" data-reveal style="--d:1">Things worth<span> your time<span class="accent">.</span></span></h1>
+                <p class="lede" data-reveal style="--d:2">A curated list of courses, books, tools and websites that have been genuinely useful throughout my computer science journey. No affiliate links — just the stuff that helped.</p>
+                <div class="tabs" role="tablist" aria-label="Resource categories" data-reveal style="--d:3">
+                    <button class="tab" role="tab" id="tab-courses" aria-selected="true" aria-controls="courses" type="button">Courses</button>
+                    <button class="tab" role="tab" id="tab-books" aria-selected="false" aria-controls="books" type="button" tabindex="-1">Books</button>
+                    <button class="tab" role="tab" id="tab-tools" aria-selected="false" aria-controls="tools" type="button" tabindex="-1">Tools</button>
+                    <button class="tab" role="tab" id="tab-websites" aria-selected="false" aria-controls="websites" type="button" tabindex="-1">Websites</button>
                 </div>
             </div>
         </section>
 
-        <section class="resources-content">
+        <section class="section section--flush" aria-labelledby="list-title">
             <div class="container">
-                <!-- Online Courses Tab -->
-                <div class="tab-content active" id="courses">
-                    <div class="resources-grid">
-                        <div class="resource-card" data-aos="fade-up">
-                            <div class="resource-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>CS50: Introduction to Computer Science</h3>
-                                <p class="resource-provider">Harvard University (edX)</p>
-                                <p>An introduction to computer science and programming that covers algorithms, data structures, resource management, software engineering, and web development.</p>
-                                <div class="resource-tags">
-                                    <span>Programming Fundamentals</span>
-                                    <span>C</span>
-                                    <span>Python</span>
-                                </div>
-                                <a href="https://cs50.harvard.edu/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="resource-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>The Web Developer Bootcamp</h3>
-                                <p class="resource-provider">Udemy</p>
-                                <p>A comprehensive course covering HTML, CSS, JavaScript, Node.js, Express, MongoDB, and more to build full-stack web applications.</p>
-                                <div class="resource-tags">
-                                    <span>Web Development</span>
-                                    <span>JavaScript</span>
-                                    <span>Full-Stack</span>
-                                </div>
-                                <a href="https://www.udemy.com/course/the-web-developer-bootcamp/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="resource-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Machine Learning</h3>
-                                <p class="resource-provider">Stanford University (Coursera)</p>
-                                <p>Andrew Ng's popular course on machine learning fundamentals, covering supervised learning, unsupervised learning, and best practices in ML.</p>
-                                <div class="resource-tags">
-                                    <span>Machine Learning</span>
-                                    <span>AI</span>
-                                    <span>Data Science</span>
-                                </div>
-                                <a href="https://www.coursera.org/learn/machine-learning" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="resource-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>SQL and Database Design</h3>
-                                <p class="resource-provider">FreeCodeCamp</p>
-                                <p>Learn SQL fundamentals, database design principles, and how to work with relational database management systems.</p>
-                                <div class="resource-tags">
-                                    <span>SQL</span>
-                                    <span>Database Design</span>
-                                    <span>PostgreSQL</span>
-                                </div>
-                                <a href="https://www.freecodecamp.org/learn/relational-database/" class="resource-link" target="_blank">View Course <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
+                <h2 class="visually-hidden" id="list-title">Resource list</h2>
+                <div class="tab-panel" id="courses" role="tabpanel" aria-labelledby="tab-courses" tabindex="0">
+                    <div class="resource-grid">
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Harvard University (edX)</span>
+                            <h3 class="resource__title">CS50: Introduction to Computer Science</h3>
+                            <p>An introduction to computer science and programming that covers algorithms, data structures, resource management, software engineering, and web development.</p>
+                            <ul class="project__stack"><li>Programming fundamentals</li><li>C</li><li>Python</li></ul>
+                            <a class="link" href="https://cs50.harvard.edu/" target="_blank" rel="noopener noreferrer">View course<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Udemy</span>
+                            <h3 class="resource__title">The Web Developer Bootcamp</h3>
+                            <p>A comprehensive course covering HTML, CSS, JavaScript, Node.js, Express, MongoDB, and more to build full-stack web applications.</p>
+                            <ul class="project__stack"><li>Web development</li><li>JavaScript</li><li>Full stack</li></ul>
+                            <a class="link" href="https://www.udemy.com/course/the-web-developer-bootcamp/" target="_blank" rel="noopener noreferrer">View course<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Stanford University (Coursera)</span>
+                            <h3 class="resource__title">Machine Learning</h3>
+                            <p>Andrew Ng's popular course on machine learning fundamentals, covering supervised learning, unsupervised learning, and best practices in ML.</p>
+                            <ul class="project__stack"><li>Machine learning</li><li>AI</li><li>Data science</li></ul>
+                            <a class="link" href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="noopener noreferrer">View course<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">freeCodeCamp</span>
+                            <h3 class="resource__title">SQL and Database Design</h3>
+                            <p>Learn SQL fundamentals, database design principles, and how to work with relational database management systems.</p>
+                            <ul class="project__stack"><li>SQL</li><li>Database design</li><li>PostgreSQL</li></ul>
+                            <a class="link" href="https://www.freecodecamp.org/learn/relational-database/" target="_blank" rel="noopener noreferrer">View course<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
                     </div>
                 </div>
-                
-                <!-- Books Tab -->
-                <div class="tab-content" id="books">
-                    <div class="resources-grid">
-                        <div class="resource-card" data-aos="fade-up">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Clean Code: A Handbook of Agile Software Craftsmanship</h3>
-                                <p class="resource-provider">By Robert C. Martin</p>
-                                <p>A guide to writing clean, maintainable, and efficient code. Covers principles, patterns, and practices for professional programming.</p>
-                                <div class="resource-tags">
-                                    <span>Software Engineering</span>
-                                    <span>Best Practices</span>
-                                    <span>Code Quality</span>
-                                </div>
-                                <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Cracking the Coding Interview</h3>
-                                <p class="resource-provider">By Gayle Laakmann McDowell</p>
-                                <p>A comprehensive guide to technical interviews with detailed explanations of coding problems, algorithms, and data structures.</p>
-                                <div class="resource-tags">
-                                    <span>Algorithms</span>
-                                    <span>Data Structures</span>
-                                    <span>Interview Prep</span>
-                                </div>
-                                <a href="https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Design Patterns: Elements of Reusable Object-Oriented Software</h3>
-                                <p class="resource-provider">By Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</p>
-                                <p>The classic book on design patterns that introduces 23 patterns for solving common programming problems.</p>
-                                <div class="resource-tags">
-                                    <span>Design Patterns</span>
-                                    <span>Object-Oriented</span>
-                                    <span>Software Architecture</span>
-                                </div>
-                                <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="resource-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Eloquent JavaScript</h3>
-                                <p class="resource-provider">By Marijn Haverbeke</p>
-                                <p>A comprehensive guide to JavaScript that takes readers from the basics to advanced concepts with practical examples.</p>
-                                <div class="resource-tags">
-                                    <span>JavaScript</span>
-                                    <span>Web Development</span>
-                                    <span>Programming</span>
-                                </div>
-                                <a href="https://eloquentjavascript.net/" class="resource-link" target="_blank">View Book <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
+                <div class="tab-panel" id="books" role="tabpanel" aria-labelledby="tab-books" tabindex="0" hidden>
+                    <div class="resource-grid">
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Robert C. Martin</span>
+                            <h3 class="resource__title">Clean Code: A Handbook of Agile Software Craftsmanship</h3>
+                            <p>A guide to writing clean, maintainable, and efficient code. Covers principles, patterns, and practices for professional programming.</p>
+                            <ul class="project__stack"><li>Software engineering</li><li>Best practices</li><li>Code quality</li></ul>
+                            <a class="link" href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="noopener noreferrer">View book<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Gayle Laakmann McDowell</span>
+                            <h3 class="resource__title">Cracking the Coding Interview</h3>
+                            <p>A comprehensive guide to technical interviews with detailed explanations of coding problems, algorithms, and data structures.</p>
+                            <ul class="project__stack"><li>Algorithms</li><li>Data structures</li><li>Interview prep</li></ul>
+                            <a class="link" href="https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850" target="_blank" rel="noopener noreferrer">View book<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Gamma, Helm, Johnson &amp; Vlissides</span>
+                            <h3 class="resource__title">Design Patterns: Elements of Reusable Object-Oriented Software</h3>
+                            <p>The classic book on design patterns that introduces 23 patterns for solving common programming problems.</p>
+                            <ul class="project__stack"><li>Design patterns</li><li>Object-oriented</li><li>Software architecture</li></ul>
+                            <a class="link" href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612" target="_blank" rel="noopener noreferrer">View book<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Marijn Haverbeke</span>
+                            <h3 class="resource__title">Eloquent JavaScript</h3>
+                            <p>A comprehensive guide to JavaScript that takes readers from the basics to advanced concepts with practical examples.</p>
+                            <ul class="project__stack"><li>JavaScript</li><li>Web development</li><li>Programming</li></ul>
+                            <a class="link" href="https://eloquentjavascript.net/" target="_blank" rel="noopener noreferrer">Read online<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
                     </div>
                 </div>
-                
-                <!-- Tools Tab -->
-                <div class="tab-content" id="tools">
-                    <div class="resources-grid">
-                        <div class="resource-card" data-aos="fade-up">
-                            <div class="resource-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Visual Studio Code</h3>
-                                <p class="resource-provider">Microsoft</p>
-                                <p>A powerful, lightweight code editor with built-in debugging, Git integration, and support for various programming languages and extensions.</p>
-                                <div class="resource-tags">
-                                    <span>Code Editor</span>
-                                    <span>Development Tools</span>
-                                    <span>Productivity</span>
-                                </div>
-                                <a href="https://code.visualstudio.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="resource-icon">
-                                <i class="fab fa-github"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>GitHub</h3>
-                                <p class="resource-provider">Microsoft</p>
-                                <p>A platform for version control, collaboration, and hosting code repositories using Git. Essential for team projects and open-source contributions.</p>
-                                <div class="resource-tags">
-                                    <span>Version Control</span>
-                                    <span>Collaboration</span>
-                                    <span>Git</span>
-                                </div>
-                                <a href="https://github.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="resource-icon">
-                                <i class="fas fa-terminal"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Postman</h3>
-                                <p class="resource-provider">Postman Inc.</p>
-                                <p>A popular API client that makes it easy to create, share, test, and document APIs, supporting various protocols and formats.</p>
-                                <div class="resource-tags">
-                                    <span>API Testing</span>
-                                    <span>Backend Development</span>
-                                    <span>Integration</span>
-                                </div>
-                                <a href="https://www.postman.com/" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="resource-icon">
-                                <i class="fas fa-bug"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Chrome DevTools</h3>
-                                <p class="resource-provider">Google</p>
-                                <p>A set of web developer tools built into the Chrome browser for debugging, testing, and optimizing web applications.</p>
-                                <div class="resource-tags">
-                                    <span>Web Development</span>
-                                    <span>Debugging</span>
-                                    <span>Performance</span>
-                                </div>
-                                <a href="https://developers.google.com/web/tools/chrome-devtools" class="resource-link" target="_blank">View Tool <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
+                <div class="tab-panel" id="tools" role="tabpanel" aria-labelledby="tab-tools" tabindex="0" hidden>
+                    <div class="resource-grid">
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Microsoft</span>
+                            <h3 class="resource__title">Visual Studio Code</h3>
+                            <p>A powerful, lightweight code editor with built-in debugging, Git integration, and support for various programming languages and extensions.</p>
+                            <ul class="project__stack"><li>Code editor</li><li>Development tools</li><li>Productivity</li></ul>
+                            <a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">View tool<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Microsoft</span>
+                            <h3 class="resource__title">GitHub</h3>
+                            <p>A platform for version control, collaboration, and hosting code repositories using Git. Essential for team projects and open-source contributions.</p>
+                            <ul class="project__stack"><li>Version control</li><li>Collaboration</li><li>Git</li></ul>
+                            <a class="link" href="https://github.com/" target="_blank" rel="noopener noreferrer">View tool<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Postman Inc.</span>
+                            <h3 class="resource__title">Postman</h3>
+                            <p>A popular API client that makes it easy to create, share, test, and document APIs, supporting various protocols and formats.</p>
+                            <ul class="project__stack"><li>API testing</li><li>Backend development</li><li>Integration</li></ul>
+                            <a class="link" href="https://www.postman.com/" target="_blank" rel="noopener noreferrer">View tool<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Google</span>
+                            <h3 class="resource__title">Chrome DevTools</h3>
+                            <p>A set of web developer tools built into the Chrome browser for debugging, testing, and optimizing web applications.</p>
+                            <ul class="project__stack"><li>Web development</li><li>Debugging</li><li>Performance</li></ul>
+                            <a class="link" href="https://developer.chrome.com/docs/devtools" target="_blank" rel="noopener noreferrer">View tool<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
                     </div>
                 </div>
-                
-                <!-- Websites Tab -->
-                <div class="tab-content" id="websites">
-                    <div class="resources-grid">
-                        <div class="resource-card" data-aos="fade-up">
-                            <div class="resource-icon">
-                                <i class="fas fa-globe"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>Stack Overflow</h3>
-                                <p class="resource-provider">Stack Exchange Network</p>
-                                <p>A community-driven Q&A website for programmers to find solutions to coding problems and share knowledge.</p>
-                                <div class="resource-tags">
-                                    <span>Q&A</span>
-                                    <span>Problem Solving</span>
-                                    <span>Community</span>
-                                </div>
-                                <a href="https://stackoverflow.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
-                            <div class="resource-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>MDN Web Docs</h3>
-                                <p class="resource-provider">Mozilla</p>
-                                <p>A comprehensive resource for web developers, including detailed documentation on HTML, CSS, JavaScript, and web APIs.</p>
-                                <div class="resource-tags">
-                                    <span>Web Development</span>
-                                    <span>Documentation</span>
-                                    <span>Reference</span>
-                                </div>
-                                <a href="https://developer.mozilla.org/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
-                            <div class="resource-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>LeetCode</h3>
-                                <p class="resource-provider">LeetCode</p>
-                                <p>A platform with coding challenges and contests to prepare for technical interviews and improve problem-solving skills.</p>
-                                <div class="resource-tags">
-                                    <span>Algorithms</span>
-                                    <span>Data Structures</span>
-                                    <span>Interview Prep</span>
-                                </div>
-                                <a href="https://leetcode.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
-                            <div class="resource-icon">
-                                <i class="fab fa-github"></i>
-                            </div>
-                            <div class="resource-info">
-                                <h3>GitHub Learning Lab</h3>
-                                <p class="resource-provider">GitHub</p>
-                                <p>An interactive platform that teaches Git, GitHub, and development workflows through hands-on projects and tutorials.</p>
-                                <div class="resource-tags">
-                                    <span>Git</span>
-                                    <span>Version Control</span>
-                                    <span>Tutorials</span>
-                                </div>
-                                <a href="https://lab.github.com/" class="resource-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
+                <div class="tab-panel" id="websites" role="tabpanel" aria-labelledby="tab-websites" tabindex="0" hidden>
+                    <div class="resource-grid">
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Stack Exchange Network</span>
+                            <h3 class="resource__title">Stack Overflow</h3>
+                            <p>A community-driven Q&amp;A website for programmers to find solutions to coding problems and share knowledge.</p>
+                            <ul class="project__stack"><li>Q&amp;A</li><li>Problem solving</li><li>Community</li></ul>
+                            <a class="link" href="https://stackoverflow.com/" target="_blank" rel="noopener noreferrer">Visit website<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">Mozilla</span>
+                            <h3 class="resource__title">MDN Web Docs</h3>
+                            <p>A comprehensive resource for web developers, including detailed documentation on HTML, CSS, JavaScript, and web APIs.</p>
+                            <ul class="project__stack"><li>Web development</li><li>Documentation</li><li>Reference</li></ul>
+                            <a class="link" href="https://developer.mozilla.org/" target="_blank" rel="noopener noreferrer">Visit website<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">LeetCode</span>
+                            <h3 class="resource__title">LeetCode</h3>
+                            <p>A platform with coding challenges and contests to prepare for technical interviews and improve problem-solving skills.</p>
+                            <ul class="project__stack"><li>Algorithms</li><li>Data structures</li><li>Interview prep</li></ul>
+                            <a class="link" href="https://leetcode.com/" target="_blank" rel="noopener noreferrer">Visit website<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
+                        <article class="card resource" data-reveal>
+                            <span class="resource__provider">GitHub</span>
+                            <h3 class="resource__title">GitHub Skills</h3>
+                            <p>Interactive courses that teach Git, GitHub, and development workflows through hands-on projects and tutorials.</p>
+                            <ul class="project__stack"><li>Git</li><li>Version control</li><li>Tutorials</li></ul>
+                            <a class="link" href="https://skills.github.com/" target="_blank" rel="noopener noreferrer">Visit website<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="recommend-resource">
+        <section class="section" aria-labelledby="recommend-title">
             <div class="container">
-                <div class="recommend-box">
-                    <h2>Have a resource to recommend?</h2>
-                    <p>If you know of any helpful resources that aren't listed here, I'd love to hear about them. Please share your recommendations!</p>
-                    <button id="recommend-btn" type="button" class="btn primary-btn" aria-expanded="false" aria-controls="recommendation-form">Recommend a Resource</button>
-                    <div id="recommendation-success" class="success-message" aria-live="polite" style="display: none;"></div>
-                    <div id="recommendation-form" class="recommendation-form" hidden>
-                        <form>
-                            <div class="form-group">
-                                <label for="resource-name">Resource Name</label>
-                                <input type="text" id="resource-name" name="resource-name" placeholder="e.g., JavaScript: The Good Parts" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="resource-type">Resource Type</label>
-                                <div class="custom-select-wrapper">
-                                    <div class="custom-select" tabindex="0" role="combobox" aria-haspopup="listbox" aria-expanded="false">
-                                        <span class="custom-select__trigger">Select a resource type</span>
-                                    </div>
-                                    <div class="custom-options" role="listbox" aria-label="Resource types">
-                                        <span class="custom-option selected" data-value="" role="option">Select a resource type</span>
-                                        <span class="custom-option" data-value="course" role="option">Online Course</span>
-                                        <span class="custom-option" data-value="book" role="option">Book</span>
-                                        <span class="custom-option" data-value="tool" role="option">Tool/Software</span>
-                                        <span class="custom-option" data-value="website" role="option">Website</span>
-                                        <span class="custom-option" data-value="other" role="option">Other</span>
-                                    </div>
-                                    <select id="resource-type" name="resource-type" required hidden>
-                                        <option value="" disabled selected>Select a resource type</option>
-                                        <option value="course">Online Course</option>
-                                        <option value="book">Book</option>
-                                        <option value="tool">Tool/Software</option>
-                                        <option value="website">Website</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="resource-url">Resource URL</label>
-                                <input type="url" id="resource-url" name="resource-url" placeholder="https://example.com" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="resource-provider">Provider/Author</label>
-                                <input type="text" id="resource-provider" name="resource-provider" placeholder="e.g., Douglas Crockford" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="resource-description">Description</label>
-                                <textarea id="resource-description" name="resource-description" placeholder="Briefly describe why this resource is helpful..." rows="4" required></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="resource-tags">Tags (comma separated)</label>
-                                <input type="text" id="resource-tags" name="resource-tags" placeholder="e.g., JavaScript, Programming, Web Development">
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button type="submit" class="btn primary-btn">
-                                    <i class="fas fa-paper-plane"></i>Submit Recommendation
-                                </button>
-                                <button type="button" id="cancel-recommendation" class="btn secondary-btn">
-                                    <i class="fas fa-times"></i>Cancel
-                                </button>
-                            </div>
-                        </form>
+                <div class="card recommend" data-reveal>
+                    <div class="recommend__intro">
+                        <p class="eyebrow">Suggest one</p>
+                        <h2 class="h2" id="recommend-title">Have a resource to recommend?</h2>
+                        <p>If you know of something helpful that isn't listed here, I'd love to hear about it.</p>
+                        <button id="recommend-btn" type="button" class="btn btn--primary" aria-expanded="false" aria-controls="recommendation-form">Recommend a resource<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                        <div id="recommendation-status" aria-live="polite" hidden></div>
                     </div>
+                    <!-- Submits to Formspree (endpoint lives in js/script.js); works as a normal POST when JS is unavailable -->
+                    <form id="recommendation-form" class="recommend__form" action="https://formspree.io/f/xwleyvog" method="POST" hidden novalidate>
+                        <input type="hidden" name="_subject" value="Resource recommendation from sumit-sah.com.np">
+                        <div class="contact-form__row">
+                            <div class="field">
+                                <label for="resource-name">Resource name</label>
+                                <input type="text" id="resource-name" name="resource-name" placeholder="e.g. JavaScript: The Good Parts" required>
+                            </div>
+                            <div class="field field--select">
+                                <label for="resource-type">Type</label>
+                                <select id="resource-type" name="resource-type" required>
+                                    <option value="" disabled selected>Select a type</option>
+                                    <option value="course">Online course</option>
+                                    <option value="book">Book</option>
+                                    <option value="tool">Tool / software</option>
+                                    <option value="website">Website</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="resource-url">URL</label>
+                            <input type="url" id="resource-url" name="resource-url" placeholder="https://example.com" required>
+                        </div>
+                        <div class="field">
+                            <label for="resource-provider">Provider / author</label>
+                            <input type="text" id="resource-provider" name="resource-provider" placeholder="e.g. Douglas Crockford" required>
+                        </div>
+                        <div class="field">
+                            <label for="resource-description">Why is it useful?</label>
+                            <textarea id="resource-description" name="resource-description" placeholder="Briefly describe why this resource is helpful…" rows="4" required></textarea>
+                        </div>
+                        <div class="field">
+                            <label for="resource-tags">Tags <span class="muted">(optional, comma separated)</span></label>
+                            <input type="text" id="resource-tags" name="resource-tags" placeholder="e.g. JavaScript, Programming, Web development">
+                        </div>
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+                        <div class="recommend__actions">
+                            <button type="submit" class="btn btn--primary">Submit recommendation<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                            <button type="button" id="cancel-recommendation" class="btn btn--ghost">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="index.html" class="signature">Sumit Sah<span>.</span></a>
-                    <p>Computer Science Student</p>
-                </div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/sumit_6511" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                </div>
+            <div class="footer__brand">
+                <a class="wordmark" href="index.html"><span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Sumit Sah</span></a>
+                <small>&copy; 2025–2026 Sumit Sah · Kathmandu, Nepal</small>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025–2026 Sumit Sah. All Rights Reserved.</p>
-            </div>
+            <nav class="footer__links" aria-label="Footer">
+                <a href="https://github.com/sumit6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+                <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+                <a href="https://x.com/sumit_6511" target="_blank" rel="noopener noreferrer"><svg class="icon icon--brand" aria-hidden="true"><use href="#i-x"/></svg>X</a>
+                <a href="https://www.instagram.com/_xumi_x" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+                <a href="resources.html" aria-current="page">Resources</a>
+                <a href="v2/">Previous version</a>
+                <a href="#top">Back to top<svg class="icon icon--up" aria-hidden="true"><use href="#i-up"/></svg></a>
+            </nav>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
-</html> 
-
-
+</html>

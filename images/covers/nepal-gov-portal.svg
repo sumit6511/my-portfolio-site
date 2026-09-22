@@ -1,47 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">Nepal Gov Portal — service applications, bill payments and health insurance claims converge into one portal</title>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#070b1c"/>
-      <stop offset="45%" stop-color="#0b1128"/>
-      <stop offset="100%" stop-color="#0c1330"/>
-    </linearGradient>
-    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5e60ce"/>
-      <stop offset="50%" stop-color="#64dfdf"/>
-      <stop offset="100%" stop-color="#7b90ff"/>
-    </linearGradient>
-    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#5e60ce" stop-opacity="0.38"/>
-      <stop offset="100%" stop-color="#5e60ce" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7b90ff" stop-opacity="0.28"/>
-      <stop offset="100%" stop-color="#7b90ff" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.045"/>
-    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.2"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
   </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}
+    .w{font-size:13px;fill:#ededf0}.b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="580" cy="250" r="210" fill="url(#glow)"/>
 
-  <rect width="800" height="600" fill="url(#bg)"/>
-  <rect width="800" height="600" fill="url(#dots)"/>
-  <circle cx="150" cy="90" r="220" fill="url(#glow1)"/>
-  <circle cx="660" cy="510" r="230" fill="url(#glow2)"/>
-
-  <circle cx="400" cy="215" r="72" fill="rgba(255,255,255,0.045)" stroke="url(#text-gradient)" stroke-width="2"/>
+  <!-- services -->
   <g>
-    <polygon points="400,167 353,202 447,202" fill="url(#text-gradient)"/>
-    <rect x="351" y="202" width="98" height="7" fill="url(#text-gradient)" opacity="0.85"/>
-    <rect x="359" y="211" width="9" height="38" fill="#f7f8fb" opacity="0.85"/>
-    <rect x="381" y="211" width="9" height="38" fill="#f7f8fb" opacity="0.85"/>
-    <rect x="403" y="211" width="9" height="38" fill="#f7f8fb" opacity="0.85"/>
-    <rect x="425" y="211" width="9" height="38" fill="#f7f8fb" opacity="0.85"/>
-    <rect x="351" y="251" width="98" height="8" rx="1" fill="url(#text-gradient)" opacity="0.85"/>
+    <rect class="b" x="48" y="112" width="236" height="66" rx="10"/>
+    <rect x="66" y="130" width="22" height="28" rx="3" fill="none" stroke="#a3a3ad" stroke-opacity=".8"/>
+    <path d="M71 140h12M71 147h12M71 154h8" stroke="#a3a3ad" stroke-opacity=".6"/>
+    <text class="t w" x="104" y="141">Service applications</text>
+    <text class="t k" x="104" y="160">FORMS · STATUS</text>
+
+    <rect class="b" x="48" y="212" width="236" height="66" rx="10"/>
+    <rect x="66" y="232" width="24" height="26" rx="3" fill="none" stroke="#a3a3ad" stroke-opacity=".8"/>
+    <path d="M71 240h14M71 246h14M71 252h9" stroke="#a3a3ad" stroke-opacity=".6"/>
+    <text class="t w" x="104" y="241">Bill payments</text>
+    <text class="t k" x="104" y="260">UTILITIES · RECEIPTS</text>
+
+    <rect class="b" x="48" y="312" width="236" height="66" rx="10"/>
+    <path d="M78 331v24M66 343h24" stroke="#a3a3ad" stroke-opacity=".8" stroke-width="3" stroke-linecap="round"/>
+    <text class="t w" x="104" y="341">Health insurance claims</text>
+    <text class="t k" x="104" y="360">CLAIMS · TRACKING</text>
   </g>
 
-  <text x="400" y="345" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="38" font-weight="700" fill="url(#text-gradient)">Nepal Gov Portal</text>
-  <text x="400" y="380" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="14" letter-spacing="4" fill="#9aa3c4">GROUP PROJECT &#183; SERVICES PROTOTYPE</text>
+  <path class="a" d="M284 145C360 145 340 245 416 245"/>
+  <path class="a" d="M284 245H416"/>
+  <path class="a" d="M284 345C360 345 340 245 416 245"/>
 
-  <text x="400" y="522" text-anchor="middle" font-family="'Roboto Mono', 'Courier New', monospace" font-size="15" fill="#8792b4">React &#183; TypeScript &#183; Express</text>
-  <text x="32" y="568" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" fill="rgba(255,255,255,0.28)">sumit6511/nepal-gov-portal</text>
+  <!-- portal -->
+  <rect x="420" y="112" width="332" height="266" rx="14" fill="#1a1a24" stroke="#8b8cf8" stroke-opacity=".55"/>
+  <rect x="420" y="112" width="332" height="40" rx="14" fill="#fff" fill-opacity=".03"/>
+  <line x1="420" y1="152" x2="752" y2="152" stroke="#fff" stroke-opacity=".1"/>
+  <circle cx="442" cy="132" r="4" fill="#71717c"/><circle cx="456" cy="132" r="4" fill="#71717c"/><circle cx="470" cy="132" r="4" fill="#71717c"/>
+  <text class="t k" x="732" y="136" text-anchor="end">ONE PORTAL</text>
+
+  <g>
+    <rect x="444" y="176" width="136" height="80" rx="8" fill="#fff" fill-opacity=".04" stroke="#fff" stroke-opacity=".12"/>
+    <rect x="460" y="192" width="46" height="6" rx="3" fill="#8b8cf8"/>
+    <rect x="460" y="208" width="96" height="4" rx="2" fill="#a3a3ad" fill-opacity=".4"/>
+    <rect x="460" y="218" width="72" height="4" rx="2" fill="#a3a3ad" fill-opacity=".4"/>
+    <rect x="460" y="234" width="38" height="10" rx="5" fill="#8b8cf8" fill-opacity=".25"/>
+
+    <rect x="592" y="176" width="136" height="80" rx="8" fill="#fff" fill-opacity=".04" stroke="#fff" stroke-opacity=".12"/>
+    <rect x="608" y="192" width="60" height="6" rx="3" fill="#a3a3ad" fill-opacity=".7"/>
+    <rect x="608" y="208" width="96" height="4" rx="2" fill="#a3a3ad" fill-opacity=".4"/>
+    <rect x="608" y="218" width="58" height="4" rx="2" fill="#a3a3ad" fill-opacity=".4"/>
+    <rect x="608" y="234" width="38" height="10" rx="5" fill="#fff" fill-opacity=".08"/>
+
+    <rect x="444" y="272" width="284" height="84" rx="8" fill="#fff" fill-opacity=".04" stroke="#fff" stroke-opacity=".12"/>
+    <text class="t k" x="460" y="294">RECENT ACTIVITY</text>
+    <circle cx="464" cy="314" r="3" fill="#8b8cf8"/><rect x="476" y="311" width="150" height="5" rx="2.5" fill="#a3a3ad" fill-opacity=".45"/>
+    <circle cx="464" cy="332" r="3" fill="#8b8cf8" fill-opacity=".5"/><rect x="476" y="329" width="110" height="5" rx="2.5" fill="#a3a3ad" fill-opacity=".45"/>
+  </g>
+
+  <text class="t m" x="48" y="462">nepal-gov-portal / unified services prototype · group project</text>
+  <text class="t m" x="752" y="462" text-anchor="end">react · typescript · express</text>
 </svg>

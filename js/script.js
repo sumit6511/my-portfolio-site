@@ -1,626 +1,514 @@
-// Global utility and feature initialization
+/* ==========================================================================
+   sumit-sah.com.np — behaviour
+   Small, independent modules. Everything degrades: the page reads fine with
+   JS off, and every animation respects prefers-reduced-motion.
+   ========================================================================== */
 
 // Formspree endpoint used by the contact form and the resource recommendation form.
-// Sign up at https://formspree.io, create a form, and replace this with your form's
-// endpoint (e.g. 'https://formspree.io/f/abcdwxyz').
+// Both forms also carry it in their action attribute so they work without JS.
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwleyvog';
 
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const ACCENT_RGB = '139, 140, 248';
 
-function debounce(fn, delay = 150) {
-    let timeout;
-    return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn(...args), delay);
-    };
-}
+const svgIcon = (id, className = 'icon') =>
+    `<svg class="${className}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
-function throttle(fn) {
-    let ticking = false;
-    return (...args) => {
-        if (ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-            fn(...args);
-            ticking = false;
-        });
-    };
-}
+/* --------------------------------------------------------------------------
+   Header: elevated state on scroll, mobile menu, active section indicator
+   -------------------------------------------------------------------------- */
+function initHeader() {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
 
-function initHeaderMenu() {
-    const header = document.querySelector('header');
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navLinksItems = document.querySelectorAll('.nav-links li');
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    if (!header || !hamburger || !navLinks) return;
-
-    const updateHeader = () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    };
-
-    const toggleMenu = () => {
-        const isOpen = !navLinks.classList.contains('active');
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        hamburger.setAttribute('aria-expanded', String(isOpen));
-    };
-
-    hamburger.addEventListener('click', toggleMenu);
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
+    // Mobile overlay menu
+    const toggle = header.querySelector('.nav-toggle');
+    const menu = document.getElementById('menu');
+    if (toggle && menu) {
+        const setOpen = (open) => {
+            menu.classList.toggle('is-open', open);
+            menu.inert = !open;
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            document.body.classList.toggle('is-locked', open);
+            if (open) {
+                menu.querySelector('a')?.focus({ preventScroll: true });
+            } else if (document.activeElement && menu.contains(document.activeElement)) {
+                toggle.focus({ preventScroll: true });
             }
+        };
+
+        toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
+        menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('is-open')) setOpen(false);
         });
-    });
+        window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
+    }
 
-    window.addEventListener('scroll', throttle(updateHeader));
-    updateHeader();
-}
+    // Active section indicator (desktop nav + overlay menu share the same hrefs)
+    const links = document.querySelectorAll('.nav__link[href^="#"], .menu__link[href^="#"]');
+    const sections = [...links]
+        .map((a) => document.querySelector(a.getAttribute('href')))
+        .filter((el, i, arr) => el && arr.indexOf(el) === i);
+    if (!sections.length || !('IntersectionObserver' in window)) return;
 
-function initScrollProgress() {
-    const bar = document.createElement('div');
-    bar.className = 'scroll-progress';
-    document.body.appendChild(bar);
-
-    const updateProgress = () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        bar.style.width = `${Math.min(progress, 100)}%`;
+    const setCurrent = (id) => {
+        links.forEach((a) => {
+            const isCurrent = a.getAttribute('href') === `#${id}`;
+            if (isCurrent) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+        });
     };
 
-    window.addEventListener('scroll', throttle(updateProgress), { passive: true });
-    window.addEventListener('resize', debounce(updateProgress));
-    updateProgress();
+    const hero = document.getElementById('top');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            setCurrent(entry.target === hero ? '' : entry.target.id);
+        });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach((s) => observer.observe(s));
+    if (hero) observer.observe(hero);
 }
 
-function initScrollAnimations() {
-    const elements = document.querySelectorAll('[data-aos]');
-    if (!elements.length) return;
+/* --------------------------------------------------------------------------
+   Reveal on scroll
+   -------------------------------------------------------------------------- */
+function initReveal() {
+    const items = document.querySelectorAll('[data-reveal]');
+    if (!items.length) return;
 
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aos-animate');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            rootMargin: '0px 0px -15% 0px',
-            threshold: 0.1,
-        });
-
-        elements.forEach(element => observer.observe(element));
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('is-visible'));
         return;
     }
 
-    const animateOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            if (elementPosition < windowHeight * 0.85) {
-                element.classList.add('aos-animate');
-            }
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
         });
-    };
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
 
-    window.addEventListener('scroll', throttle(animateOnScroll, 100), { passive: true });
-    animateOnScroll();
+    items.forEach((el) => observer.observe(el));
 }
 
-function initProjectCardHover() {
-    const projectCards = document.querySelectorAll('.project-card');
-    if (!projectCards.length) return;
+/* --------------------------------------------------------------------------
+   Hero: dot lattice. A slow luminance wave drifts across a grid of points and
+   the pointer gently lifts nearby dots. Static (one draw) under reduced motion.
+   -------------------------------------------------------------------------- */
+function initHeroField() {
+    const canvas = document.querySelector('.hero__field');
+    const hero = canvas?.closest('.hero');
+    if (!canvas || !hero) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-10px)';
-            card.style.boxShadow = 'var(--shadow-dark)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.boxShadow = '';
-        });
+    const GAP = window.innerWidth < 720 ? 30 : 26;
+    const REACH = 170;
+    let width = 0, height = 0, dots = [];
+    let pointer = { x: -1e4, y: -1e4 };
+    let raf = 0, last = 0, visible = true;
+    const animate = !reduceMotion.matches;
+
+    const build = () => {
+        const rect = hero.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width; height = rect.height;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        dots = [];
+        for (let y = GAP; y < height; y += GAP) {
+            for (let x = GAP; x < width; x += GAP) dots.push({ x, y });
+        }
+        draw(performance.now());
+    };
+
+    const draw = (t) => {
+        ctx.clearRect(0, 0, width, height);
+        for (const d of dots) {
+            const dx = d.x - pointer.x, dy = d.y - pointer.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const prox = dist < REACH ? 1 - dist / REACH : 0;
+            const wave = animate ? (Math.sin(t * 0.0006 + (d.x * 0.7 + d.y * 0.5) * 0.011) + 1) / 2 : 0.5;
+            const alpha = 0.1 + wave * 0.18 + prox * 0.6;
+            const r = 1.1 + prox * 1.5 + wave * 0.3;
+            ctx.fillStyle = prox > 0 ? `rgba(${ACCENT_RGB}, ${alpha})` : `rgba(205, 205, 215, ${alpha})`;
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    };
+
+    const loop = (t) => {
+        raf = requestAnimationFrame(loop);
+        if (t - last < 33) return; // ~30fps is plenty for a slow wave
+        last = t;
+        draw(t);
+    };
+
+    const start = () => { if (animate && visible && !raf) raf = requestAnimationFrame(loop); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    hero.addEventListener('pointermove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+        if (!animate) draw(performance.now());
     });
-}
+    hero.addEventListener('pointerleave', () => {
+        pointer = { x: -1e4, y: -1e4 };
+        if (!animate) draw(performance.now());
+    });
 
-function initHeroParallax() {
-    if (prefersReducedMotion) return;
-    const heroSection = document.querySelector('.hero');
-    if (!heroSection) return;
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(build, 120);
+    });
 
-    const onMouseMove = (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        heroSection.style.backgroundPosition = `${x * 20}px ${y * 20}px`;
-    };
-
-    window.addEventListener('mousemove', throttle(onMouseMove));
-}
-
-function createParticles() {
-    if (prefersReducedMotion) return;
-
-    const existingContainer = document.querySelector('.particles-container');
-    if (existingContainer) {
-        existingContainer.remove();
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            visible ? start() : stop();
+        }).observe(hero);
     }
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
 
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles-container';
-    document.body.insertBefore(particlesContainer, document.body.firstChild);
-
-    const screenWidth = window.innerWidth;
-    const numberOfParticles = screenWidth < 576 ? 30 : screenWidth < 992 ? 60 : 90;
-
-    for (let i = 0; i < numberOfParticles; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = Math.random() * 5 + 1;
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const delay = Math.random() * 15;
-        const duration = Math.random() * 30 + 20;
-        const colorIndex = Math.floor(Math.random() * 3);
-        const color = colorIndex === 0 ? 'var(--primary-color)' : colorIndex === 1 ? 'var(--secondary-color)' : 'var(--accent-color)';
-
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}vw`;
-        particle.style.top = `${posY}vh`;
-        particle.style.backgroundColor = color;
-        particle.style.opacity = (Math.random() * 0.15 + 0.05).toFixed(2);
-        particle.style.animationDelay = `${delay}s`;
-        particle.style.animationDuration = `${duration}s`;
-        particlesContainer.appendChild(particle);
-    }
+    build();
+    start();
 }
 
-function setupProfileImageTilt() {
-    const profileContainer = document.querySelector('.img-placeholder');
-    if (!profileContainer) return;
+/* --------------------------------------------------------------------------
+   Case study dialog — content comes from the card and its <template>
+   -------------------------------------------------------------------------- */
+function initCaseStudy() {
+    const dialog = document.getElementById('case-study');
+    if (!dialog || typeof dialog.showModal !== 'function') return;
 
-    let bounds = profileContainer.getBoundingClientRect();
-    const updateBounds = () => { bounds = profileContainer.getBoundingClientRect(); };
+    const slot = (name) => dialog.querySelector(`[data-slot="${name}"]`);
+    const cover = dialog.querySelector('.case-study__cover img');
+    const scroller = dialog.querySelector('.case-study__scroll');
+    let lastTrigger = null;
 
-    const rotateToMouse = (e) => {
-        const centerX = bounds.left + bounds.width / 2;
-        const centerY = bounds.top + bounds.height / 2;
-        const percentX = (e.clientX - centerX) / (bounds.width / 2);
-        const percentY = (e.clientY - centerY) / (bounds.height / 2);
-        const rotateX = -percentY * 10;
-        const rotateY = percentX * 10;
-        profileContainer.style.transform = `translateZ(25px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    const open = (card, trigger) => {
+        const text = (sel) => card.querySelector(sel)?.textContent.trim() || '';
+        slot('num').textContent = text('.project__num');
+        slot('title').textContent = text('.project__title');
+        slot('kicker').textContent = text('.project__kicker') || text('.project__desc');
+
+        const img = card.querySelector('.project__media img');
+        if (img) { cover.src = img.currentSrc || img.src; cover.alt = img.alt; }
+
+        const facts = slot('facts');
+        const main = slot('main');
+        facts.replaceChildren();
+        main.replaceChildren();
+        const template = card.querySelector('template.project__detail');
+        if (template) {
+            const fragment = template.content.cloneNode(true);
+            const factList = fragment.querySelector('.facts');
+            if (factList) facts.appendChild(factList);
+            main.appendChild(fragment);
+        } else {
+            const p = document.createElement('p');
+            p.textContent = text('.project__desc');
+            main.appendChild(p);
+        }
+
+        slot('stack').replaceChildren(...[...card.querySelectorAll('.project__stack li')].map((li) => {
+            const pill = document.createElement('li');
+            pill.className = 'pill';
+            pill.textContent = li.textContent.trim();
+            return pill;
+        }));
+
+        slot('links').replaceChildren(...[...card.querySelectorAll('.project__links a')].map((a, i) => {
+            const link = a.cloneNode(true);
+            link.className = i === 0 ? 'btn btn--primary btn--sm' : 'btn btn--ghost btn--sm';
+            return link;
+        }));
+
+        lastTrigger = trigger;
+        dialog.showModal();
+        scroller.scrollTop = 0;
+        document.body.classList.add('is-locked');
     };
 
-    const resetTilt = () => {
-        profileContainer.style.transform = 'translateZ(0) rotateX(0) rotateY(0) scale(1)';
-    };
-
-    profileContainer.addEventListener('mouseenter', () => {
-        updateBounds();
-        document.addEventListener('mousemove', rotateToMouse);
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-case-study]');
+        const card = trigger?.closest('.project');
+        if (trigger && card) open(card, trigger);
     });
 
-    profileContainer.addEventListener('mouseleave', () => {
-        document.removeEventListener('mousemove', rotateToMouse);
-        resetTilt();
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog || e.target.closest('[data-close]')) dialog.close();
     });
 
-    window.addEventListener('resize', updateBounds);
+    dialog.addEventListener('close', () => {
+        document.body.classList.remove('is-locked');
+        lastTrigger?.focus({ preventScroll: true });
+    });
+}
+
+/* --------------------------------------------------------------------------
+   Forms (Formspree)
+   -------------------------------------------------------------------------- */
+async function submitToFormspree(form) {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form),
+    });
+    if (!response.ok) throw new Error('Form submission failed');
+}
+
+function validateRequired(form) {
+    let valid = true;
+    form.querySelectorAll('input[required], textarea[required], select[required]').forEach((field) => {
+        const empty = !field.value.trim();
+        field.classList.toggle('error', empty);
+        if (empty) valid = false;
+    });
+    return valid;
+}
+
+function showFormError(form, message) {
+    let el = form.querySelector('.form-error-message');
+    if (!el) {
+        el = document.createElement('p');
+        el.className = 'form-error-message';
+        el.setAttribute('role', 'alert');
+        form.appendChild(el);
+    }
+    el.textContent = message;
 }
 
 function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
-    if (!contactForm) return;
+    const form = document.querySelector('.contact-form');
+    if (!form) return;
 
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const submitLabel = submitBtn ? submitBtn.textContent : '';
-    let errorMessage = null;
+    const submit = form.querySelector('button[type="submit"]');
+    const submitLabel = submit ? submit.innerHTML : '';
 
-    const showError = () => {
-        if (!errorMessage) {
-            errorMessage = document.createElement('p');
-            errorMessage.className = 'form-error-message';
-            errorMessage.setAttribute('role', 'alert');
-            // Appended last so it doesn't shift the nth-child positions the grid layout relies on.
-            contactForm.appendChild(errorMessage);
-        }
-        errorMessage.textContent = "Something went wrong sending your message. Please try again, or email me directly instead.";
-    };
+    form.querySelectorAll('input, textarea').forEach((field) => {
+        field.addEventListener('input', () => field.classList.remove('error'));
+    });
 
-    contactForm.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        let valid = true;
-
-        formInputs.forEach(input => {
-            if (!input.value.trim()) {
-                valid = false;
-                input.classList.add('error');
-            } else {
-                input.classList.remove('error');
-            }
-        });
-
-        if (!valid) return;
-
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+        if (!validateRequired(form)) {
+            form.querySelector('.error')?.focus();
+            return;
         }
-        if (errorMessage) errorMessage.remove();
-        errorMessage = null;
+
+        form.querySelector('.form-error-message')?.remove();
+        if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
 
         try {
-            const response = await fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                headers: { Accept: 'application/json' },
-                body: new FormData(contactForm),
+            await submitToFormspree(form);
+            form.replaceChildren();
+            form.insertAdjacentHTML('beforeend', `
+                <div class="success-message" role="status">
+                    ${svgIcon('i-check')}
+                    <h3>Message sent.</h3>
+                    <p>Thanks for reaching out — I'll get back to you as soon as I can, usually within 24–48 hours.</p>
+                </div>
+            `);
+        } catch {
+            showFormError(form, "Something went wrong sending your message. Please try again, or email me directly at sumitsah6511@gmail.com.");
+            if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+        }
+    });
+}
+
+/* --------------------------------------------------------------------------
+   Copy-to-clipboard buttons
+   -------------------------------------------------------------------------- */
+function initCopyButtons() {
+    const buttons = document.querySelectorAll('[data-copy]');
+    if (!buttons.length || !navigator.clipboard) return;
+
+    buttons.forEach((btn) => {
+        const label = btn.querySelector('span');
+        const original = btn.innerHTML;
+        btn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(btn.dataset.copy);
+                btn.classList.add('is-copied');
+                btn.innerHTML = `${svgIcon('i-check')}<span>Copied</span>`;
+                setTimeout(() => { btn.classList.remove('is-copied'); btn.innerHTML = original; }, 2000);
+            } catch {
+                if (label) label.textContent = 'Copy failed';
+            }
+        });
+    });
+}
+
+/* --------------------------------------------------------------------------
+   GitHub: annotate the static repo list with language + last push.
+   Public API, no token, one request, cached for an hour. Silent on failure.
+   -------------------------------------------------------------------------- */
+function initGithubMeta() {
+    const list = document.querySelector('[data-github-user]');
+    if (!list || !('fetch' in window)) return;
+
+    const user = list.dataset.githubUser;
+    const cacheKey = `gh-repos:${user}`;
+
+    const readCache = () => {
+        try {
+            const cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
+            return cached && Date.now() - cached.t < 36e5 ? cached.data : null;
+        } catch { return null; }
+    };
+
+    const annotate = (repos) => {
+        const byName = new Map(repos.map((r) => [r.name.toLowerCase(), r]));
+        list.querySelectorAll('[data-repo]').forEach((link) => {
+            const repo = byName.get(link.dataset.repo.toLowerCase());
+            if (!repo) return;
+            const when = new Date(repo.pushed_at).toLocaleDateString('en', { month: 'short', year: 'numeric' });
+            link.querySelector('.repo__meta').textContent = [repo.language, `Updated ${when}`].filter(Boolean).join(' · ');
+        });
+    };
+
+    const load = async () => {
+        const cached = readCache();
+        if (cached) return annotate(cached);
+        try {
+            const res = await fetch(`https://api.github.com/users/${user}/repos?per_page=100&sort=pushed`, {
+                headers: { Accept: 'application/vnd.github+json' },
             });
+            if (!res.ok) return;
+            const data = (await res.json()).map((r) => ({ name: r.name, language: r.language, pushed_at: r.pushed_at }));
+            try { sessionStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), data })); } catch { /* storage unavailable */ }
+            annotate(data);
+        } catch { /* offline or rate-limited: static links remain */ }
+    };
 
-            if (!response.ok) throw new Error('Form submission failed');
+    // Only spend the request when the strip is actually about to be seen
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(([entry], obs) => {
+            if (!entry.isIntersecting) return;
+            obs.disconnect();
+            load();
+        }, { rootMargin: '300px 0px' });
+        observer.observe(list);
+    } else {
+        load();
+    }
+}
 
-            const successMessage = document.createElement('div');
-            successMessage.className = 'success-message';
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle"></i>
-                <h3>Message Sent Successfully!</h3>
-                <p>Thank you for reaching out. I&#39;ll get back to you as soon as possible.</p>
+/* --------------------------------------------------------------------------
+   Resources page: tabs + recommendation form
+   -------------------------------------------------------------------------- */
+function initTabs() {
+    const tablist = document.querySelector('[role="tablist"]');
+    if (!tablist) return;
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+
+    const select = (tab, focus = false) => {
+        tabs.forEach((t) => {
+            const active = t === tab;
+            t.setAttribute('aria-selected', String(active));
+            t.tabIndex = active ? 0 : -1;
+            const panel = document.getElementById(t.getAttribute('aria-controls'));
+            if (panel) panel.hidden = !active;
+        });
+        if (focus) tab.focus();
+    };
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => select(tab));
+        tab.addEventListener('keydown', (e) => {
+            const delta = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+            if (!delta) return;
+            e.preventDefault();
+            select(tabs[(i + delta + tabs.length) % tabs.length], true);
+        });
+    });
+
+    select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0]);
+}
+
+function initRecommendForm() {
+    const toggle = document.getElementById('recommend-btn');
+    const form = document.getElementById('recommendation-form');
+    const cancel = document.getElementById('cancel-recommendation');
+    const status = document.getElementById('recommendation-status');
+    if (!toggle || !form || !cancel) return;
+
+    const setOpen = (open) => {
+        form.hidden = !open;
+        toggle.hidden = open;
+        toggle.setAttribute('aria-expanded', String(open));
+        if (open) {
+            status.hidden = true;
+            form.querySelector('input, select, textarea')?.focus();
+        } else {
+            toggle.focus();
+        }
+    };
+
+    toggle.addEventListener('click', () => setOpen(true));
+    cancel.addEventListener('click', () => setOpen(false));
+
+    const submit = form.querySelector('button[type="submit"]');
+    const submitLabel = submit ? submit.innerHTML : '';
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateRequired(form)) {
+            form.querySelector('.error')?.focus();
+            return;
+        }
+        form.querySelector('.form-error-message')?.remove();
+        if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+
+        try {
+            await submitToFormspree(form);
+            form.reset();
+            setOpen(false);
+            status.hidden = false;
+            status.innerHTML = `
+                <div class="success-message" role="status">
+                    ${svgIcon('i-check')}
+                    <h3>Thanks for the recommendation.</h3>
+                    <p>Your suggestion has been received. I'll review it and add it to the list if it fits well.</p>
+                </div>
             `;
-            contactForm.innerHTML = '';
-            contactForm.appendChild(successMessage);
-        } catch (err) {
-            showError();
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = submitLabel;
-            }
+        } catch {
+            showFormError(form, 'Something went wrong sending your recommendation. Please try again in a moment.');
+        } finally {
+            if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
         }
     });
 }
 
-function initContactFaq() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    if (!faqItems.length) return;
+/* --------------------------------------------------------------------------
+   Boot
+   -------------------------------------------------------------------------- */
+document.documentElement.classList.add('js');
 
-    const closeFaq = (item) => {
-        const icon = item.querySelector('.faq-icon i');
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        if (!icon || !question || !answer) return;
-
-        item.classList.remove('active');
-        question.setAttribute('aria-expanded', 'false');
-        answer.setAttribute('aria-hidden', 'true');
-        icon.classList.remove('fa-minus');
-        icon.classList.add('fa-plus');
-    };
-
-    const openFaq = (item) => {
-        const icon = item.querySelector('.faq-icon i');
-        const question = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
-        if (!icon || !question || !answer) return;
-
-        item.classList.add('active');
-        question.setAttribute('aria-expanded', 'true');
-        answer.setAttribute('aria-hidden', 'false');
-        icon.classList.remove('fa-plus');
-        icon.classList.add('fa-minus');
-    };
-
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        const icon = item.querySelector('.faq-icon i');
-        const answer = item.querySelector('.faq-answer');
-        if (!question || !icon || !answer) return;
-
-        answer.setAttribute('aria-hidden', 'true');
-        question.setAttribute('aria-expanded', 'false');
-
-        const handleToggle = () => {
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    closeFaq(otherItem);
-                }
-            });
-            if (isActive) {
-                closeFaq(item);
-            } else {
-                openFaq(item);
-            }
-        };
-
-        question.addEventListener('click', handleToggle);
-        question.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleToggle();
-            }
-        });
-    });
-}
-
-function initResourcesPage() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const recommendBtn = document.getElementById('recommend-btn');
-    const recommendationForm = document.getElementById('recommendation-form');
-    const recommendationSuccess = document.getElementById('recommendation-success');
-    const cancelBtn = document.getElementById('cancel-recommendation');
-    const recommendationFormElement = recommendationForm?.querySelector('form');
-
-    const hideRecommendationForm = () => {
-        if (!recommendationForm) return;
-        recommendationForm.hidden = true;
-        recommendationForm.style.maxHeight = '0';
-        recommendBtn?.setAttribute('aria-expanded', 'false');
-    };
-
-    const showRecommendationForm = () => {
-        if (!recommendationForm) return;
-        recommendationForm.hidden = false;
-        setTimeout(() => {
-            recommendationForm.style.maxHeight = recommendationForm.scrollHeight + 'px';
-        }, 20);
-        recommendBtn?.setAttribute('aria-expanded', 'true');
-        if (recommendationSuccess) {
-            recommendationSuccess.style.display = 'none';
-            recommendationSuccess.innerHTML = '';
-        }
-    };
-
-    if (tabBtns.length && tabContents.length) {
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                const target = document.getElementById(tabId);
-                if (target) target.classList.add('active');
-                window.dispatchEvent(new Event('scroll'));
-            });
-        });
-    }
-
-    if (recommendBtn && recommendationForm && cancelBtn) {
-        hideRecommendationForm();
-
-        recommendBtn.addEventListener('click', showRecommendationForm);
-
-        cancelBtn.addEventListener('click', () => {
-            hideRecommendationForm();
-            recommendBtn.style.display = 'inline-block';
-        });
-
-        if (recommendationFormElement) {
-            const recommendSubmitBtn = recommendationFormElement.querySelector('button[type="submit"]');
-            const recommendSubmitLabel = recommendSubmitBtn ? recommendSubmitBtn.innerHTML : '';
-            let recommendError = null;
-
-            recommendationFormElement.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                if (recommendSubmitBtn) {
-                    recommendSubmitBtn.disabled = true;
-                    recommendSubmitBtn.textContent = 'Sending...';
-                }
-                if (recommendError) {
-                    recommendError.remove();
-                    recommendError = null;
-                }
-
-                try {
-                    const response = await fetch(FORMSPREE_ENDPOINT, {
-                        method: 'POST',
-                        headers: { Accept: 'application/json' },
-                        body: new FormData(recommendationFormElement),
-                    });
-
-                    if (!response.ok) throw new Error('Form submission failed');
-
-                    if (recommendationSuccess) {
-                        recommendationSuccess.style.display = 'block';
-                        recommendationSuccess.innerHTML = `
-                            <h3>Thanks for the recommendation!</h3>
-                            <p>Your suggestion has been received. I&#39;ll review it and add it to the list if it fits well.</p>
-                        `;
-                    }
-
-                    recommendationFormElement.reset();
-                    hideRecommendationForm();
-                    recommendBtn.style.display = 'inline-block';
-                } catch (err) {
-                    recommendError = document.createElement('p');
-                    recommendError.className = 'form-error-message';
-                    recommendError.setAttribute('role', 'alert');
-                    recommendError.textContent = "Something went wrong sending your recommendation. Please try again in a moment.";
-                    recommendationFormElement.appendChild(recommendError);
-                } finally {
-                    if (recommendSubmitBtn) {
-                        recommendSubmitBtn.disabled = false;
-                        recommendSubmitBtn.innerHTML = recommendSubmitLabel;
-                    }
-                }
-            });
-        }
-    }
-
-    initCustomSelects();
-}
-
-function initCustomSelects() {
-    const wrappers = document.querySelectorAll('.custom-select-wrapper');
-    const closeAll = () => {
-        document.querySelectorAll('.custom-select.open').forEach(select => {
-            select.classList.remove('open');
-            select.setAttribute('aria-expanded', 'false');
-        });
-    };
-
-    wrappers.forEach(wrapper => {
-        const select = wrapper.querySelector('select');
-        const customSelect = wrapper.querySelector('.custom-select');
-        const trigger = wrapper.querySelector('.custom-select__trigger');
-        const options = wrapper.querySelectorAll('.custom-option');
-
-        if (!select || !customSelect || !trigger || !options.length) return;
-
-        const setValue = (value, label) => {
-            select.value = value;
-            trigger.textContent = label;
-            options.forEach(option => {
-                option.classList.toggle('selected', option.dataset.value === value);
-                option.setAttribute('aria-selected', option.dataset.value === value ? 'true' : 'false');
-            });
-        };
-
-        customSelect.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const isOpen = customSelect.classList.toggle('open');
-            customSelect.setAttribute('aria-expanded', String(isOpen));
-            if (isOpen) {
-                closeAll();
-                customSelect.classList.add('open');
-            }
-        });
-
-        customSelect.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                customSelect.click();
-            }
-            if (event.key === 'Escape') {
-                closeAll();
-            }
-        });
-
-        options.forEach(option => {
-            option.addEventListener('click', (event) => {
-                event.stopPropagation();
-                const value = option.dataset.value;
-                const label = option.textContent.trim();
-                setValue(value, label);
-                closeAll();
-                customSelect.focus();
-            });
-        });
-    });
-
-    document.addEventListener('click', closeAll);
-}
-
-function initProjectsPage() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-
-    if (filterBtns.length && projectItems.length) {
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filterValue = btn.getAttribute('data-filter');
-                projectItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    const match = filterValue === 'all' || filterValue === category;
-                    item.style.display = match ? 'block' : 'none';
-                    item.style.opacity = match ? '1' : '0';
-                    item.style.transform = match ? 'translateY(0)' : 'translateY(20px)';
-                });
-            });
-        });
-    }
-}
-
-function initPageScripts() {
-    initHeaderMenu();
-    initScrollProgress();
-    initScrollAnimations();
-    initProjectCardHover();
-    initHeroParallax();
+const boot = () => {
+    initHeader();
+    initReveal();
+    initHeroField();
+    initCaseStudy();
     initContactForm();
-    initContactFaq();
-    initResourcesPage();
-    initProjectsPage();
-    setupProfileImageTilt();
-    createParticles();
-}
+    initCopyButtons();
+    initGithubMeta();
+    initTabs();
+    initRecommendForm();
+};
 
-function initCustomCursor() {
-    if (prefersReducedMotion || isTouchDevice || window.innerWidth < 768) return;
-
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    const cursorOutline = document.createElement('div');
-    cursorOutline.className = 'cursor-outline';
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorOutline);
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    let outlineX = 0;
-    let outlineY = 0;
-    const speed = 0.1;
-    const outlineSpeed = 0.08;
-
-    window.addEventListener('mousemove', (event) => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-    });
-
-    window.addEventListener('mousedown', () => {
-        cursorDot.style.transform = 'translate(-50%, -50%) scale(0.8)';
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    });
-    window.addEventListener('mouseup', () => {
-        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
-    document.addEventListener('mouseleave', () => {
-        cursorDot.style.opacity = '0';
-        cursorOutline.style.opacity = '0';
-    });
-    document.addEventListener('mouseenter', () => {
-        cursorDot.style.opacity = '1';
-        cursorOutline.style.opacity = '0.6';
-    });
-
-    const animateCursor = () => {
-        cursorX += (mouseX - cursorX) * speed;
-        cursorY += (mouseY - cursorY) * speed;
-        outlineX += (mouseX - outlineX) * outlineSpeed;
-        outlineY += (mouseY - outlineY) * outlineSpeed;
-        cursorDot.style.left = `${Math.round(cursorX)}px`;
-        cursorDot.style.top = `${Math.round(cursorY)}px`;
-        cursorOutline.style.left = `${Math.round(outlineX)}px`;
-        cursorOutline.style.top = `${Math.round(outlineY)}px`;
-        requestAnimationFrame(animateCursor);
-    };
-
-    animateCursor();
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-    initPageScripts();
-    initCustomCursor();
-});
-
-window.addEventListener('resize', debounce(() => {
-    if (document.querySelector('.particles-container')) {
-        createParticles();
-    }
-}));
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();

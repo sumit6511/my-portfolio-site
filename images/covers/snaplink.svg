@@ -1,42 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">SnapLink — a long URL collapses into a short alias with QR code and click analytics</title>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#070b1c"/>
-      <stop offset="45%" stop-color="#0b1128"/>
-      <stop offset="100%" stop-color="#0c1330"/>
-    </linearGradient>
-    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#5e60ce"/>
-      <stop offset="50%" stop-color="#64dfdf"/>
-      <stop offset="100%" stop-color="#7b90ff"/>
-    </linearGradient>
-    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#7b90ff" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#7b90ff" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#5e60ce" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="#5e60ce" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.045"/>
-    </pattern>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0.6" stop-color="#15151b" stop-opacity="0"/><stop offset="1" stop-color="#15151b"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.2"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
   </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}
+    .b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="200" cy="230" r="180" fill="url(#glow)"/>
 
-  <rect width="800" height="600" fill="url(#bg)"/>
-  <rect width="800" height="600" fill="url(#dots)"/>
-  <circle cx="680" cy="80" r="220" fill="url(#glow1)"/>
-  <circle cx="100" cy="530" r="240" fill="url(#glow2)"/>
+  <!-- long url -->
+  <rect class="b" x="48" y="118" width="500" height="48" rx="24"/>
+  <text class="t s" x="72" y="147">https://example.com/products/category/item-name?ref=campaign&amp;utm_source=newsletter</text>
+  <rect x="380" y="119" width="167" height="46" rx="23" fill="url(#fade)"/>
+  <text class="t k" x="48" y="102">ORIGINAL</text>
 
-  <circle cx="400" cy="215" r="72" fill="rgba(255,255,255,0.045)" stroke="url(#text-gradient)" stroke-width="2"/>
-  <g fill="none" stroke-linecap="round">
-    <rect x="333" y="181" width="88" height="32" rx="16" transform="rotate(-40 377 197)" stroke="url(#text-gradient)" stroke-width="10"/>
-    <rect x="379" y="217" width="88" height="32" rx="16" transform="rotate(-40 423 233)" stroke="#f7f8fb" stroke-width="10" opacity="0.9"/>
+  <!-- collapse arrow -->
+  <path class="a" d="M110 166V212"/>
+
+  <!-- short link -->
+  <rect x="48" y="216" width="236" height="56" rx="28" fill="#8b8cf8" fill-opacity=".1" stroke="#8b8cf8" stroke-opacity=".6"/>
+  <text class="t" x="72" y="251" font-size="18" fill="#ededf0" font-weight="600">/x7Kq</text>
+  <text class="t k" x="150" y="251">CUSTOM ALIAS</text>
+  <text class="t m" x="300" y="251">expires in 7d</text>
+
+  <!-- qr -->
+  <g transform="translate(628 104)">
+    <rect x="0" y="0" width="124" height="124" rx="10" fill="#17171d" stroke="#fff" stroke-opacity=".14"/>
+    <g fill="#ededf0" fill-opacity=".85">
+      <rect x="14" y="14" width="28" height="28" rx="3"/><rect x="82" y="14" width="28" height="28" rx="3"/><rect x="14" y="82" width="28" height="28" rx="3"/>
+      <rect x="50" y="14" width="8" height="8"/><rect x="66" y="22" width="8" height="8"/><rect x="50" y="30" width="8" height="8"/>
+      <rect x="14" y="50" width="8" height="8"/><rect x="30" y="58" width="8" height="8"/><rect x="50" y="50" width="8" height="8"/><rect x="66" y="58" width="8" height="8"/><rect x="82" y="50" width="8" height="8"/><rect x="98" y="58" width="8" height="8"/><rect x="22" y="66" width="8" height="8"/>
+      <rect x="50" y="82" width="8" height="8"/><rect x="66" y="90" width="8" height="8"/><rect x="82" y="82" width="8" height="8"/><rect x="98" y="98" width="8" height="8"/><rect x="58" y="102" width="8" height="8"/>
+    </g>
+    <g fill="#0e0e12"><rect x="22" y="22" width="12" height="12"/><rect x="90" y="22" width="12" height="12"/><rect x="22" y="90" width="12" height="12"/></g>
+    <g fill="#8b8cf8"><rect x="24" y="24" width="8" height="8"/><rect x="92" y="24" width="8" height="8"/><rect x="24" y="92" width="8" height="8"/></g>
+  </g>
+  <text class="t k" x="628" y="248">QR CODE</text>
+
+  <!-- analytics -->
+  <rect class="b" x="48" y="300" width="704" height="116" rx="12"/>
+  <text class="t k" x="68" y="324">ANALYTICS</text>
+  <g>
+    <text class="t m" x="68" y="348">clicks</text>
+    <g fill="#8b8cf8">
+      <rect x="68" y="392" width="10" height="12" rx="2" fill-opacity=".35"/><rect x="84" y="384" width="10" height="20" rx="2" fill-opacity=".5"/><rect x="100" y="376" width="10" height="28" rx="2" fill-opacity=".6"/><rect x="116" y="386" width="10" height="18" rx="2" fill-opacity=".5"/><rect x="132" y="368" width="10" height="36" rx="2" fill-opacity=".8"/><rect x="148" y="372" width="10" height="32" rx="2" fill-opacity=".7"/><rect x="164" y="360" width="10" height="44" rx="2"/><rect x="180" y="366" width="10" height="38" rx="2" fill-opacity=".85"/>
+    </g>
+  </g>
+  <line x1="260" y1="336" x2="260" y2="400" stroke="#fff" stroke-opacity=".08"/>
+  <g>
+    <text class="t m" x="288" y="348">devices</text>
+    <text class="t k" x="288" y="370">MOBILE</text><rect x="360" y="363" width="140" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="360" y="363" width="92" height="6" rx="3" fill="#8b8cf8"/>
+    <text class="t k" x="288" y="388">DESKTOP</text><rect x="360" y="381" width="140" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="360" y="381" width="48" height="6" rx="3" fill="#8b8cf8" fill-opacity=".6"/>
+    <text class="t k" x="288" y="406">TABLET</text><rect x="360" y="399" width="140" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="360" y="399" width="16" height="6" rx="3" fill="#8b8cf8" fill-opacity=".4"/>
+  </g>
+  <line x1="540" y1="336" x2="540" y2="400" stroke="#fff" stroke-opacity=".08"/>
+  <g>
+    <text class="t m" x="568" y="348">referrers</text>
+    <circle cx="574" cy="368" r="3" fill="#8b8cf8"/><text class="t s" x="586" y="372">direct</text>
+    <circle cx="574" cy="386" r="3" fill="#8b8cf8" fill-opacity=".6"/><text class="t s" x="586" y="390">social</text>
+    <circle cx="574" cy="404" r="3" fill="#8b8cf8" fill-opacity=".35"/><text class="t s" x="586" y="408">search</text>
   </g>
 
-  <text x="400" y="345" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="46" font-weight="700" fill="url(#text-gradient)">SnapLink</text>
-  <text x="400" y="380" text-anchor="middle" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-size="14" letter-spacing="4" fill="#9aa3c4">URL SHORTENER &#183; ANALYTICS</text>
-
-  <text x="400" y="522" text-anchor="middle" font-family="'Roboto Mono', 'Courier New', monospace" font-size="15" fill="#8792b4">React &#183; Node.js &#183; MongoDB</text>
-  <text x="32" y="568" font-family="'Roboto Mono', 'Courier New', monospace" font-size="13" fill="rgba(255,255,255,0.28)">sumit6511/snaplink</text>
+  <text class="t m" x="48" y="462">snaplink / url shortener + analytics</text>
+  <text class="t m" x="752" y="462" text-anchor="end">react · node.js · mongodb</text>
 </svg>

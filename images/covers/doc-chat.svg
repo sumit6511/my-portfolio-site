@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">DocChat — PDFs are chunked and embedded into MongoDB Atlas; a question is embedded, vector search finds relevant chunks, and a local LLM answers with page citations</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.22"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
+  </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}
+    .b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="470" cy="150" r="200" fill="url(#glow)"/>
+
+  <!-- ingest row -->
+  <g>
+    <rect class="b" x="48" y="96" width="56" height="70" rx="6"/>
+    <path d="M86 96v14h14" fill="none" stroke="#fff" stroke-opacity=".2"/>
+    <text class="t k" x="76" y="140" text-anchor="middle">PDF</text>
+  </g>
+  <path class="a" d="M104 131H138"/>
+  <rect class="b" x="142" y="102" width="120" height="58" rx="8"/>
+  <text class="t k" x="158" y="122">CHUNKS</text>
+  <g fill="#a3a3ad" fill-opacity=".5"><rect x="158" y="132" width="88" height="4" rx="2"/><rect x="158" y="141" width="70" height="4" rx="2"/><rect x="158" y="150" width="82" height="4" rx="2"/></g>
+  <path class="a" d="M262 131H296"/>
+  <rect class="b" x="300" y="102" width="130" height="58" rx="8"/>
+  <text class="t k" x="316" y="122">EMBEDDINGS</text>
+  <text class="t s" x="316" y="146">[0.12, -0.8, …]</text>
+  <path class="a" d="M430 131H464"/>
+  <rect x="468" y="88" width="284" height="86" rx="12" fill="#1a1a24" stroke="#8b8cf8" stroke-opacity=".8"/>
+  <text class="t" x="484" y="114" font-size="14" fill="#ededf0" font-weight="600">MongoDB Atlas</text>
+  <text class="t s" x="484" y="136">$vectorSearch</text>
+  <text class="t k" x="484" y="160">VECTORS · DOC + PAGE METADATA</text>
+
+  <!-- query row -->
+  <rect class="b" x="48" y="222" width="382" height="44" rx="22"/>
+  <text class="t s" x="72" y="249">› what does section 3 conclude about latency?</text>
+  <path class="a" d="M430 244C460 244 470 180 500 176"/>
+  <text class="t k" x="446" y="228">EMBED → SEARCH</text>
+
+  <!-- llm + answer -->
+  <path class="a" d="M610 174V204"/>
+  <rect class="b" x="540" y="208" width="140" height="44" rx="10"/>
+  <text class="t s" x="610" y="235" text-anchor="middle">LLM · ollama</text>
+  <path class="a" d="M610 252V284"/>
+
+  <rect x="48" y="288" width="704" height="110" rx="12" fill="#8b8cf8" fill-opacity=".07" stroke="#8b8cf8" stroke-opacity=".5"/>
+  <text class="t k" x="68" y="312">ANSWER · GROUNDED IN RETRIEVED CHUNKS ONLY</text>
+  <g fill="#a3a3ad" fill-opacity=".6"><rect x="68" y="324" width="560" height="5" rx="2.5"/><rect x="68" y="337" width="470" height="5" rx="2.5"/><rect x="68" y="350" width="520" height="5" rx="2.5"/></g>
+  <g>
+    <rect x="68" y="366" width="118" height="20" rx="10" fill="#17171d" stroke="#fff" stroke-opacity=".18"/><text class="t k" x="127" y="380" text-anchor="middle" fill="#a3a3ad">report.pdf · p.4</text>
+    <rect x="194" y="366" width="118" height="20" rx="10" fill="#17171d" stroke="#fff" stroke-opacity=".18"/><text class="t k" x="253" y="380" text-anchor="middle" fill="#a3a3ad">report.pdf · p.7</text>
+    <rect x="320" y="366" width="92" height="20" rx="10" fill="#17171d" stroke="#fff" stroke-opacity=".18"/><text class="t k" x="366" y="380" text-anchor="middle" fill="#a3a3ad">0.82 · 0.79</text>
+  </g>
+
+  <text class="t m" x="48" y="462">doc-chat / rag document q&amp;a</text>
+  <text class="t m" x="752" y="462" text-anchor="end">fastapi · react · atlas vector search</text>
+</svg>

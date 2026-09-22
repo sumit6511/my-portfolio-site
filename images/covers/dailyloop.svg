@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-labelledby="t">
+  <title id="t">DailyLoop — a dated seed feeds a shared game engine that generates five daily puzzles; scores roll into streaks and a friends leaderboard</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#15151b"/><stop offset="1" stop-color="#0e0e12"/></linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity="0.045"/></pattern>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b8cf8" stop-opacity="0.22"/><stop offset="1" stop-color="#8b8cf8" stop-opacity="0"/></radialGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#71717c"/></marker>
+  </defs>
+  <style>
+    .t{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+    .s{font-size:12px;fill:#a3a3ad}.m{font-size:11px;fill:#71717c;letter-spacing:.08em}.k{font-size:10px;fill:#71717c;letter-spacing:.14em}.w{font-size:13px;fill:#ededf0}
+    .b{fill:#17171d;stroke:#fff;stroke-opacity:.14}.a{stroke:#71717c;stroke-width:1.25;fill:none;marker-end:url(#arr)}
+  </style>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+  <circle cx="330" cy="230" r="190" fill="url(#glow)"/>
+
+  <!-- today -->
+  <rect class="b" x="48" y="176" width="150" height="88" rx="10"/>
+  <text class="t k" x="64" y="198">TODAY</text>
+  <text class="t" x="64" y="226" font-size="18" fill="#ededf0" font-weight="600">2026-09-22</text>
+  <text class="t m" x="64" y="248">seed → rng</text>
+  <path class="a" d="M198 220H222"/>
+
+  <!-- engine -->
+  <rect x="226" y="184" width="160" height="72" rx="12" fill="#1a1a24" stroke="#8b8cf8" stroke-opacity=".8"/>
+  <text class="t" x="306" y="216" text-anchor="middle" font-size="15" fill="#ededf0" font-weight="600">GAME ENGINE</text>
+  <text class="t k" x="306" y="238" text-anchor="middle">SEEDED · SERVER-SIDE</text>
+
+  <!-- five games -->
+  <path class="a" d="M386 206C406 206 404 120 424 120"/>
+  <path class="a" d="M386 213C406 213 404 170 424 170"/>
+  <path class="a" d="M386 220H424"/>
+  <path class="a" d="M386 227C406 227 404 270 424 270"/>
+  <path class="a" d="M386 234C406 234 404 320 424 320"/>
+  <g>
+    <rect class="b" x="428" y="102" width="150" height="36" rx="8"/><text class="t s" x="444" y="125">connections</text>
+    <rect class="b" x="428" y="152" width="150" height="36" rx="8"/><text class="t s" x="444" y="175">word-guess</text>
+    <rect class="b" x="428" y="202" width="150" height="36" rx="8"/><text class="t s" x="444" y="225">logic-puzzle</text>
+    <rect class="b" x="428" y="252" width="150" height="36" rx="8"/><text class="t s" x="444" y="275">number-puzzle</text>
+    <rect class="b" x="428" y="302" width="150" height="36" rx="8"/><text class="t s" x="444" y="325">pathway</text>
+  </g>
+  <g fill="#8b8cf8"><circle cx="562" cy="120" r="3"/><circle cx="562" cy="170" r="3"/><circle cx="562" cy="220" r="3" fill-opacity=".4"/><circle cx="562" cy="270" r="3"/><circle cx="562" cy="320" r="3" fill-opacity=".4"/></g>
+
+  <!-- scoring -->
+  <path class="a" d="M578 220H612"/>
+  <rect class="b" x="616" y="102" width="136" height="236" rx="10"/>
+  <text class="t k" x="632" y="126">SCORE 0–100</text>
+  <rect x="632" y="136" width="104" height="6" rx="3" fill="#fff" fill-opacity=".08"/><rect x="632" y="136" width="80" height="6" rx="3" fill="#8b8cf8"/>
+  <text class="t k" x="632" y="172">STREAK</text>
+  <g>
+    <circle cx="638" cy="188" r="5" fill="#8b8cf8"/><circle cx="654" cy="188" r="5" fill="#8b8cf8"/><circle cx="670" cy="188" r="5" fill="#8b8cf8"/><circle cx="686" cy="188" r="5" fill="#8b8cf8"/><circle cx="702" cy="188" r="5" fill="#8b8cf8"/><circle cx="718" cy="188" r="5" fill="#8b8cf8" fill-opacity=".35"/><circle cx="734" cy="188" r="5" fill="none" stroke="#71717c"/>
+  </g>
+  <text class="t k" x="632" y="222">FRIENDS</text>
+  <rect x="632" y="232" width="104" height="5" rx="2.5" fill="#8b8cf8"/>
+  <rect x="632" y="245" width="82" height="5" rx="2.5" fill="#a3a3ad" fill-opacity=".5"/>
+  <rect x="632" y="258" width="66" height="5" rx="2.5" fill="#a3a3ad" fill-opacity=".35"/>
+  <rect x="632" y="290" width="104" height="26" rx="13" fill="#8b8cf8" fill-opacity=".1" stroke="#8b8cf8" stroke-opacity=".5"/>
+  <text class="t k" x="684" y="307" text-anchor="middle" fill="#a3a3ad">PERFECT DAY</text>
+
+  <!-- footer -->
+  <rect x="48" y="362" width="330" height="32" rx="16" fill="none" stroke="#fff" stroke-opacity=".14"/>
+  <text class="t m" x="66" y="382">one new game = module + registry line + db row</text>
+
+  <text class="t m" x="48" y="462">dailyloop / daily puzzle platform</text>
+  <text class="t m" x="752" y="462" text-anchor="end">react · fastify · prisma · postgres</text>
+</svg>
