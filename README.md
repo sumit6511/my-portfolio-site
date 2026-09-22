@@ -31,6 +31,10 @@ The site ships two complete designs over one set of content:
 
 Both share `/images`, `/fonts`, the Formspree endpoint and the same project data.
 
+**Switching between them.** Every page with a header carries a `.vswitch` control — in the header on desktop, and as a full-width row in the mobile menu, since the header copy is hidden below the nav breakpoint. Both copies are plain links (`/` ↔ `/v4/`, `/resources.html` ↔ `/v4/resources.html`), so they work with JavaScript off. With JS on, `initVersionSwitch()` appends the section you are currently reading, so switching halfway down the page lands on the same section in the other design. It reads the section from the DOM at the moment the link is used rather than from the scroll-spy, which can lag a frame behind a jump. The ids it may use are taken from the nav's own hrefs, so it can only ever point at a section that exists in both designs.
+
+To add a third design, give it a directory, add an option to the `.vswitch` group on every page (the `data-to` attribute is the target; `aria-current="page"` marks the one you are on) and style `.vswitch` in that design's stylesheet.
+
 - Dark, near-black surfaces with one indigo accent (`--accent`), thin borders and a light grain.
 - Typography: [Manrope](https://fonts.google.com/specimen/Manrope) for display and body, [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for labels and metadata.
 - Motion is limited to scroll reveals, hover states and the hero dot lattice. Everything respects `prefers-reduced-motion` and the page reads fully with JavaScript disabled.
@@ -39,6 +43,7 @@ Both share `/images`, `/fonts`, the Formspree endpoint and the same project data
 ### Behaviour (`js/script.js`)
 
 - Sticky header with elevated state, active-section indicator, mobile overlay menu.
+- Design switcher (`initVersionSwitch`): carries the current section across to the other design.
 - Hero dot lattice on a `<canvas>` (pointer-aware; static under reduced motion).
 - Case-study `<dialog>` filled from each project card and its `<template class="project__detail">`.
 - Contact and recommendation forms post to Formspree (`FORMSPREE_ENDPOINT`); both also work as plain HTML form posts.

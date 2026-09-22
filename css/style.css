@@ -550,6 +550,61 @@ body::before {
 .menu__socials { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 /* --------------------------------------------------------------------------
+   Design switcher — the same site is published in two visual designs
+   -------------------------------------------------------------------------- */
+.vswitch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.vswitch__label {
+    padding: 0 0.3rem 0 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+
+.vswitch__opt {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding-inline: 0.7rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--text-2);
+    transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out);
+}
+
+.vswitch__opt:hover { color: var(--text); background: var(--surface-2); }
+
+.vswitch__opt[aria-current="page"] {
+    color: var(--accent-strong);
+    background: var(--accent-soft);
+    box-shadow: inset 0 0 0 1px var(--accent-glow);
+}
+
+/* In the overlay menu it goes full width, with real tap targets */
+.menu .vswitch { display: flex; padding: 0.3rem; border-radius: var(--radius-sm); }
+.menu .vswitch__opt {
+    flex: 1;
+    justify-content: center;
+    min-height: 46px;
+    font-size: 0.72rem;
+    border-radius: calc(var(--radius-sm) - 0.2rem);
+}
+
+/* --------------------------------------------------------------------------
    Hero
    -------------------------------------------------------------------------- */
 .hero {
@@ -1604,7 +1659,7 @@ body::before {
 }
 
 @media (max-width: 900px) {
-    .nav__list, .nav__cta { display: none; }
+    .nav__list, .nav__cta, .nav .vswitch { display: none; }
     .nav-toggle { display: grid; }
 
     .hero__row { grid-template-columns: 1fr; }

@@ -69,6 +69,46 @@ function initHeader() {
 }
 
 /* --------------------------------------------------------------------------
+   Design switcher: carry the reader's place across to the other design
+   -------------------------------------------------------------------------- */
+function initVersionSwitch() {
+    const opts = [...document.querySelectorAll('.vswitch__opt[data-to]')];
+    if (!opts.length) return;
+
+    // Both designs carry the same section ids, so switching halfway down the page
+    // can land on the same section. The nav's own hrefs are the safe list: any id
+    // linked here exists in the other design too.
+    const sections = [...document.querySelectorAll('.nav__link[href^="#"]')]
+        .map((a) => document.querySelector(a.getAttribute('href')))
+        .filter((el, i, arr) => el && arr.indexOf(el) === i);
+
+    // Read the DOM rather than the scroll-spy: a programmatic jump can leave the
+    // observer a frame behind, and this only runs when the link is about to be used.
+    const sectionInView = () => {
+        const line = window.innerHeight * 0.35;
+        let hit = '';
+        sections.forEach((el) => {
+            const r = el.getBoundingClientRect();
+            if (r.top <= line && r.bottom > line) hit = `#${el.id}`;
+        });
+        return hit;
+    };
+
+    const sync = () => {
+        const hash = sections.length ? sectionInView() : window.location.hash;
+        opts.forEach((a) => { a.href = a.dataset.to + hash; });
+    };
+
+    sync();
+    window.addEventListener('hashchange', sync);
+    // refresh right before the link is used, so the target is never stale
+    opts.forEach((a) => {
+        a.addEventListener('pointerdown', sync);
+        a.addEventListener('focus', sync);
+    });
+}
+
+/* --------------------------------------------------------------------------
    Reveal on scroll
    -------------------------------------------------------------------------- */
 function initReveal() {
@@ -577,6 +617,7 @@ function initRecommendForm() {
    -------------------------------------------------------------------------- */
 const boot = () => {
     initHeader();
+    initVersionSwitch();
     initReveal();
     initCaseStudy();
     initContactForm();
