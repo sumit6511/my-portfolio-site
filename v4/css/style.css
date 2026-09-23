@@ -656,6 +656,7 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 .hero__portrait:hover { transform: rotate(0deg); box-shadow: 16px 16px 0 var(--ink); }
+.hero__portrait picture { display: block; }
 .hero__portrait img { width: 100%; filter: grayscale(1) contrast(1.15); }
 
 .hero__portrait figcaption {
@@ -1228,6 +1229,7 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 .log__body { display: grid; gap: 0.5rem; max-width: 64ch; justify-items: start; }
+.log__links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; }
 .log__where { font-family: var(--f-mono); font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
 .log__body p:not(.log__where) { color: var(--ink-2); font-size: 0.97rem; }
 
@@ -1331,7 +1333,7 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-.field { display: grid; gap: 0.35rem; }
+.field { display: grid; gap: 0.35rem; align-content: start; }   /* a message under one field mustn't stretch the input beside it */
 
 .field label {
     font-family: var(--f-mono);
@@ -1356,7 +1358,7 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 .field textarea { resize: vertical; min-height: 140px; line-height: 1.5; }
-.field input::placeholder, .field textarea::placeholder { color: #8b837a; }
+.field input::placeholder, .field textarea::placeholder { color: #6b645c; }   /* 4.5:1+ on paper, card and the error tint */
 
 .field input:focus,
 .field textarea:focus,
@@ -1366,7 +1368,34 @@ input, textarea, select { font: inherit; color: inherit; }
     box-shadow: var(--sh-sm);
 }
 
-.field input.error, .field textarea.error, .field select.error { background: #ffe3dc; box-shadow: 4px 4px 0 var(--coral); }
+.field input.error, .field textarea.error, .field select.error,
+.field [aria-invalid="true"] { background: #ffe3dc; box-shadow: 4px 4px 0 var(--coral); }
+
+/* the message under a field: announced (aria-describedby) and never colour alone */
+.field__error {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--coral-deep);
+}
+.field__error::before {
+    content: "!";
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 1.15rem;
+    height: 1.15rem;
+    border: 2px solid var(--ink);
+    background: var(--coral);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 0.68rem;
+}
 
 .field--select { position: relative; }
 .field--select select { padding-right: 2.5rem; cursor: pointer; }
@@ -1386,6 +1415,8 @@ input, textarea, select { font: inherit; color: inherit; }
 }
 
 .success-message { display: grid; gap: 0.6rem; justify-items: start; }
+.success-message:focus { outline: none; }   /* focused only so it's announced; it isn't a control */
+.success-message .btn { margin-top: 0.75rem; }
 .success-message .icon { font-size: 2rem; stroke-width: 2.5; }
 .success-message h3 { font-family: var(--f-display); font-size: 1.5rem; text-transform: uppercase; line-height: 1; }
 .success-message p { color: var(--ink-2); }
@@ -1577,6 +1608,14 @@ input, textarea, select { font: inherit; color: inherit; }
 
 .recommend__intro { display: grid; gap: 1rem; justify-items: start; }
 .recommend__intro p { color: var(--ink-2); max-width: 40ch; }
+
+/* Collapsed, the card is one row — the pitch, then its button — instead of half a card */
+@media (min-width: 720px) {
+    .recommend:has(.recommend__form[hidden]) { grid-template-columns: minmax(0, 1fr); }
+    .recommend:has(.recommend__form[hidden]) .recommend__intro { grid-template-columns: minmax(0, 1fr) auto; column-gap: 3rem; }
+    .recommend:has(.recommend__form[hidden]) .recommend__intro > * { grid-column: 1; }
+    .recommend:has(.recommend__form[hidden]) .recommend__intro > .btn { grid-column: 2; grid-row: 1 / span 3; align-self: end; }
+}
 .recommend__form { display: grid; gap: 0.9rem; }
 .recommend__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .recommend .form { border: var(--bd); box-shadow: var(--sh); }
@@ -1605,6 +1644,11 @@ input, textarea, select { font: inherit; color: inherit; }
     .pj--featured .pj__media { flex-basis: 48%; }
     .pj--compact { grid-template-columns: auto 90px minmax(0, 1.4fr) auto; gap: 1rem; }
 }
+
+/* The hero's intro, actions and details rise in with CSS from first paint. They used
+   to wait for script.js to run the scroll reveal, which delayed them on phones. */
+.js [data-hero] { animation: hero-rise 0.7s var(--ease) both; animation-delay: calc(0.1s + var(--d, 0) * 70ms); }
+@keyframes hero-rise { from { opacity: 0; transform: translateY(14px); } }
 
 /* the last few pixels before the nav collapses */
 @media (min-width: 921px) and (max-width: 1000px) {
@@ -1707,6 +1751,7 @@ input, textarea, select { font: inherit; color: inherit; }
         animation-iteration-count: 1 !important;
     }
     .js [data-reveal] { opacity: 1; transform: none; }
+    .js [data-hero] { animation: none; }
     .marquee__track { animation: none; transform: none; }
     .ticker .ticker__track { animation: none; transform: none; }
     .pj:hover, .btn:hover, .tchip:hover, .repo:hover, .res:hover, .tab:hover, .fact--link:hover, .wordmark:hover { transform: none; }

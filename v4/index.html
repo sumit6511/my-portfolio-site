@@ -22,7 +22,7 @@
     <link rel="preload" href="../fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/style.css?v=5a7dbb80">
+    <link rel="stylesheet" href="css/style.css?v=b3625805">
     <script>document.documentElement.classList.add('js');</script>
 </head>
 <body id="top">
@@ -63,7 +63,7 @@
                     <a class="vswitch__opt" href="index.html" data-to="index.html" aria-label="Brutalist design" aria-current="page">Brutalist</a>
                 </div>
                 <button class="term-btn" type="button" data-terminal="../terminal/terminal.js?v=4e24f6b8" data-tip="Terminal mode · press `" aria-label="Open terminal mode" aria-keyshortcuts="`" hidden><span aria-hidden="true">&gt;<span class="term-btn__cursor">_</span></span></button>
-                <a class="btn btn--yellow btn--sm nav__cta" href="#contact">Let's talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn--yellow btn--sm nav__cta" href="#contact">Let’s talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
             </nav>
         </div>
@@ -102,27 +102,30 @@
                         <span class="is-marked">Sah</span>
                     </h1>
                     <figure class="hero__portrait">
-                        <img src="../images/profile.jpg" width="720" height="720" alt="Black-and-white portrait of Sumit Sah wearing round sunglasses, outdoors.">
+                        <picture>
+                            <source type="image/webp" srcset="../images/profile-480.webp 480w, ../images/profile-720.webp 720w" sizes="(min-width: 1440px) 436px, (min-width: 921px) 31vw, (min-width: 640px) 47vw, 370px">
+                            <img src="../images/profile.jpg" width="720" height="720" fetchpriority="high" alt="Black-and-white portrait of Sumit Sah wearing round sunglasses, outdoors.">
+                        </picture>
                         <figcaption><span>Sumit Sah</span><span>KTM</span></figcaption>
                     </figure>
                 </div>
 
                 <div class="hero__row">
-                    <p class="lede hero__intro" data-reveal>I'm Sumit Sah — a Computer Science student in Kathmandu building modern web applications and machine-learning projects, from NLP and retrieval-augmented systems to a daily puzzle platform, an API monitor and real-time backends.</p>
-                    <div class="hero__actions" data-reveal style="--d:1">
+                    <p class="lede hero__intro" data-hero>I’m Sumit Sah — a Computer Science student in Kathmandu building modern web applications and machine-learning projects, from NLP and retrieval-augmented systems to a daily puzzle platform, an API monitor and real-time backends.</p>
+                    <div class="hero__actions" data-hero style="--d:1">
                         <a class="btn btn--yellow" href="#work">View work<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                         <a class="btn btn--ink" href="#contact">Contact</a>
                     </div>
                 </div>
 
-                <dl class="hero__meta" data-reveal style="--d:2">
+                <dl class="hero__meta" data-hero style="--d:2">
                     <div>
                         <dt class="label">Based in</dt>
                         <dd>Kathmandu, Nepal</dd>
                     </div>
                     <div>
                         <dt class="label">Studying</dt>
-                        <dd>B.Sc. CSIT · St. Xavier's College</dd>
+                        <dd>B.Sc. CSIT · St. Xavier’s College</dd>
                     </div>
                     <div>
                         <dt class="label">Focus</dt>
@@ -170,7 +173,7 @@
                             </div>
                             <h3 class="pj__title">VoxTube</h3>
                             <p class="pj__kicker">AI-powered YouTube comment analysis platform.</p>
-                            <p class="pj__desc">A full-stack NLP platform that runs a video's comments through a multi-stage pipeline — sentiment, toxicity, topics — with a RAG chat to query the discussion and PDF/Excel report export.</p>
+                            <p class="pj__desc">A full-stack NLP platform that runs a video’s comments through a multi-stage pipeline — sentiment, toxicity, topics — with a RAG chat to query the discussion and PDF/Excel report export.</p>
                             <ul class="pj__stack"><li>React</li><li>FastAPI</li><li>Transformers</li><li>BERTopic</li><li>FAISS</li><li>RAG</li><li>Ollama</li></ul>
                             <div class="pj__links">
                                 <button class="btn btn--coral btn--sm" type="button" data-case-study>Case study<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
@@ -273,7 +276,7 @@
                                     <li>Drag-and-drop upload of multiple PDFs with live processing status</li>
                                     <li>Sentence-aware chunking, local embeddings with no external API calls, and real semantic retrieval with Atlas Vector Search</li>
                                     <li>Source citations (file, page, relevance score) on every answer, and an in-browser PDF viewer that jumps to the cited page</li>
-                                    <li>A relevance threshold so it says "I don't know" instead of guessing; per-conversation document scoping and history-aware follow-ups</li>
+                                    <li>A relevance threshold so it says "I don’t know" instead of guessing; per-conversation document scoping and history-aware follow-ups</li>
                                     <li>FastAPI + Pydantic backend, React + TypeScript + Tailwind frontend, Docker Compose, CI, pytest and Vitest suites</li>
                                 </ul>
                             </section>
@@ -387,7 +390,7 @@
                             </dl>
                             <section>
                                 <h3>Overview</h3>
-                                <p>A backend for financial transactions built on the double-entry model, where every transfer is recorded as balanced debit and credit entries. The interesting part is the guarantees around it: requests can't be replayed by accident, and a transfer either fully happens or doesn't happen at all.</p>
+                                <p>A backend for financial transactions built on the double-entry model, where every transfer is recorded as balanced debit and credit entries. The interesting part is the guarantees around it: requests can’t be replayed by accident, and a transfer either fully happens or doesn’t happen at all.</p>
                             </section>
                             <section>
                                 <h3>What it does</h3>
@@ -427,7 +430,7 @@
                             </dl>
                             <section>
                                 <h3>Overview</h3>
-                                <p>A small real-time app: every connected browser shares its geolocation over a WebSocket connection, and everyone sees each other's position update live on a Leaflet map.</p>
+                                <p>A small real-time app: every connected browser shares its geolocation over a WebSocket connection, and everyone sees each other’s position update live on a Leaflet map.</p>
                             </section>
                             <section>
                                 <h3>What it does</h3>
@@ -587,9 +590,9 @@
                 <div class="about__grid">
                     <div class="about__copy">
                         <p class="about__statement" data-reveal>A Computer Science student who is happiest building <em>complete things</em> — the model, the API and the interface.</p>
-                        <p data-reveal style="--d:1">I'm studying B.Sc. CSIT at St. Xavier's College in Kathmandu, and I'm passionate about software development, machine learning and technology that's actually useful. I like projects that push my boundaries and teach me something new.</p>
+                        <p data-reveal style="--d:1">I’m studying B.Sc. CSIT at St. Xavier’s College in Kathmandu, and I’m passionate about software development, machine learning and technology that’s actually useful. I like projects that push my boundaries and teach me something new.</p>
                         <p data-reveal style="--d:2">Lately that has meant full-stack applications — React on the front, Node.js, Fastify or FastAPI behind it, MongoDB or PostgreSQL underneath — and machine-learning work like natural-language processing and retrieval-augmented generation.</p>
-                        <p data-reveal style="--d:3">When I'm not coding, I'm exploring new technologies, reading tech blogs, contributing to open-source projects, or out on a trail.</p>
+                        <p data-reveal style="--d:3">When I’m not coding, I’m exploring new technologies, reading tech blogs, contributing to open-source projects, or out on a trail.</p>
                     </div>
                     <div class="about__cols">
                         <div class="fact--pair">
@@ -729,7 +732,7 @@
                         <span class="log__when">Now</span>
                         <div class="log__body">
                             <h3 class="h3">B.Sc. CSIT</h3>
-                            <p class="log__where">St. Xavier's College · Tribhuvan University · Kathmandu</p>
+                            <p class="log__where">St. Xavier’s College · Tribhuvan University · Kathmandu</p>
                             <p>Computer science and information technology — programming, data structures and algorithms, databases, web development and machine learning, alongside the project work on this page.</p>
                         </div>
                     </li>
@@ -739,7 +742,7 @@
                             <h3 class="h3">Final year project — VoxTube</h3>
                             <p class="log__where">Full-stack NLP platform · React · FastAPI · RAG</p>
                             <p>Sentiment, toxicity and topic analysis of YouTube comments, with a RAG-powered chat and PDF/Excel reporting.</p>
-                            <a class="link" href="#work">See the project<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                            <a class="link" href="#project-voxtube" data-jump>See the project<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                         </div>
                     </li>
                     <li class="log__item" data-reveal>
@@ -748,6 +751,7 @@
                             <h3 class="h3">Group project — Nepal Gov Portal</h3>
                             <p class="log__where">React · TypeScript · Express</p>
                             <p>Prototyped a unified government services portal for Nepal with a team — service applications, bill payments and health insurance claims in one place.</p>
+                            <a class="link" href="#project-nepal-gov-portal" data-jump>See the project<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                         </div>
                     </li>
                     <li class="log__item" data-reveal>
@@ -756,7 +760,10 @@
                             <h3 class="h3">GenAI Training Workshop</h3>
                             <p class="log__where">Python</p>
                             <p>Hands-on training with project work, including an Inventory Management System built in Python and Tkinter.</p>
-                            <a class="link" href="https://github.com/sumit6511/GenAI-Training-Workshop" target="_blank" rel="noopener noreferrer">Workshop repository<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            <div class="log__links">
+                                <a class="link" href="#project-inventory-management-system" data-jump>See the project<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                                <a class="link" href="https://github.com/sumit6511/GenAI-Training-Workshop" target="_blank" rel="noopener noreferrer">Workshop repository<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
+                            </div>
                         </div>
                     </li>
                 </ol>
@@ -881,6 +888,6 @@
         </div>
     </dialog>
 
-    <script src="js/script.js?v=b8fd46ae" defer></script>
+    <script src="js/script.js?v=07a5bfb3" defer></script>
 </body>
 </html>
