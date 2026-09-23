@@ -116,6 +116,70 @@ function initVersionSwitch() {
 }
 
 /* --------------------------------------------------------------------------
+   Terminal mode: an alternate, keyboard-first way through the same content.
+   The module (terminal/terminal.js) is fetched on the first sign of intent —
+   hover, focus, click or the ` key — so the page pays nothing for it until
+   someone actually asks. It is a classic script, not a module, so it also
+   loads when the site is opened from disk.
+   -------------------------------------------------------------------------- */
+function initTerminal() {
+    const triggers = [...document.querySelectorAll('[data-terminal]')];
+    if (!triggers.length) return;
+
+    const isShortcut = (e) => {
+        if (e.key !== '`' || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return false;
+        const target = e.composedPath()[0];
+        return !target.closest?.('input, textarea, select, [contenteditable]') && !document.querySelector('dialog[open]');
+    };
+
+    // Pages without the portfolio content (resources) hand off to the home page's #terminal
+    const handoff = triggers.find((t) => t.tagName === 'A');
+    if (handoff) {
+        if (window.location.protocol !== 'file:') handoff.href = handoff.href.replace(/index\.html(?=#)/, '');
+        triggers.forEach((t) => { t.hidden = false; });
+        document.addEventListener('keydown', (e) => {
+            if (!isShortcut(e)) return;
+            e.preventDefault();
+            handoff.click();
+        });
+        return;
+    }
+
+    let loading = null;
+    const load = () => {
+        if (!loading) {
+            loading = new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = triggers[0].dataset.terminal;
+                script.onload = () => (window.SumitTerminal ? resolve(window.SumitTerminal) : reject(new Error('terminal missing')));
+                script.onerror = reject;
+                document.head.append(script);
+            }).catch((err) => { loading = null; throw err; });
+        }
+        return loading;
+    };
+    const visible = () => triggers.find((t) => t.offsetParent !== null) || null;
+    const open = (options) => load().then((terminal) => terminal.open(options)).catch(() => { /* offline: the site is unaffected */ });
+
+    triggers.forEach((t) => {
+        t.hidden = false;
+        t.addEventListener('pointerenter', () => load().catch(() => {}), { once: true });
+        t.addEventListener('focus', () => load().catch(() => {}), { once: true });
+        t.addEventListener('click', () => open({ opener: t }));
+    });
+    document.addEventListener('keydown', (e) => {
+        if (!isShortcut(e)) return;
+        e.preventDefault();
+        open({ opener: visible() });
+    });
+
+    // #terminal in the URL opens it: shared links, the resources-page hand-off, forward navigation
+    const fromHash = () => { if (window.location.hash === '#terminal') open({ opener: visible(), push: false }); };
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+}
+
+/* --------------------------------------------------------------------------
    Reveal on scroll
    -------------------------------------------------------------------------- */
 function initReveal() {
@@ -625,6 +689,7 @@ function initRecommendForm() {
 const boot = () => {
     initHeader();
     initVersionSwitch();
+    initTerminal();
     initReveal();
     initCaseStudy();
     initContactForm();

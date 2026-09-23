@@ -24,6 +24,7 @@
     --accent-ink: #0a0a0c;
     --accent-soft: rgba(139, 140, 248, 0.14);
     --accent-glow: rgba(139, 140, 248, 0.32);
+    --term-accent: var(--accent);   /* terminal mode (terminal/terminal.js) takes its accent from here */
 
     /* Type */
     --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -410,6 +411,8 @@ body::before {
 .wordmark {
     display: inline-flex;
     align-items: center;
+    flex: none;          /* never squeezed onto two lines by a crowded nav */
+    white-space: nowrap;
     gap: 0.7rem;
     font-weight: 800;
     font-size: 0.9rem;
@@ -603,6 +606,55 @@ body::before {
     font-size: 0.72rem;
     border-radius: calc(var(--radius-sm) - 0.2rem);
 }
+
+/* --------------------------------------------------------------------------
+   Terminal mode entry — a quiet >_ beside the design switcher. It stays in
+   the header at every width, so phones get it without opening the menu.
+   -------------------------------------------------------------------------- */
+.term-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-2);
+    transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+
+.term-btn:hover { color: var(--accent-strong); background: var(--surface-2); border-color: var(--border-strong); }
+.term-btn__cursor { display: inline-block; }
+.term-btn:hover .term-btn__cursor,
+.term-btn:focus-visible .term-btn__cursor { animation: term-blink 1.05s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+
+/* the glyph speaks to developers; the label on hover/focus speaks to everyone else */
+.term-btn::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    background: var(--surface-3);
+    color: var(--text);
+    font-size: 0.7rem;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+}
+
+.term-btn:hover::after,
+.term-btn:focus-visible::after { opacity: 1; transform: none; }
 
 /* --------------------------------------------------------------------------
    Hero
@@ -1670,13 +1722,26 @@ body::before {
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
+    /* just above the nav breakpoint the header is full: the switcher drops its "Design"
+       label (the group keeps its accessible name) and the links close up a little */
+    .nav .vswitch__label { display: none; }
+    .nav__link { padding-inline: 0.55rem; }
+
     .project--featured .project__media { flex-basis: 50%; }
     .stack__group, .timeline__item { grid-template-columns: 160px minmax(0, 1fr); }
     .stack__uses { margin-left: calc(160px + 2rem); }
 }
 
+/* the last few pixels before the nav collapses */
+@media (min-width: 901px) and (max-width: 960px) {
+    .site-header .container { gap: 1rem; }
+    .nav__link { padding-inline: 0.45rem; }
+}
+
 @media (max-width: 900px) {
     .nav__list, .nav__cta, .nav .vswitch { display: none; }
+    .term-btn { width: 44px; height: 44px; }
+    .term-btn::after { display: none; }
     .nav-toggle { display: grid; }
 
     .hero__row { grid-template-columns: 1fr; }

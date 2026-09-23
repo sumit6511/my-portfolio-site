@@ -14,6 +14,7 @@ A single editorial page plus a resources page, built with plain HTML, CSS and Ja
 | `resources.html` | Curated courses, books, tools and websites, plus a "recommend a resource" form |
 | `about.html`, `projects.html`, `contact.html` | Redirect stubs for the old multi-page URLs (`/#about`, `/#work`, `/#contact`) |
 | `v2/` | The previous version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`). Also tagged `v2.0` in git. |
+| `terminal/terminal.js` | **Terminal mode** — a keyboard-first shell over either design, opened from the `>_` button in the header (or the `` ` `` key). See below. |
 | `v4/` | An alternative **Neo-Brutalist** design of the same content, browsable at [/v4/](https://www.sumit-sah.com.np/v4/) (`noindex`). Same projects, links and forms; its own `v4/css/style.css` and `v4/js/script.js`. |
 
 In `v4/`, the stack is three drifting rows of tech marks. Brand icons come from [Simple Icons](https://simpleicons.org) (CC0; trademarks belong to their owners) and the concepts without a logo — RAG, embeddings, data structures and so on — use glyphs drawn for this site. Both live in an inline sprite as `<symbol id="t-…">`; `ICONS` in the page generator maps each label to one. Rows pause on hover and on keyboard focus, and wrap into a static grid when motion is reduced or JS is off.
@@ -34,6 +35,16 @@ Both share `/images`, `/fonts`, the Formspree endpoint and the same project data
 **Switching between them.** Every page with a header carries a `.vswitch` control — in the header on desktop, and as a full-width row in the mobile menu, since the header copy is hidden below the nav breakpoint. Both copies are plain relative links (`index.html` ↔ `v4/index.html`, `resources.html` ↔ `v4/resources.html`), so they work with JavaScript off and when the repo is opened from disk; when the site is actually served, `sync()` rewrites them to the clean `/` and `/v4/` URLs. With JS on, `initVersionSwitch()` appends the section you are currently reading, so switching halfway down the page lands on the same section in the other design. It reads the section from the DOM at the moment the link is used rather than from the scroll-spy, which can lag a frame behind a jump. The ids it may use are taken from the nav's own hrefs, so it can only ever point at a section that exists in both designs.
 
 To add a third design, give it a directory, add an option to the `.vswitch` group on every page (the `data-to` attribute is the target; `aria-current="page"` marks the one you are on) and style `.vswitch` in that design's stylesheet.
+
+### Terminal mode
+
+The `>_` button in the header (or the `` ` `` key, or a link to `#terminal`) opens a full-screen shell over the page: `help`, `about`, `projects`, `open <name|number>`, `stack [tool]`, `experience`, `education`, `journey`, `github`, `contact`, plus `ls` / `cd` / `cat` / `pwd`, `history`, `clear`, `exit` — and an easter egg. It is an alternate way in, not a second site: closing it (Esc, `exit`, the button, or browser Back) returns to the same scroll position.
+
+- **No content of its own.** Every fact it prints is read from the page it was opened on — the project cards and their `<template>` case studies, the stack, journey, about and contact sections, the hero's details. Edit the page and the terminal follows. It reads shared hooks (`data-project`, section ids, `<template>`) and BEM suffixes (`__title`, `__desc`, `__stack` …), which is why one file serves both designs. `experience` and `education` split the Journey section: the entry whose title matches the About section's *Education* value is education, the rest is experience.
+- **Costs nothing until used.** `initTerminal()` in each design's `script.js` fetches `terminal/terminal.js` on the first hover, focus, click or key press. It is a classic script (not a module), so it also works from disk.
+- **Isolated.** It renders into a shadow root, so neither design's CSS reaches in. The one thing it takes from the host is its accent: `--term-accent` in each stylesheet's `:root` (indigo here, yellow in v4). It adds `terminal-open` to `<html>` and fires `terminal:open` / `terminal:close` on `document` so a page can pause work underneath — v3's hero canvas and v4's marquees do.
+- **Accessible.** A modal `<dialog>` with a labelled input and a polite live log, so command output is announced; every command is also a button, the six quick commands sit in a bar at the bottom, and on touch screens it never focuses the input on its own, so the keyboard only appears when asked for. Reduced motion skips the reveal and the typed boot.
+- The resources pages have no portfolio content to read, so their `>_` is a link to `index.html#terminal`.
 
 - Dark, near-black surfaces with one indigo accent (`--accent`), thin borders and a light grain.
 - Typography: [Manrope](https://fonts.google.com/specimen/Manrope) for display and body, [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for labels and metadata.
@@ -73,6 +84,8 @@ python -m http.server 8000
 
 Any static server works. The site is deployed with GitHub Pages using the custom domain in `CNAME`.
 
+**Bump `?v=` when you change a stylesheet or script.** The domain is proxied through Cloudflare, which keeps `.css` and `.js` files at the edge for up to 4 hours but always serves the HTML fresh. Each page therefore loads its assets with a version query — `css/style.css?v=b1421707`, and the same on `js/script.js` and `data-terminal="…/terminal.js?v=…"`. Change the file, change the value (the first 8 characters of `sha1sum <file>` is a good one, and any new value works); otherwise visitors can get the new HTML with the old CSS or JS for hours.
+
 Every link and asset path in the pages is **relative**, so you can also just open `index.html` from the file manager and click through the whole site, `/v4/` included. One caveat: browsers refuse to load `@font-face` files over `file://` (CORS), so opened that way the pages fall back to system fonts. Use the server above to see the real typography. `404.html` is the deliberate exception — it keeps absolute paths, because GitHub Pages serves it from whatever URL was missed.
 
 ## Structure
@@ -86,6 +99,7 @@ my-portfolio-site/
 ├── css/style.css
 ├── fonts/                 # self-hosted woff2: Manrope, Space Grotesk, Archivo Black, JetBrains Mono
 ├── js/script.js
+├── terminal/terminal.js   # terminal mode, shared by both designs, loaded on first use
 ├── images/
 │   ├── covers/            # project cover illustrations (SVG)
 │   ├── og.png             # social sharing image

@@ -49,6 +49,7 @@
     --coral: #ff5a36;
     /* coral is a background accent; as text on paper or card it needs this one */
     --coral-deep: #b33f26;
+    --term-accent: var(--yellow);   /* terminal mode (terminal/terminal.js) takes its accent from here */
     --blue: #2f4fff;
     --mint: #00c98d;
 
@@ -366,6 +367,8 @@ input, textarea, select { font: inherit; color: inherit; }
 .wordmark {
     display: inline-flex;
     align-items: center;
+    flex: none;          /* never squeezed onto two lines by a crowded nav */
+    white-space: nowrap;
     gap: 0.5rem;
     padding: 0.4rem 0.7rem;
     border: 2px solid var(--ink);
@@ -520,6 +523,59 @@ input, textarea, select { font: inherit; color: inherit; }
 .menu .vswitch__label { border-right-width: var(--bd-w); }
 .menu .vswitch__opt + .vswitch__opt { border-left-width: var(--bd-w); }
 .menu .vswitch__opt { flex: 1; justify-content: center; min-height: 50px; font-size: 0.78rem; }
+
+/* --------------------------------------------------------------------------
+   Terminal mode entry — an ink-ruled >_ plate beside the design switcher.
+   It stays in the header at every width, so phones get it too.
+   -------------------------------------------------------------------------- */
+.term-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border: 2px solid var(--ink);
+    background: var(--card);
+    font-family: var(--f-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.term-btn:hover { background: var(--ink); color: var(--yellow); }
+.term-btn__cursor { display: inline-block; }
+.term-btn:hover .term-btn__cursor,
+.term-btn:focus-visible .term-btn__cursor { animation: term-blink 1.05s steps(1) infinite; }
+@keyframes term-blink { 50% { opacity: 0; } }
+
+.term-btn::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    padding: 0.35rem 0.6rem;
+    border: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: var(--sh-sm);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.term-btn:hover::after,
+.term-btn:focus-visible::after { opacity: 1; transform: none; }
+
+/* nothing to animate under the terminal while it covers the page */
+.terminal-open .marquee__track,
+.terminal-open .ticker__track { animation-play-state: paused; }
 
 /* --------------------------------------------------------------------------
    Hero
@@ -1541,12 +1597,28 @@ input, textarea, select { font: inherit; color: inherit; }
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
+    /* just above the nav breakpoint the header is full: the switcher drops its "Design"
+       label (the group keeps its accessible name) and the links close up a little */
+    .nav .vswitch__label { display: none; }
+    .nav__link { padding-inline: 0.45rem; }
+
     .pj--featured .pj__media { flex-basis: 48%; }
     .pj--compact { grid-template-columns: auto 90px minmax(0, 1.4fr) auto; gap: 1rem; }
 }
 
+/* the last few pixels before the nav collapses */
+@media (min-width: 921px) and (max-width: 1000px) {
+    .site-header .container { gap: 0.75rem; }
+    .nav { gap: 0.25rem; }
+    .nav__link { padding-inline: 0.35rem; }
+    .nav .vswitch__opt { padding-inline: 0.55rem; }
+    .nav__cta { margin-left: 0.25rem; }
+}
+
 @media (max-width: 920px) {
     .nav__list, .nav__cta, .nav .vswitch { display: none; }
+    .term-btn { width: 46px; height: 46px; }
+    .term-btn::after { display: none; }
     .nav-toggle { display: grid; }
 
     .hero__name { grid-column: 1 / 13; }
