@@ -40,28 +40,29 @@ function initHeaderMenu() {
         header.classList.toggle('scrolled', window.scrollY > 50);
     };
 
-    const toggleMenu = () => {
-        const isOpen = !navLinks.classList.contains('active');
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        hamburger.setAttribute('aria-expanded', String(isOpen));
+    // While the drawer is open the page behind it is inert, so Tab stays in the menu
+    const covered = [document.querySelector('main'), document.querySelector('footer')].filter(Boolean);
+    const setMenu = (open) => {
+        navLinks.classList.toggle('active', open);
+        hamburger.classList.toggle('active', open);
+        document.body.classList.toggle('menu-open', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+        covered.forEach((el) => { el.inert = open; });
+        if (open) navLinks.querySelector('a')?.focus({ preventScroll: true });
     };
+    const isOpen = () => navLinks.classList.contains('active');
 
-    hamburger.addEventListener('click', toggleMenu);
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            }
-        });
+    hamburger.addEventListener('click', () => setMenu(!isOpen()));
+    navLinksItems.forEach(item => item.addEventListener('click', () => { if (isOpen()) setMenu(false); }));
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || !isOpen()) return;
+        setMenu(false);
+        hamburger.focus();
     });
+    window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => { if (e.matches && isOpen()) setMenu(false); });
 
     window.addEventListener('scroll', throttle(updateHeader));
-    updateHeader();
+    requestAnimationFrame(updateHeader);   // reading scrollY during start-up forced a layout
 }
 
 function initScrollProgress() {
@@ -81,40 +82,27 @@ function initScrollProgress() {
     updateProgress();
 }
 
+// Scroll reveal. Content is only hidden (html.aos-ready, see style.css) once this has run,
+// so without JS, without IntersectionObserver or with reduced motion everything simply shows.
 function initScrollAnimations() {
     const elements = document.querySelectorAll('[data-aos]');
-    if (!elements.length) return;
+    if (!elements.length || prefersReducedMotion || !('IntersectionObserver' in window)) return;
 
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aos-animate');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            rootMargin: '0px 0px -15% 0px',
-            threshold: 0.1,
-        });
-
-        elements.forEach(element => observer.observe(element));
-        return;
-    }
-
-    const animateOnScroll = () => {
-        const windowHeight = window.innerHeight;
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            if (elementPosition < windowHeight * 0.85) {
-                element.classList.add('aos-animate');
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aos-animate');
+                obs.unobserve(entry.target);
             }
         });
-    };
+    }, {
+        root: null,
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.08,
+    });
 
-    window.addEventListener('scroll', throttle(animateOnScroll, 100), { passive: true });
-    animateOnScroll();
+    document.documentElement.classList.add('aos-ready');
+    elements.forEach(element => observer.observe(element));
 }
 
 function initProjectCardHover() {
@@ -151,6 +139,8 @@ function createParticles() {
     if (prefersReducedMotion) return;
 
     const existingContainer = document.querySelector('.particles-container');
+    const wanted = window.innerWidth < 576 ? 16 : window.innerWidth < 992 ? 28 : 40;
+    if (existingContainer && existingContainer.dataset.count === String(wanted)) return;   // resize within a band: keep them
     if (existingContainer) {
         existingContainer.remove();
     }
@@ -160,7 +150,8 @@ function createParticles() {
     document.body.insertBefore(particlesContainer, document.body.firstChild);
 
     const screenWidth = window.innerWidth;
-    const numberOfParticles = screenWidth < 576 ? 30 : screenWidth < 992 ? 60 : 90;
+    const numberOfParticles = screenWidth < 576 ? 16 : screenWidth < 992 ? 28 : 40;   // was 30 / 60 / 90
+    particlesContainer.dataset.count = String(numberOfParticles);
 
     for (let i = 0; i < numberOfParticles; i++) {
         const particle = document.createElement('div');
@@ -223,9 +214,13 @@ function initContactForm() {
     const contactForm = document.querySelector('.contact-form');
     if (!contactForm) return;
 
+    // Without JS the browser's own validation guards the plain POST; with JS these
+    // messages take over, so they look the same everywhere and are announced.
+    contactForm.noValidate = true;
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const submitLabel = submitBtn ? submitBtn.textContent : '';
+    const submitLabel = submitBtn ? submitBtn.innerHTML : '';
     let errorMessage = null;
+    watchFields(contactForm);
 
     const showError = () => {
         if (!errorMessage) {
@@ -235,28 +230,16 @@ function initContactForm() {
             // Appended last so it doesn't shift the nth-child positions the grid layout relies on.
             contactForm.appendChild(errorMessage);
         }
-        errorMessage.textContent = "Something went wrong sending your message. Please try again, or email me directly instead.";
+        errorMessage.textContent = 'Something went wrong sending your message. Please try again, or email me directly instead.';
     };
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        let valid = true;
-
-        formInputs.forEach(input => {
-            if (!input.value.trim()) {
-                valid = false;
-                input.classList.add('error');
-            } else {
-                input.classList.remove('error');
-            }
-        });
-
-        if (!valid) return;
+        if (!validateForm(contactForm)) return;
 
         if (submitBtn) {
             submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
+            submitBtn.textContent = 'Sending…';
         }
         if (errorMessage) errorMessage.remove();
         errorMessage = null;
@@ -267,25 +250,99 @@ function initContactForm() {
                 headers: { Accept: 'application/json' },
                 body: new FormData(contactForm),
             });
-
             if (!response.ok) throw new Error('Form submission failed');
 
+            // swap the fields for a confirmation, keeping them to put back for another message
+            const fields = [...contactForm.children];
             const successMessage = document.createElement('div');
             successMessage.className = 'success-message';
+            successMessage.setAttribute('role', 'status');
+            successMessage.tabIndex = -1;
             successMessage.innerHTML = `
-                <i class="fas fa-check-circle"></i>
+                <svg class="ic" aria-hidden="true"><use href="#ic-check-circle"/></svg>
                 <h3>Message Sent Successfully!</h3>
-                <p>Thank you for reaching out. I&#39;ll get back to you as soon as possible.</p>
+                <p>Thank you for reaching out. I’ll get back to you as soon as possible.</p>
+                <button class="btn secondary-btn" type="button">Send another message</button>
             `;
-            contactForm.innerHTML = '';
-            contactForm.appendChild(successMessage);
+            contactForm.replaceChildren(successMessage);
+            successMessage.focus({ preventScroll: true });   // the button that had focus is gone
+            successMessage.querySelector('button').addEventListener('click', () => {
+                contactForm.replaceChildren(...fields);
+                contactForm.reset();   // after re-attaching: reset() only clears fields that are in the form
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = submitLabel; }
+                contactForm.querySelector('input:not([type="hidden"]):not([tabindex="-1"])')?.focus();
+            });
         } catch (err) {
             showError();
             if (submitBtn) {
                 submitBtn.disabled = false;
-                submitBtn.textContent = submitLabel;
+                submitBtn.innerHTML = submitLabel;
             }
         }
+    });
+}
+
+/* Form validation, as on the current site: a message under each problem field, tied
+   to it with aria-describedby and aria-invalid, so it is announced and never relies
+   on a coloured border alone. */
+function fieldError(field) {
+    if (field.type === 'hidden' || field.disabled || field.tabIndex === -1 || field.type === 'submit') return '';
+    const value = field.value.trim();
+    if (field.required && !value) return field.tagName === 'SELECT' ? 'Choose an option.' : 'This field is required.';
+    if (value && field.validity.typeMismatch) {
+        if (field.type === 'email') return 'Enter a valid email address, like you@example.com.';
+        if (field.type === 'url') return 'Enter a full link, starting with https://';
+    }
+    return '';
+}
+
+function setFieldError(field, message) {
+    const id = `${field.id || field.name}-error`;
+    let note = document.getElementById(id);
+    field.classList.toggle('error', !!message);
+    if (!message) {
+        note?.remove();
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+        return;
+    }
+    if (!note) {
+        note = document.createElement('p');
+        note.className = 'field__error';
+        note.id = id;
+        // after the field — or after the select's wrapper, so the chevron stays centred
+        const anchor = field.closest('.select-wrap') || field;
+        anchor.insertAdjacentElement('afterend', note);
+    }
+    note.textContent = message;
+    field.setAttribute('aria-invalid', 'true');
+    field.setAttribute('aria-describedby', id);
+}
+
+function validateForm(form) {
+    let first = null;
+    form.querySelectorAll('input, select, textarea').forEach((field) => {
+        const message = fieldError(field);
+        setFieldError(field, message);
+        if (message && !first) first = field;
+    });
+    first?.focus();
+    return !first;
+}
+
+// Clear a message as soon as it's fixed; check a filled-in field when the visitor
+// moves on. While a button is being pressed the blur check stands down: a message
+// appearing then would move Send out from under the pointer and lose the click.
+function watchFields(form) {
+    let pressing = false;
+    form.addEventListener('pointerdown', (e) => { pressing = !!e.target.closest('button'); });
+    document.addEventListener('pointerup', () => { setTimeout(() => { pressing = false; }); });
+
+    form.querySelectorAll('input, select, textarea').forEach((field) => {
+        const recheck = () => { if (field.getAttribute('aria-invalid') === 'true') setFieldError(field, fieldError(field)); };
+        field.addEventListener('input', recheck);
+        field.addEventListener('change', recheck);
+        field.addEventListener('blur', () => { if (!pressing && field.value.trim()) setFieldError(field, fieldError(field)); });
     });
 }
 
@@ -294,7 +351,7 @@ function initContactFaq() {
     if (!faqItems.length) return;
 
     const closeFaq = (item) => {
-        const icon = item.querySelector('.faq-icon i');
+        const icon = item.querySelector('.faq-icon .ic');
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
         if (!icon || !question || !answer) return;
@@ -302,12 +359,11 @@ function initContactFaq() {
         item.classList.remove('active');
         question.setAttribute('aria-expanded', 'false');
         answer.setAttribute('aria-hidden', 'true');
-        icon.classList.remove('fa-minus');
-        icon.classList.add('fa-plus');
+        icon.querySelector('use')?.setAttribute('href', '#ic-plus');
     };
 
     const openFaq = (item) => {
-        const icon = item.querySelector('.faq-icon i');
+        const icon = item.querySelector('.faq-icon .ic');
         const question = item.querySelector('.faq-question');
         const answer = item.querySelector('.faq-answer');
         if (!icon || !question || !answer) return;
@@ -315,18 +371,18 @@ function initContactFaq() {
         item.classList.add('active');
         question.setAttribute('aria-expanded', 'true');
         answer.setAttribute('aria-hidden', 'false');
-        icon.classList.remove('fa-plus');
-        icon.classList.add('fa-minus');
+        icon.querySelector('use')?.setAttribute('href', '#ic-minus');
     };
 
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        const icon = item.querySelector('.faq-icon i');
+        const icon = item.querySelector('.faq-icon .ic');
         const answer = item.querySelector('.faq-answer');
         if (!question || !icon || !answer) return;
 
         answer.setAttribute('aria-hidden', 'true');
         question.setAttribute('aria-expanded', 'false');
+        item.classList.add('is-collapsible');
 
         const handleToggle = () => {
             const isActive = item.classList.contains('active');
@@ -342,13 +398,8 @@ function initContactFaq() {
             }
         };
 
+        // a native button: Enter and Space already fire click, so no key handler (it would toggle twice)
         question.addEventListener('click', handleToggle);
-        question.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleToggle();
-            }
-        });
     });
 }
 
@@ -374,6 +425,10 @@ function initResourcesPage() {
         setTimeout(() => {
             recommendationForm.style.maxHeight = recommendationForm.scrollHeight + 'px';
         }, 20);
+        // Once open, let it grow: error messages would otherwise spill past the frozen height
+        setTimeout(() => {
+            if (!recommendationForm.hidden) recommendationForm.style.maxHeight = 'none';
+        }, 350);
         recommendBtn?.setAttribute('aria-expanded', 'true');
         if (recommendationSuccess) {
             recommendationSuccess.style.display = 'none';
@@ -396,22 +451,27 @@ function initResourcesPage() {
     }
 
     if (recommendBtn && recommendationForm && cancelBtn) {
+        // without JS the form is simply open and this toggle stays hidden
+        recommendBtn.hidden = false;
         hideRecommendationForm();
 
         recommendBtn.addEventListener('click', showRecommendationForm);
 
         cancelBtn.addEventListener('click', () => {
+            recommendationFormElement?.querySelectorAll('[aria-invalid]').forEach((field) => setFieldError(field, ''));
             hideRecommendationForm();
-            recommendBtn.style.display = 'inline-block';
         });
 
         if (recommendationFormElement) {
             const recommendSubmitBtn = recommendationFormElement.querySelector('button[type="submit"]');
             const recommendSubmitLabel = recommendSubmitBtn ? recommendSubmitBtn.innerHTML : '';
             let recommendError = null;
+            recommendationFormElement.noValidate = true;
+            watchFields(recommendationFormElement);
 
             recommendationFormElement.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                if (!validateForm(recommendationFormElement)) return;
 
                 if (recommendSubmitBtn) {
                     recommendSubmitBtn.disabled = true;
@@ -433,15 +493,17 @@ function initResourcesPage() {
 
                     if (recommendationSuccess) {
                         recommendationSuccess.style.display = 'block';
+                        recommendationSuccess.setAttribute('role', 'status');
+                        recommendationSuccess.tabIndex = -1;
                         recommendationSuccess.innerHTML = `
                             <h3>Thanks for the recommendation!</h3>
-                            <p>Your suggestion has been received. I&#39;ll review it and add it to the list if it fits well.</p>
+                            <p>Your suggestion has been received. I’ll review it and add it to the list if it fits well.</p>
                         `;
+                        requestAnimationFrame(() => recommendationSuccess.focus({ preventScroll: true }));
                     }
 
                     recommendationFormElement.reset();
                     hideRecommendationForm();
-                    recommendBtn.style.display = 'inline-block';
                 } catch (err) {
                     recommendError = document.createElement('p');
                     recommendError.className = 'form-error-message';
@@ -458,68 +520,14 @@ function initResourcesPage() {
         }
     }
 
-    initCustomSelects();
 }
 
-function initCustomSelects() {
-    const wrappers = document.querySelectorAll('.custom-select-wrapper');
-    const closeAll = () => {
-        document.querySelectorAll('.custom-select.open').forEach(select => {
-            select.classList.remove('open');
-            select.setAttribute('aria-expanded', 'false');
-        });
-    };
 
-    wrappers.forEach(wrapper => {
-        const select = wrapper.querySelector('select');
-        const customSelect = wrapper.querySelector('.custom-select');
-        const trigger = wrapper.querySelector('.custom-select__trigger');
-        const options = wrapper.querySelectorAll('.custom-option');
-
-        if (!select || !customSelect || !trigger || !options.length) return;
-
-        const setValue = (value, label) => {
-            select.value = value;
-            trigger.textContent = label;
-            options.forEach(option => {
-                option.classList.toggle('selected', option.dataset.value === value);
-                option.setAttribute('aria-selected', option.dataset.value === value ? 'true' : 'false');
-            });
-        };
-
-        customSelect.addEventListener('click', (event) => {
-            event.stopPropagation();
-            const isOpen = customSelect.classList.toggle('open');
-            customSelect.setAttribute('aria-expanded', String(isOpen));
-            if (isOpen) {
-                closeAll();
-                customSelect.classList.add('open');
-            }
-        });
-
-        customSelect.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                customSelect.click();
-            }
-            if (event.key === 'Escape') {
-                closeAll();
-            }
-        });
-
-        options.forEach(option => {
-            option.addEventListener('click', (event) => {
-                event.stopPropagation();
-                const value = option.dataset.value;
-                const label = option.textContent.trim();
-                setValue(value, label);
-                closeAll();
-                customSelect.focus();
-            });
-        });
-    });
-
-    document.addEventListener('click', closeAll);
+// Filter and category buttons are toggles: say which one is on
+function syncPressed(buttons) {
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.classList.contains('active'))));
+    buttons.forEach((b) => b.addEventListener('click', () => requestAnimationFrame(() =>
+        buttons.forEach((x) => x.setAttribute('aria-pressed', String(x.classList.contains('active')))))));
 }
 
 function initProjectsPage() {
@@ -554,8 +562,26 @@ function initPageScripts() {
     initContactFaq();
     initResourcesPage();
     initProjectsPage();
+    syncPressed([...document.querySelectorAll('.filter-btn')]);
+    syncPressed([...document.querySelectorAll('.tab-btn')]);
+    initArchiveBar();
     setupProfileImageTilt();
     createParticles();
+}
+
+// The archive notice can be dismissed for the rest of the visit
+function initArchiveBar() {
+    const bar = document.querySelector('[data-archive-bar]');
+    if (!bar) return;
+    const KEY = 'v2-archive-dismissed';
+    try { if (sessionStorage.getItem(KEY) === '1') { bar.remove(); return; } } catch { /* storage unavailable */ }
+    const close = bar.querySelector('.archive-bar__close');
+    if (!close) return;
+    close.hidden = false;
+    close.addEventListener('click', () => {
+        bar.remove();
+        try { sessionStorage.setItem(KEY, '1'); } catch { /* storage unavailable */ }
+    });
 }
 
 function initCustomCursor() {
@@ -599,19 +625,20 @@ function initCustomCursor() {
         cursorOutline.style.opacity = '0.6';
     });
 
+    // Moves with transforms (left/top forced a layout every frame) and stops once it has
+    // caught up with the pointer, instead of running a loop forever.
+    let frame = 0;
     const animateCursor = () => {
         cursorX += (mouseX - cursorX) * speed;
         cursorY += (mouseY - cursorY) * speed;
         outlineX += (mouseX - outlineX) * outlineSpeed;
         outlineY += (mouseY - outlineY) * outlineSpeed;
-        cursorDot.style.left = `${Math.round(cursorX)}px`;
-        cursorDot.style.top = `${Math.round(cursorY)}px`;
-        cursorOutline.style.left = `${Math.round(outlineX)}px`;
-        cursorOutline.style.top = `${Math.round(outlineY)}px`;
-        requestAnimationFrame(animateCursor);
+        cursorDot.style.translate = `${cursorX}px ${cursorY}px`;
+        cursorOutline.style.translate = `${outlineX}px ${outlineY}px`;
+        const settled = Math.abs(mouseX - outlineX) < 0.3 && Math.abs(mouseY - outlineY) < 0.3;
+        frame = settled ? 0 : requestAnimationFrame(animateCursor);
     };
-
-    animateCursor();
+    window.addEventListener('mousemove', () => { if (!frame) frame = requestAnimationFrame(animateCursor); });
 }
 
 window.addEventListener('DOMContentLoaded', () => {

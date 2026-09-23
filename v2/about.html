@@ -20,17 +20,48 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="theme-color" content="#5e60ce">
     <title>[v2] Sumit Sah | About</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/poppins-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/poppins-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.css?v=f9760d3f">
 </head>
 <body>
+    <!-- Icons: Lucide (ISC) line icons; GitHub, LinkedIn and X marks from Simple Icons (CC0).
+         Referenced with <use href="#ic-…">; they replace the Font Awesome webfont. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="ic-external-link" viewBox="0 0 24 24"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></symbol>
+        <symbol id="ic-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" /><circle cx="12" cy="12" r="3" /></symbol>
+        <symbol id="ic-book" viewBox="0 0 24 24"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></symbol>
+        <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="M12 5v14" /></symbol>
+        <symbol id="ic-minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+        <symbol id="ic-code" viewBox="0 0 24 24"><path d="m18 16 4-4-4-4" /><path d="m6 8-4 4 4 4" /><path d="m14.5 4-5 16" /></symbol>
+        <symbol id="ic-laptop" viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></symbol>
+        <symbol id="ic-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" /><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" /><path d="M17.599 6.5a3 3 0 0 0 .399-1.375" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M19.938 10.5a4 4 0 0 1 .585.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M19.967 17.484A4 4 0 0 1 18 18" /></symbol>
+        <symbol id="ic-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></symbol>
+        <symbol id="ic-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol>
+        <symbol id="ic-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol>
+        <symbol id="ic-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5V19A9 3 0 0 0 21 19V5" /><path d="M3 12A9 3 0 0 0 21 12" /></symbol>
+        <symbol id="ic-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></symbol>
+        <symbol id="ic-close" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></symbol>
+        <symbol id="ic-terminal" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5" /><line x1="12" x2="20" y1="19" y2="19" /></symbol>
+        <symbol id="ic-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" /><path d="m21.854 2.147-10.94 10.939" /></symbol>
+        <symbol id="ic-mountain" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z" /></symbol>
+        <symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></symbol>
+        <symbol id="ic-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></symbol>
+        <symbol id="ic-bug" viewBox="0 0 24 24"><path d="m8 2 1.88 1.88" /><path d="M14.12 3.88 16 2" /><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1" /><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" /><path d="M12 20v-9" /><path d="M6.53 9C4.6 8.8 3 7.1 3 5" /><path d="M6 13H2" /><path d="M3 21c0-2.1 1.7-3.9 3.8-4" /><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4" /><path d="M22 13h-4" /><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4" /></symbol>
+        <symbol id="ic-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></symbol>
+        <symbol id="ic-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7" /><path d="M12 19V5" /></symbol>
+        <symbol id="ic-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+        <symbol id="ic-linkedin" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+        <symbol id="ic-x" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+        <symbol id="ic-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.75" fill="currentColor"/></symbol>
+    </svg>
     <div class="noise-overlay"></div>
-    <div style="position:fixed;left:0;right:0;bottom:0;z-index:200;background:rgba(17,24,47,.94);color:#9aa3c4;font:500 14px/1.5 Poppins,system-ui,sans-serif;text-align:center;padding:10px 16px;border-top:1px solid rgba(255,255,255,.1);backdrop-filter:blur(8px)">
-        Archived version (v2) of this site &mdash; <a href="/" style="color:#f7f8fb;text-decoration:underline">see the current site</a>
-    </div>
+    <aside class="archive-bar" aria-label="Archive notice" data-archive-bar>
+        <span>You’re viewing the archived v2 of this site.</span>
+        <a href="../index.html">See the current site<svg class="ic" aria-hidden="true"><use href="#ic-arrow-right"/></svg></a>
+        <button class="archive-bar__close" type="button" aria-label="Dismiss this notice" hidden><svg class="ic" aria-hidden="true"><use href="#ic-close"/></svg></button>
+    </aside>
     
     <header>
         <div class="container">
@@ -39,9 +70,9 @@
             </div>
             <nav>
                 <button type="button" class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
                 <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Home</a></li>
@@ -61,162 +92,68 @@
                 <div class="about-content">
                     <div class="about-image" data-aos="fade-right">
                         <div class="img-placeholder">
-                            <img src="images/profile.jpg" alt="Profile Picture" class="profile-img">
+                            <picture><source type="image/webp" srcset="images/profile-400.webp 400w, images/profile-720.webp 720w" sizes="(max-width: 576px) 250px, 300px"><img src="images/profile.jpg" width="720" height="720" alt="Profile Picture" class="profile-img"></picture>
                         </div>
                     </div>
                     <div class="about-text" data-aos="fade-left">
-                        <h2>Hello, I'm <span class="highlight">Sumit Sah</span></h2>
+                        <h2>Hello, I’m <span class="highlight">Sumit Sah</span></h2>
                         <p>I am a Computer Science student passionate about software development, machine learning, and innovative technology solutions. With a strong foundation in programming principles and problem-solving, I strive to create meaningful applications that make a difference.</p>
-                        <p>I enjoy working on challenging projects that push my boundaries and help me learn new skills. When I'm not coding, you can find me exploring new technologies, reading tech blogs, or contributing to open-source projects.</p>
+                        <p>I enjoy working on challenging projects that push my boundaries and help me learn new skills. When I’m not coding, you can find me exploring new technologies, reading tech blogs, or contributing to open-source projects.</p>
                         <div class="personal-info">
                             <div class="info-item">
-                                <span class="info-label"><i class="fas fa-envelope"></i> Email:</span>
-                                <span class="info-value">sumitsah6511@gmail.com</span>
+                                <span class="info-label"><svg class="ic" aria-hidden="true"><use href="#ic-mail"/></svg> Email:</span>
+                                <a class="info-value email-link" href="mailto:sumitsah6511@gmail.com">sumitsah6511@<wbr>gmail.com</a>
                             </div>
                             <div class="info-item">
-                                <span class="info-label"><i class="fas fa-map-marker-alt"></i> Location:</span>
+                                <span class="info-label"><svg class="ic" aria-hidden="true"><use href="#ic-map-pin"/></svg> Location:</span>
                                 <span class="info-value">Kathmandu, Nepal</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-label"><i class="fas fa-graduation-cap"></i> Degree:</span>
+                                <span class="info-label"><svg class="ic" aria-hidden="true"><use href="#ic-graduation-cap"/></svg> Degree:</span>
                                 <span class="info-value">B.Sc. CSIT</span>
                             </div>
                         </div>
                         <div class="social-links-about">
-                            <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://x.com/sumit_6511" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-github"/></svg></a>
+                            <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-linkedin"/></svg></a>
+                            <a href="https://x.com/sumit_6511" aria-label="X" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-x"/></svg></a>
+                            <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#ic-instagram"/></svg></a>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+
         <section class="skills-detailed">
             <div class="container">
                 <h2 class="section-title">Technical Skills</h2>
                 <div class="skills-container">
                     <div class="skill-category" data-aos="fade-up">
                         <h3 class="category-title">Programming Languages</h3>
-                        <div class="skill-bars">
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Python</span>
-                                    <span>90%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Java</span>
-                                    <span>85%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>JavaScript</span>
-                                    <span>80%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 80%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>C++</span>
-                                    <span>75%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 75%"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="skill-chips">
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-python"/></svg>Python</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-java"/></svg>Java</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-javascript"/></svg>JavaScript</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-cpp"/></svg>C++</li>
+                        </ul>
                     </div>
                     <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
                         <h3 class="category-title">Web Development</h3>
-                        <div class="skill-bars">
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>HTML/CSS</span>
-                                    <span>95%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>React</span>
-                                    <span>85%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Node.js</span>
-                                    <span>75%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 75%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>MongoDB</span>
-                                    <span>70%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="skill-chips">
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-html5"/></svg>HTML/CSS</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-react"/></svg>React</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-node"/></svg>Node.js</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-mongodb"/></svg>MongoDB</li>
+                        </ul>
                     </div>
                     <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
                         <h3 class="category-title">Other Skills</h3>
-                        <div class="skill-bars">
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Git & GitHub</span>
-                                    <span>90%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Data Structures</span>
-                                    <span>85%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>Machine Learning</span>
-                                    <span>70%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-info">
-                                    <span>UI/UX Design</span>
-                                    <span>65%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="skill-progress-bar" style="width: 65%"></div>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="skill-chips">
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-git"/></svg>Git &amp; GitHub</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-dsa"/></svg>Data Structures</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-ml"/></svg>Machine Learning</li>
+                            <li class="skill-chip"><svg class="skill-chip__icon" aria-hidden="true"><use href="#t-uiux"/></svg>UI/UX Design</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -224,32 +161,32 @@
 
         <section class="interests">
             <div class="container">
-                <h2 class="section-title">Interests & Hobbies</h2>
+                <h2 class="section-title">Interests &amp; Hobbies</h2>
                 <div class="interests-grid">
                     <div class="interest-card" data-aos="zoom-in">
                         <div class="interest-icon">
-                            <i class="fas fa-code"></i>
+                            <svg class="ic" aria-hidden="true"><use href="#ic-code"/></svg>
                         </div>
                         <h3>Coding</h3>
                         <p>I enjoy solving challenging problems and creating useful applications through coding.</p>
                     </div>
                     <div class="interest-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="interest-icon">
-                            <i class="fas fa-brain"></i>
+                            <svg class="ic" aria-hidden="true"><use href="#ic-brain"/></svg>
                         </div>
-                        <h3>AI & Machine Learning</h3>
+                        <h3>AI &amp; Machine Learning</h3>
                         <p>Fascinated by the potential of artificial intelligence to transform our world.</p>
                     </div>
                     <div class="interest-card" data-aos="zoom-in" data-aos-delay="200">
                         <div class="interest-icon">
-                            <i class="fas fa-book"></i>
+                            <svg class="ic" aria-hidden="true"><use href="#ic-book"/></svg>
                         </div>
                         <h3>Reading</h3>
                         <p>I love reading books on technology, science fiction, and personal development.</p>
                     </div>
                     <div class="interest-card" data-aos="zoom-in" data-aos-delay="300">
                         <div class="interest-icon">
-                            <i class="fas fa-hiking"></i>
+                            <svg class="ic" aria-hidden="true"><use href="#ic-mountain"/></svg>
                         </div>
                         <h3>Hiking</h3>
                         <p>Exploring nature helps me clear my mind and gain fresh perspectives.</p>
@@ -276,10 +213,10 @@
                     </ul>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/sumit_6511" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/sumit6511" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-github"/></svg></a>
+                    <a href="https://www.linkedin.com/in/sumit-sah-9930bb300" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-linkedin"/></svg></a>
+                    <a href="https://x.com/sumit_6511" aria-label="X" target="_blank" rel="noopener noreferrer"><svg class="ic ic--fill" aria-hidden="true"><use href="#ic-x"/></svg></a>
+                    <a href="https://www.instagram.com/_xumi_x" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="ic" aria-hidden="true"><use href="#ic-instagram"/></svg></a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -288,6 +225,22 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- Tool marks: Simple Icons (CC0; trademarks belong to their owners) and glyphs drawn for
+         concepts without a logo — the same set the current designs use. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="t-cpp" viewBox="0 0 24 24"><path d="M22.4 6q-.26-.45-.66-.69L12.93.22c-.51-.3-1.34-.3-1.85 0L2.26 5.31c-.5.3-.92 1.01-.92 1.6v10.18q0 .46.27.91.26.45.65.69l8.82 5.09a2 2 0 0 0 1.84 0l8.82-5.09q.4-.24.65-.69c.17-.29.27-.62.27-.91V6.91q0-.46-.27-.91M12 19.11a7.12 7.12 0 0 1 0-14.22 7.1 7.1 0 0 1 6.16 3.55l-3.08 1.78A3.6 3.6 0 0 0 12 8.44 3.56 3.56 0 0 0 8.44 12 3.56 3.56 0 0 0 12 15.56a3.6 3.6 0 0 0 3.08-1.78l3.08 1.78A7.1 7.1 0 0 1 12 19.1m7.11-6.71h-.79v.78h-.79v-.79h-.79v-.79h.79v-.78h.79v.79h.79zm2.96 0h-.79v.78h-.79v-.79h-.79v-.79h.8v-.78h.78v.79h.8z"/></symbol>
+        <symbol id="t-dsa" viewBox="0 0 24 24"><circle cx="12" cy="4" r="3"/><circle cx="5" cy="14" r="3"/><circle cx="19" cy="14" r="3"/><circle cx="12" cy="21" r="2.6"/><path d="M12 4 5 14m7-10 7 10M5 14l7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+        <symbol id="t-git" viewBox="0 0 24 24"><path d="M23.55 10.93 13.07.45c-.6-.6-1.59-.6-2.2 0L8.72 2.63l2.76 2.76a1.84 1.84 0 0 1 2.32 2.34l2.66 2.66a1.84 1.84 0 0 1 1.9 3.04 1.84 1.84 0 0 1-3-2l-2.49-2.47v6.52a1.84 1.84 0 1 1-1.52-.06V8.84q-.32-.15-.6-.4a1.8 1.8 0 0 1-.4-2.01L7.65 3.7l-7.2 7.18c-.6.6-.6 1.58 0 2.19l10.48 10.48c.6.6 1.58.6 2.19 0l10.43-10.43c.6-.6.6-1.58 0-2.19"/></symbol>
+        <symbol id="t-html5" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.56L11.98 24 3.4 21.56zm7.03 9.75L8.3 7.03h10.06l.23-2.62H5.4l.7 8.01h9.13l-.33 3.43-2.91.8-2.96-.81-.18-2.11h-2.6l.33 4.17L12 19.35l5.38-1.44.74-8.16z"/></symbol>
+        <symbol id="t-java" viewBox="0 0 24 24"><path d="m11.92 0-.22.22C9.52 2.4 7.47 6.39 6.05 10.48c-1.07 1.03-3.64 2.81-3.71 3.55-.1.87 1.74 2.62 1.55 3.24-.2.62-1.3 1.4-1.02 1.94.1.19.82 0 1.28-.5a13 13 0 0 0-.02 2.15q.1 1.37.64 2.23c.38.56.96.91 1.67.91q.6-.02 1.02-.26l.91-.5a7 7 0 0 1 3.54-.6c1.9.05 2.87.38 3.55.7.7.31 1.15.66 1.93.66.77 0 1.4-.34 1.8-.9q.61-.86.73-2.24.08-.94 0-2.07c.45.45 1.11.6 1.2.43.3-.53-.8-1.32-1-1.94s1.64-2.36 1.54-3.23c-.08-.75-2.7-2.57-3.74-3.6C16.42 6.38 14.3 2.4 12.13.23zm.17 6.04a2.95 2.95 0 0 1 2.94 2.94 2.95 2.95 0 0 1-2.94 2.94 2.95 2.95 0 0 1-2.94-2.94 2.95 2.95 0 0 1 2.94-2.94m-3.4 1.94a4 4 0 0 0-.15 1c0 1.95 1.6 3.55 3.55 3.55a3.56 3.56 0 0 0 3.42-4.5q.5.14.91.34a43 43 0 0 1 2.05 5.82c.67 2.55 1 4.92.84 6.61a4 4 0 0 1-.6 1.94 1.5 1.5 0 0 1-1.32.65c-.6 0-.93-.27-1.67-.6a9 9 0 0 0-3.8-.77 7.5 7.5 0 0 0-3.82.67l-.9.5c-.37.2-.47.2-.76.2-.53 0-.87-.2-1.16-.64a4 4 0 0 1-.54-1.94c-.14-1.7.17-4.07.82-6.62a43 43 0 0 1 1.93-5.78 7 7 0 0 1 1.2-.43M5.3 12.34a.2.2 0 0 1 .13.04q-.25.84-.46 1.66a34 34 0 0 0-.55 2.56l-.2-.4c-.58-1-.91-1.64-1.16-2.07.32-.24 1.68-1.76 2.24-1.79m13.4.01c.56.03 1.92 1.55 2.24 1.79-.25.44-.58 1.07-1.16 2.08l-.17.3a32 32 0 0 0-.56-2.48l-.48-1.66a.2.2 0 0 1 .13-.03"/></symbol>
+        <symbol id="t-javascript" viewBox="0 0 24 24"><path d="M0 0h24v24H0zm22.03 18.28c-.17-1.1-.88-2.02-3-2.88-.74-.34-1.55-.58-1.8-1.14-.09-.33-.1-.5-.04-.7.15-.65.91-.84 1.51-.66q.62.18.98.9c1.03-.68 1.03-.68 1.75-1.13a4 4 0 0 0-.58-.78c-.63-.7-1.47-1.06-2.84-1.03l-.7.09c-.68.16-1.32.52-1.71 1a3.14 3.14 0 0 0 .57 4.47c1.36 1.02 3.36 1.25 3.61 2.2.24 1.18-.87 1.55-1.96 1.42-.81-.18-1.26-.59-1.76-1.34l-1.83 1.05c.21.48.45.7.81 1.11 1.74 1.76 6.1 1.67 6.87-1 .03-.1.24-.7.08-1.65zm-8.98-7.25H10.8v5.8c0 1.24.06 2.37-.14 2.72-.33.69-1.18.6-1.57.48-.4-.2-.6-.47-.83-.86-.06-.1-.11-.2-.13-.2L6.31 20.1c.3.63.75 1.17 1.32 1.52.86.5 2 .67 3.2.4a2.8 2.8 0 0 0 1.82-1.4c.51-.94.4-2.08.4-3.35z"/></symbol>
+        <symbol id="t-ml" viewBox="0 0 24 24"><circle cx="4" cy="5" r="3"/><circle cx="4" cy="19" r="3"/><circle cx="12" cy="12" r="3.4"/><circle cx="20" cy="5" r="3"/><circle cx="20" cy="19" r="3"/><path d="m4 5 8 7-8 7M20 5l-8 7 8 7" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+        <symbol id="t-mongodb" viewBox="0 0 24 24"><path d="M17.2 9.56c-1.27-5.59-4.26-7.42-4.58-8.12-.28-.4-.53-.95-.73-1.44-.04.5-.06.68-.53 1.18-.72.57-4.44 3.69-4.74 10.02-.28 5.92 4.27 9.44 4.89 9.89l.07.05a74 74 0 0 1 .33 2.86h.48q.17-1.55.51-3.07c.42-.3.6-.46.85-.7a11.3 11.3 0 0 0 3.64-8.46 13 13 0 0 0-.2-2.22m-5.34 8.19s0-8.3.27-8.29c.22 0 .5 10.7.5 10.7-.39-.05-.77-1.76-.77-2.41"/></symbol>
+        <symbol id="t-node" viewBox="0 0 24 24"><path d="M12 24q-.49 0-.92-.25l-2.94-1.73c-.44-.25-.22-.34-.08-.39.58-.2.7-.25 1.33-.6q.1-.05.22.02l2.25 1.33c.08.05.2.05.27 0l8.8-5.07a.3.3 0 0 0 .13-.24V6.92q0-.16-.13-.24l-8.8-5.07a.3.3 0 0 0-.27 0L3.08 6.68a.3.3 0 0 0-.14.24v10.15q0 .16.14.24l2.4 1.39c1.31.65 2.11-.12 2.11-.9v-10c0-.15.12-.26.26-.26h1.11c.14 0 .26.12.26.26v10c0 1.74-.95 2.74-2.6 2.74-.51 0-.91 0-2.03-.55l-2.31-1.32a1.9 1.9 0 0 1-.92-1.6V6.91c0-.66.35-1.27.92-1.6l8.8-5.08c.55-.32 1.3-.32 1.84 0l8.8 5.08c.57.33.92.94.92 1.6v10.15c0 .66-.35 1.27-.92 1.6l-8.8 5.08Q12.5 24 12 24m7.1-10c0-1.9-1.29-2.41-3.99-2.77-2.73-.36-3-.55-3-1.19 0-.52.23-1.23 2.25-1.23 1.8 0 2.47.39 2.75 1.6q.05.19.25.2h1.14q.1 0 .18-.07a.3.3 0 0 0 .07-.2c-.18-2.1-1.57-3.08-4.39-3.08-2.5 0-4 1.06-4 2.84 0 1.92 1.49 2.45 3.9 2.7 2.87.27 3.1.7 3.1 1.26 0 .98-.8 1.4-2.65 1.4-2.32 0-2.84-.58-3-1.74a.26.26 0 0 0-.26-.22H10.3a.25.25 0 0 0-.25.26c0 1.48.8 3.25 4.65 3.25 2.8 0 4.39-1.1 4.39-3.02"/></symbol>
+        <symbol id="t-python" viewBox="0 0 24 24"><path d="m14.25.18.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></symbol>
+        <symbol id="t-react" viewBox="0 0 24 24"><path d="M14.23 12A2.24 2.24 0 0 1 12 14.24 2.24 2.24 0 0 1 9.76 12a2.24 2.24 0 0 1 2.23-2.23A2.24 2.24 0 0 1 14.23 12m2.65-10.69c-1.35 0-3.1.96-4.89 2.63-1.78-1.66-3.54-2.6-4.89-2.6q-.61 0-1.1.27c-1.38.8-1.69 3.27-.98 6.37C1.98 8.92 0 10.42 0 12c0 1.6 1.99 3.1 5.04 4.03-.7 3.12-.39 5.6 1 6.38q.47.29 1.1.28c1.34 0 3.1-.96 4.88-2.63 1.78 1.66 3.54 2.6 4.89 2.6q.61 0 1.1-.27c1.38-.79 1.69-3.26.98-6.36C22.02 15.1 24 13.59 24 12s-1.99-3.1-5.04-4.03c.7-3.1.39-5.58-1-6.38a2 2 0 0 0-1.08-.28m0 1.1q.33 0 .55.13c.67.38.96 1.83.73 3.7q-.08.7-.25 1.44-1.45-.36-3.1-.53a24 24 0 0 0-2.04-2.45c1.6-1.48 3.09-2.3 4.1-2.3zm-9.78.01c1.02 0 2.52.81 4.11 2.28A23 23 0 0 0 9.2 7.15q-1.66.17-3.11.53-.17-.73-.25-1.42c-.23-1.86.05-3.32.71-3.7q.3-.14.56-.13zM12 5.47q.67.71 1.36 1.57a30 30 0 0 0-2.71 0A19 19 0 0 1 12 5.47m0 2.63q1.11 0 2.2.1a26 26 0 0 1 2.2 3.8 27 27 0 0 1-2.19 3.82 26 26 0 0 1-4.41 0 27 27 0 0 1-2.2-3.8A25 25 0 0 1 9.79 8.2q1.1-.1 2.21-.1m-3.63.25a26 26 0 0 0-1.34 2.34 21 21 0 0 1-.68-1.95q.96-.22 2.02-.39m7.26 0a22 22 0 0 1 2 .4q-.27.94-.66 1.92a23 23 0 0 0-1.34-2.32m3.06.68q.72.23 1.37.5c1.74.74 2.86 1.7 2.86 2.47-.01.77-1.13 1.74-2.86 2.48q-.63.26-1.36.5-.42-1.46-1.1-2.99.67-1.53 1.09-2.96m-13.4 0q.42 1.45 1.1 2.98a23 23 0 0 0-1.08 2.97 14 14 0 0 1-1.37-.5c-1.74-.74-2.86-1.7-2.86-2.48 0-.76 1.12-1.74 2.86-2.47q.64-.27 1.35-.5m11.68 4.28q.4.99.68 1.95-.96.25-2.02.4a26 26 0 0 0 1.34-2.35m-9.94.02a23 23 0 0 0 1.34 2.32 22 22 0 0 1-2-.39 22 22 0 0 1 .65-1.93zm10.89 2.99q.17.75.25 1.42c.23 1.87-.05 3.32-.71 3.71q-.23.14-.56.13c-1.01 0-2.52-.8-4.11-2.28q1.03-1.08 2.02-2.44 1.66-.18 3.11-.54m-11.83.01q1.45.36 3.1.53 1 1.36 2.04 2.45c-1.6 1.48-3.09 2.3-4.1 2.3q-.34-.02-.56-.14c-.67-.38-.96-1.83-.73-3.7q.08-.7.25-1.44m4.56.64a30 30 0 0 0 2.7 0q-.66.86-1.34 1.57-.68-.71-1.36-1.57"/></symbol>
+        <symbol id="t-uiux" viewBox="0 0 24 24"><path d="M2 3h20v3.6H2zm0 6h8.2v12H2zm10.6 0H22v5h-9.4zm0 7H22v5h-9.4z"/></symbol>
+    </svg>
+    <script src="js/script.js?v=d297c921"></script>
 </body>
 </html> 

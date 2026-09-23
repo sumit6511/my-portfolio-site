@@ -13,9 +13,11 @@ A single editorial page plus a resources page, built with plain HTML, CSS and Ja
 | `index.html` | Hero → Selected work (featured project, bento cards, compact list, GitHub strip) → About → Stack → Journey → Contact → Footer |
 | `resources.html` | Curated courses, books, tools and websites, plus a "recommend a resource" form |
 | `about.html`, `projects.html`, `contact.html` | Redirect stubs for the old multi-page URLs (`/#about`, `/#work`, `/#contact`) |
-| `v2/` | The previous version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`). Also tagged `v2.0` in git. |
+| `v2/` | The previous multi-page version of the site, kept browsable at [/v2/](https://www.sumit-sah.com.np/v2/) (`noindex`) and maintained in place (see below). The untouched original is tagged `v2.0` in git. |
 | `terminal/terminal.js` | **Terminal mode** — a keyboard-first shell over either design, opened from the `>_` button in the header (or the `` ` `` key). See below. |
 | `v4/` | An alternative **Neo-Brutalist** design of the same content, browsable at [/v4/](https://www.sumit-sah.com.np/v4/) (`noindex`). Same projects, links and forms; its own `v4/css/style.css` and `v4/js/script.js`. |
+
+`v2/` keeps its own look (navy, purple→teal gradient, Poppins, five pages) but runs on the same footing as the newer designs. Fonts and icons are self-hosted: Poppins subsets in `v2/fonts/` and an inline SVG sprite replace Google Fonts and Font Awesome, so the pages make no third-party requests. The photos are WebP. The forms post to Formspree even with JS off, and the FAQ answers and the recommend form stay open when there is no script to toggle them. Scroll reveals, particles and the cursor all stand down under reduced motion. The skill section lists technologies as chips rather than the old percentage bars.
 
 In `v4/`, the stack is three drifting rows of tech marks. Brand icons come from [Simple Icons](https://simpleicons.org) (CC0; trademarks belong to their owners) and the concepts without a logo — RAG, embeddings, data structures and so on — use glyphs drawn for this site. Both live in an inline sprite as `<symbol id="t-…">`; `ICONS` in the page generator maps each label to one. Rows pause on hover and on keyboard focus, and wrap into a static grid when motion is reduced or JS is off.
 
@@ -87,7 +89,7 @@ python -m http.server 8000
 
 Any static server works. The site is deployed with GitHub Pages using the custom domain in `CNAME`.
 
-**Bump `?v=` when you change a stylesheet or script.** The domain is proxied through Cloudflare, which keeps `.css` and `.js` files at the edge for up to 4 hours but always serves the HTML fresh. Each page therefore loads its assets with a version query — `css/style.css?v=b1421707`, and the same on `js/script.js` and `data-terminal="…/terminal.js?v=…"`. Change the file, change the value (the first 8 characters of `sha1sum <file>` is a good one, and any new value works); otherwise visitors can get the new HTML with the old CSS or JS for hours.
+**Bump `?v=` when you change a stylesheet or script.** The domain is proxied through Cloudflare, which keeps `.css` and `.js` files at the edge for up to 4 hours but always serves the HTML fresh. Each page therefore loads its assets with a version query — `css/style.css?v=b1421707`, and the same on `js/script.js` and `data-terminal="…/terminal.js?v=…"` (the five `v2/` pages included). Change the file, change the value (the first 8 characters of `sha1sum <file>` is a good one, and any new value works); otherwise visitors can get the new HTML with the old CSS or JS for hours.
 
 Every link and asset path in the pages is **relative**, so you can also just open `index.html` from the file manager and click through the whole site, `/v4/` included. One caveat: browsers refuse to load `@font-face` files over `file://` (CORS), so opened that way the pages fall back to system fonts. Use the server above to see the real typography. `404.html` is the deliberate exception — it keeps absolute paths, because GitHub Pages serves it from whatever URL was missed.
 
@@ -110,7 +112,7 @@ my-portfolio-site/
 │   ├── ims.jpg
 │   └── todo_app_cover.jpg
 ├── favicon.svg · favicon-32.png · apple-touch-icon.png
-├── v2/                    # archived previous version (git tag v2.0)
+├── v2/                    # previous multi-page version, maintained (original: git tag v2.0)
 ├── v4/                    # alternative neo-brutalist design (same content)
 ├── robots.txt · sitemap.xml · CNAME
 └── README.md
