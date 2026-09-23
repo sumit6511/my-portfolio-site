@@ -30,7 +30,7 @@
 
     <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="css/style.css?v=b1421707">
+    <link rel="stylesheet" href="css/style.css?v=e38afd93">
     <script>document.documentElement.classList.add('js');</script>
 </head>
 <body id="top">
@@ -52,6 +52,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
+        <div class="scroll-progress" aria-hidden="true"></div>
         <div class="container">
             <a class="wordmark" href="index.html" aria-label="Sumit Sah — home">
                 <span class="wordmark__mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
@@ -71,7 +72,7 @@
                     <a class="vswitch__opt" href="v4/resources.html" data-to="v4/resources.html" aria-label="Switch to the Brutalist design">Brutalist</a>
                 </div>
                 <a class="term-btn" href="index.html#terminal" data-terminal data-tip="Terminal mode · press `" aria-label="Open terminal mode" aria-keyshortcuts="`" hidden><span aria-hidden="true">&gt;<span class="term-btn__cursor">_</span></span></a>
-                <a class="btn btn--primary btn--sm nav__cta" href="index.html#contact">Let's talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <a class="btn btn--primary btn--sm nav__cta" href="index.html#contact">Let’s talk<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
                 <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
                     <span></span><span></span>
                 </button>
@@ -108,10 +109,10 @@
     <main id="main">
         <section class="page-hero" aria-labelledby="resources-title">
             <div class="container">
-                <p class="eyebrow" data-reveal>Resources</p>
-                <h1 class="display" id="resources-title" data-reveal style="--d:1">Things worth<span> your time<span class="accent">.</span></span></h1>
-                <p class="lede" data-reveal style="--d:2">A curated list of courses, books, tools and websites that have been genuinely useful throughout my computer science journey. No affiliate links — just the stuff that helped.</p>
-                <div class="tabs" role="tablist" aria-label="Resource categories" data-reveal style="--d:3">
+                <p class="eyebrow" data-hero>Resources</p>
+                <h1 class="display" id="resources-title" data-hero style="--d:1">Things worth<span> your time<span class="accent">.</span></span></h1>
+                <p class="lede" data-hero style="--d:2">A curated list of courses, books, tools and websites that have been genuinely useful throughout my computer science journey. No affiliate links — just the stuff that helped.</p>
+                <div class="tabs" role="tablist" aria-label="Resource categories" data-hero style="--d:3">
                     <button class="tab" role="tab" id="tab-courses" aria-selected="true" aria-controls="courses" type="button">Courses</button>
                     <button class="tab" role="tab" id="tab-books" aria-selected="false" aria-controls="books" type="button" tabindex="-1">Books</button>
                     <button class="tab" role="tab" id="tab-tools" aria-selected="false" aria-controls="tools" type="button" tabindex="-1">Tools</button>
@@ -142,7 +143,7 @@
                         <article class="card resource" data-reveal>
                             <span class="resource__provider">Stanford University (Coursera)</span>
                             <h3 class="resource__title">Machine Learning</h3>
-                            <p>Andrew Ng's popular course on machine learning fundamentals, covering supervised learning, unsupervised learning, and best practices in ML.</p>
+                            <p>Andrew Ng’s popular course on machine learning fundamentals, covering supervised learning, unsupervised learning, and best practices in ML.</p>
                             <ul class="project__stack"><li>Machine learning</li><li>AI</li><li>Data science</li></ul>
                             <a class="link" href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="noopener noreferrer">View course<svg class="icon icon--ne" aria-hidden="true"><use href="#i-ne"/></svg></a>
                         </article>
@@ -260,12 +261,12 @@
                     <div class="recommend__intro">
                         <p class="eyebrow">Suggest one</p>
                         <h2 class="h2" id="recommend-title">Have a resource to recommend?</h2>
-                        <p>If you know of something helpful that isn't listed here, I'd love to hear about it.</p>
-                        <button id="recommend-btn" type="button" class="btn btn--primary" aria-expanded="false" aria-controls="recommendation-form">Recommend a resource<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+                        <p>If you know of something helpful that isn’t listed here, I’d love to hear about it.</p>
+                        <button id="recommend-btn" type="button" class="btn btn--primary" aria-expanded="false" aria-controls="recommendation-form" hidden>Recommend a resource<svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></button>
                         <div id="recommendation-status" aria-live="polite" hidden></div>
                     </div>
                     <!-- Submits to Formspree (endpoint lives in js/script.js); works as a normal POST when JS is unavailable -->
-                    <form id="recommendation-form" class="recommend__form" action="https://formspree.io/f/xwleyvog" method="POST" hidden novalidate>
+                    <form id="recommendation-form" class="recommend__form" action="https://formspree.io/f/xwleyvog" method="POST" novalidate>
                         <input type="hidden" name="_subject" value="Resource recommendation from sumit-sah.com.np">
                         <div class="contact-form__row">
                             <div class="field">
@@ -332,6 +333,6 @@
         </div>
     </footer>
 
-    <script src="js/script.js?v=391b3317" defer></script>
+    <script src="js/script.js?v=c5fd93ba" defer></script>
 </body>
 </html>

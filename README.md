@@ -53,18 +53,21 @@ The `>_` button in the header (or the `` ` `` key, or a link to `#terminal`) ope
 
 ### Behaviour (`js/script.js`)
 
-- Sticky header with elevated state, active-section indicator, mobile overlay menu.
+- Sticky header with elevated state, active-section indicator, mobile overlay menu (the page behind it is `inert` while it's open, so keyboard focus can't wander underneath), and a scroll-progress hairline driven purely by CSS `animation-timeline: scroll()` — no script, hidden where unsupported and under reduced motion.
+- Hero: the headline, intro and details enter with CSS animations that start at first paint (`[data-hero]`) rather than waiting for the scroll reveal, which used to hold back the page's largest paint on phones. The **Now** card beside the intro has a live Kathmandu clock (`[data-local-time="clock"]`).
 - Design switcher (`initVersionSwitch`): carries the current section across to the other design.
 - Hero dot lattice on a `<canvas>` (pointer-aware; static under reduced motion).
-- Case-study `<dialog>` filled from each project card and its `<template class="project__detail">`.
-- Contact and recommendation forms post to Formspree (`FORMSPREE_ENDPOINT`); both also work as plain HTML form posts.
+- Case-study `<dialog>` filled from each project card and its `<template class="project__detail">`, with Previous / Next (and ← →) to step through the projects without closing it; focus moves to the new title so it's announced, and closing returns to the button that opened it.
+- Card spotlight (`initSpotlight`): a faint accent light follows the pointer across the cards. Pointer devices with hover only; forms are left out.
+- Contact and recommendation forms post to Formspree (`FORMSPREE_ENDPOINT`); both also work as plain HTML form posts (the recommendation form is visible without JS and only collapses behind its button when script runs). `validateForm()` puts a message under each problem field — required, email and URL formats — tied to it with `aria-describedby` and `aria-invalid`, so errors are announced and never rely on a red border alone. A filled field is checked when you leave it, except while a button is being pressed, so a message appearing can't move Send out from under the click. After a send, focus moves to the confirmation, and "Send another message" brings the form back.
 - GitHub strip: static links, progressively annotated with language and last push from the public GitHub API (one request, cached in `sessionStorage`, silent on failure, no token).
 
 ## Editing content
 
 - **Projects:** each project is one `<article class="project …">` in `index.html`. The card holds the summary; the `<template class="project__detail">` inside it holds the case-study copy and facts. Covers live in `images/covers/`.
-- **Journey:** copy an `<li>` in the `#journey` list. `.timeline__when` takes a year, season or label; add `timeline__item--now` to the current entry.
-- **Stack:** pills in the `#stack` groups.
+- **Now:** the three rows of `.now-card` in the hero (Building / Latest shipped / Open to). Links with `data-jump` scroll to a project card and highlight it.
+- **Journey:** copy an `<li>` in the `#journey` list. `.timeline__when` takes a year, season or label; add `timeline__item--now` to the current entry. The rail between markers draws itself. Point "See the project" links at a card id with `data-jump`.
+- **Stack:** pills in the `#stack` groups, each `<li class="pill" data-tech="Name">` with its mark `<svg class="pill__icon"><use href="#t-…"/></svg>`. The marks are the same sprite as v4's (Simple Icons, CC0, plus glyphs drawn for concepts without a logo), kept at the end of `index.html` so it never delays the first paint.
 - **Resources:** cards in `resources.html`.
 - **Social preview:** `images/og.png` (1200×630). Favicons: `favicon.svg` (source), `favicon-32.png`, `apple-touch-icon.png`.
 

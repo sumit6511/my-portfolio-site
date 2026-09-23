@@ -23,15 +23,18 @@ function initHeader() {
 
     const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    requestAnimationFrame(onScroll);   // reading scrollY during start-up forced a synchronous layout
 
     // Mobile overlay menu
     const toggle = header.querySelector('.nav-toggle');
     const menu = document.getElementById('menu');
     if (toggle && menu) {
+        // everything the overlay covers, so Tab can't wander into the page underneath it
+        const covered = [document.getElementById('main'), document.querySelector('.site-footer')].filter(Boolean);
         const setOpen = (open) => {
             menu.classList.toggle('is-open', open);
             menu.inert = !open;
+            covered.forEach((el) => { el.inert = open; });
             toggle.setAttribute('aria-expanded', String(open));
             toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
             document.body.classList.toggle('is-locked', open);
@@ -189,6 +192,42 @@ function initTerminal() {
 }
 
 /* --------------------------------------------------------------------------
+   Card spotlight: a soft light follows the pointer across the showcase cards.
+   Pointer-and-hover devices only; nothing to do on touch.
+   -------------------------------------------------------------------------- */
+function initSpotlight() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const SELECTOR = '.card:not(.contact-form):not(.recommend)';
+    let lit = null;
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+
+    const light = (card) => {
+        if (card === lit) return;
+        lit?.classList.remove('is-lit');
+        lit = card;
+        card?.classList.add('is-lit');
+    };
+
+    document.addEventListener('pointermove', (e) => {
+        light(e.target.closest?.(SELECTOR) || null);
+        if (!lit) return;
+        x = e.clientX;
+        y = e.clientY;
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+            frame = 0;
+            if (!lit) return;
+            const r = lit.getBoundingClientRect();
+            lit.style.setProperty('--mx', `${x - r.left}px`);
+            lit.style.setProperty('--my', `${y - r.top}px`);
+        });
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', () => light(null));
+}
+
+/* --------------------------------------------------------------------------
    Reveal on scroll
    -------------------------------------------------------------------------- */
 function initReveal() {
@@ -310,7 +349,10 @@ function initCaseStudy() {
     const slot = (name) => dialog.querySelector(`[data-slot="${name}"]`);
     const cover = dialog.querySelector('.case-study__cover img');
     const scroller = dialog.querySelector('.case-study__scroll');
+    const steps = [...dialog.querySelectorAll('[data-case-nav]')];
+    const cards = () => [...document.querySelectorAll('.project[data-project]')];
     let lastTrigger = null;
+    let current = null;
 
     const open = (card, trigger) => {
         const text = (sel) => card.querySelector(sel)?.textContent.trim() || '';
@@ -350,11 +392,39 @@ function initCaseStudy() {
             return link;
         }));
 
+        // neighbours for the previous / next buttons
+        current = card;
+        const list = cards();
+        const at = list.indexOf(card);
+        steps.forEach((step) => {
+            const other = list[at + Number(step.dataset.caseNav)];
+            step.hidden = !other;
+            if (other) step.querySelector('[data-label]').textContent = other.querySelector('.project__title')?.textContent.trim() || '';
+        });
+
         lastTrigger = trigger;
-        dialog.showModal();
+        if (!dialog.open) dialog.showModal();
         scroller.scrollTop = 0;
         document.body.classList.add('is-locked');
     };
+
+    // Step through the projects without closing. Focus goes to the new title so a screen
+    // reader announces it; closing still returns to the button that first opened the dialog.
+    const go = (delta) => {
+        const list = cards();
+        const next = list[list.indexOf(current) + delta];
+        if (!next) return;
+        open(next, lastTrigger);
+        const title = dialog.querySelector('[data-slot="title"]');
+        title.tabIndex = -1;
+        title.focus({ preventScroll: true });
+    };
+    steps.forEach((step) => step.addEventListener('click', () => go(Number(step.dataset.caseNav))));
+    dialog.addEventListener('keydown', (e) => {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+    });
 
     document.addEventListener('click', (e) => {
         const trigger = e.target.closest('[data-case-study]');
@@ -384,14 +454,68 @@ async function submitToFormspree(form) {
     if (!response.ok) throw new Error('Form submission failed');
 }
 
-function validateRequired(form) {
-    let valid = true;
-    form.querySelectorAll('input[required], textarea[required], select[required]').forEach((field) => {
-        const empty = !field.value.trim();
-        field.classList.toggle('error', empty);
-        if (empty) valid = false;
+/* Form validation. Each problem gets a message under its field, tied to it with
+   aria-describedby and aria-invalid, so it is announced and never relies on a red
+   border alone. The forms keep novalidate so these messages replace the browser's. */
+function fieldError(field) {
+    if (field.type === 'hidden' || field.disabled || field.tabIndex === -1) return '';
+    const value = field.value.trim();
+    if (field.required && !value) return field.tagName === 'SELECT' ? 'Choose an option.' : 'This field is required.';
+    if (value && field.validity.typeMismatch) {
+        if (field.type === 'email') return 'Enter a valid email address, like you@example.com.';
+        if (field.type === 'url') return 'Enter a full link, starting with https://';
+    }
+    return '';
+}
+
+function setFieldError(field, message) {
+    const id = `${field.id || field.name}-error`;
+    let note = document.getElementById(id);
+    field.classList.toggle('error', !!message);
+    if (!message) {
+        note?.remove();
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+        return;
+    }
+    if (!note) {
+        note = document.createElement('p');
+        note.className = 'field__error';
+        note.id = id;
+        field.insertAdjacentElement('afterend', note);
+    }
+    note.textContent = message;
+    field.setAttribute('aria-invalid', 'true');
+    field.setAttribute('aria-describedby', id);
+}
+
+function validateForm(form) {
+    let first = null;
+    form.querySelectorAll('input, select, textarea').forEach((field) => {
+        const message = fieldError(field);
+        setFieldError(field, message);
+        if (message && !first) first = field;
     });
-    return valid;
+    first?.focus();
+    return !first;
+}
+
+// Clear a message as soon as it's fixed; check a filled-in field when the visitor
+// moves on, so a mistyped email is caught before they reach the button.
+function watchFields(form) {
+    // Pressing Send blurs the last field first. A message appearing at that moment moves
+    // the button out from under the pointer and the click is lost, so while a button in
+    // the form is being pressed the blur check stands down — submit checks everything anyway.
+    let pressing = false;
+    form.addEventListener('pointerdown', (e) => { pressing = !!e.target.closest('button'); });
+    document.addEventListener('pointerup', () => { setTimeout(() => { pressing = false; }); });
+
+    form.querySelectorAll('input, select, textarea').forEach((field) => {
+        const recheck = () => { if (field.getAttribute('aria-invalid') === 'true') setFieldError(field, fieldError(field)); };
+        field.addEventListener('input', recheck);
+        field.addEventListener('change', recheck);
+        field.addEventListener('blur', () => { if (!pressing && field.value.trim()) setFieldError(field, fieldError(field)); });
+    });
 }
 
 function showFormError(form, message) {
@@ -411,31 +535,37 @@ function initContactForm() {
 
     const submit = form.querySelector('button[type="submit"]');
     const submitLabel = submit ? submit.innerHTML : '';
-
-    form.querySelectorAll('input, textarea').forEach((field) => {
-        field.addEventListener('input', () => field.classList.remove('error'));
-    });
+    watchFields(form);
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!validateRequired(form)) {
-            form.querySelector('.error')?.focus();
-            return;
-        }
+        if (!validateForm(form)) return;
 
         form.querySelector('.form-error-message')?.remove();
         if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
 
         try {
             await submitToFormspree(form);
-            form.replaceChildren();
-            form.insertAdjacentHTML('beforeend', `
-                <div class="success-message" role="status">
-                    ${svgIcon('i-check')}
-                    <h3>Message sent.</h3>
-                    <p>Thanks for reaching out — I'll get back to you as soon as I can, usually within 24–48 hours.</p>
-                </div>
-            `);
+            // swap the fields for a confirmation, keeping them to put back for another message
+            const fields = [...form.children];
+            const done = document.createElement('div');
+            done.className = 'success-message';
+            done.setAttribute('role', 'status');
+            done.tabIndex = -1;
+            done.innerHTML = `
+                ${svgIcon('i-check')}
+                <h3>Message sent.</h3>
+                <p>Thanks for reaching out — I’ll get back to you as soon as I can, usually within 24–48 hours.</p>
+                <button class="btn btn--ghost btn--sm" type="button">Send another message</button>
+            `;
+            form.replaceChildren(done);
+            done.focus({ preventScroll: true });   // the button that had focus is gone
+            done.querySelector('button').addEventListener('click', () => {
+                form.replaceChildren(...fields);
+                form.reset();   // after re-attaching: reset() only clears fields that are in the form
+                if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+                form.querySelector('input:not([type="hidden"]):not([tabindex="-1"])')?.focus();
+            });
         } catch {
             showFormError(form, "Something went wrong sending your message. Please try again, or email me directly at sumitsah6511@gmail.com.");
             if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
@@ -491,7 +621,7 @@ function initStackLinks() {
     };
 
     groups.querySelectorAll('.pill').forEach((pill) => {
-        const label = pill.textContent.trim();
+        const label = pill.dataset.tech || pill.textContent.trim();
         const keys = (pill.dataset.match || label).split('|').map(norm);
         const matches = projects.filter((p) => keys.some((k) => p.tech.has(k)));
         if (!matches.length) return;
@@ -500,6 +630,8 @@ function initStackLinks() {
         button.type = 'button';
         button.className = 'pill__btn';
         button.setAttribute('aria-expanded', 'false');
+        const icon = pill.querySelector('.pill__icon');
+        if (icon) button.append(icon);
         button.append(label);
         const count = document.createElement('span');
         count.className = 'pill__count';
@@ -543,13 +675,19 @@ function initStackLinks() {
    Footer: current time in Kathmandu
    -------------------------------------------------------------------------- */
 function initLocalTime() {
-    const el = document.querySelector('[data-local-time]');
-    if (!el || typeof Intl === 'undefined') return;
+    const els = [...document.querySelectorAll('[data-local-time]')];
+    if (!els.length || typeof Intl === 'undefined') return;
     let format;
     try {
         format = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit', hour12: false });
     } catch { return; }
-    const tick = () => { el.textContent = `· ${format.format(new Date())} local time`; el.hidden = false; };
+    const tick = () => {
+        const time = format.format(new Date());
+        els.forEach((el) => {
+            el.textContent = el.dataset.localTime === 'clock' ? time : `· ${time} local time`;
+            el.hidden = false;
+        });
+    };
     tick();
     setInterval(tick, 30000);
 }
@@ -660,18 +798,23 @@ function initRecommendForm() {
         }
     };
 
+    // Without JS the form is simply there and posts normally; with JS it tucks behind the button
+    form.hidden = true;
+    toggle.hidden = false;
+
     toggle.addEventListener('click', () => setOpen(true));
-    cancel.addEventListener('click', () => setOpen(false));
+    cancel.addEventListener('click', () => {
+        form.querySelectorAll('[aria-invalid]').forEach((field) => setFieldError(field, ''));   // don't reopen onto old errors
+        setOpen(false);
+    });
 
     const submit = form.querySelector('button[type="submit"]');
     const submitLabel = submit ? submit.innerHTML : '';
+    watchFields(form);
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!validateRequired(form)) {
-            form.querySelector('.error')?.focus();
-            return;
-        }
+        if (!validateForm(form)) return;
         form.querySelector('.form-error-message')?.remove();
         if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
 
@@ -684,7 +827,7 @@ function initRecommendForm() {
                 <div class="success-message" role="status">
                     ${svgIcon('i-check')}
                     <h3>Thanks for the recommendation.</h3>
-                    <p>Your suggestion has been received. I'll review it and add it to the list if it fits well.</p>
+                    <p>Your suggestion has been received. I’ll review it and add it to the list if it fits well.</p>
                 </div>
             `;
         } catch {
@@ -705,6 +848,7 @@ const boot = () => {
     initVersionSwitch();
     initTerminal();
     initReveal();
+    initSpotlight();
     initHeroField();
     initCaseStudy();
     initContactForm();
