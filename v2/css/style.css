@@ -161,10 +161,14 @@
 .archive-bar__close:hover { background: rgba(255, 255, 255, 0.12); color: var(--light-color); }
 .archive-bar a:focus-visible, .archive-bar__close:focus-visible { outline: 2px solid var(--secondary-color); outline-offset: 2px; }
 body:has(.archive-bar) { padding-bottom: 7.2rem; }
+.archive-bar__short { display: none; }
 @media (max-width: 576px) {
-    .archive-bar { left: 1.2rem; right: 1.2rem; bottom: 1.2rem; transform: none; width: auto; max-width: none; border-radius: 18px; padding-left: 1.6rem; }
-    .archive-bar span { flex: 1; }
-    body:has(.archive-bar) { padding-bottom: 9.6rem; }
+    /* phones get the short wording so the notice stays one line instead of three */
+    .archive-bar { left: 1.2rem; right: 1.2rem; bottom: 1.2rem; transform: none; width: auto; max-width: none; padding-left: 1.8rem; }
+    .archive-bar__text { flex: 1; }
+    .archive-bar__long { display: none; }
+    .archive-bar__short { display: inline; }
+    body:has(.archive-bar) { padding-bottom: 8rem; }
 }
 
 html {
